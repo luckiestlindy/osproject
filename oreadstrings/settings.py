@@ -119,9 +119,11 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, "static")
 
-MEDIA_ROOT = '/Users/brentlind/Documents/Websites/oreadstrings/booker/media/'
+#MEDIA_ROOT = '/Users/brentlind/Documents/Websites/oreadstrings/booker/media/'
 MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
 TIME_INPUT_FORMATS = ('%I:%M %p',) #will format your times as "5:30 PM"
 EMAIL_HOST = 'localhost'
