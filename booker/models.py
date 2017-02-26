@@ -10,7 +10,7 @@ class Musician(models.Model):
     email = models.EmailField(blank = True)
     instrument = models.CharField(max_length=100, choices=[('piano', 'piano'), ('violin','violin'), ('viola', 'viola'), ('cello', 'cello') ],)
     bio = models.TextField(blank=True)
-    photo = models.ImageField(upload_to='musicians')
+    photo = models.ImageField(upload_to='musicians', blank = True)
     website = models.URLField(max_length=200, blank=True)
     def __str__(self):
         return self.name
@@ -19,7 +19,7 @@ class Ensemble(models.Model):
     name = models.CharField(max_length = 100) 
     description = models.CharField(max_length = 200, blank = True)
     members = models.IntegerField()
-    photo = models.ImageField(upload_to='ensembles')
+    photo = models.ImageField(upload_to='ensembles', blank=True)
     def __str__(self):
         return self.name
 
