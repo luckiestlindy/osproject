@@ -1,0 +1,62 @@
+{% load static from staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>the Oread Strings</title>  
+    	<meta charset="utf-8">
+		<meta name="description" content="Oread Strings - String Ensembles for Special Events">
+		<meta name="keywords" content="Oread Strings, weddings, private events, corporate events, meetings, string quartet, soloist, classical, music">
+		<meta name="author" content="Kill Creek Web Design">
+    	<meta name="viewport" content="width=device-width, initial-scale=1">  
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+       
+	   <script type="text/javascript" src="{% static 'booker/menu.js' %}"> </script>
+        <link rel="stylesheet" href="{% static 'booker/style.css' %}">
+        {% block head %}{% endblock head %}
+<!--
+		<link href="assets/images/site/favicon.ico" rel="icon" type="image/x-icon" />	  
+		<link rel="stylesheet" href="assets/css/bootstrap.min.css">
+   		<link rel="stylesheet" href="assets/css/font-awesome.min.css">
+		<link rel="stylesheet" href="assets/css/OSdefault.css">
+		<link rel="stylesheet" href="assets/css/index.css">
+		<link rel='stylesheet' type='text/css' href='https://fonts.googleapis.com/css?family=Great+Vibes' >
+-->
+
+	
+	</head>
+        
+    <body>
+        <div id = 'cssmenu'>
+            <ul>
+                <li ><a href="{% url 'index' %}">Home</a></li>
+                <li><a href="{% url 'ensembles' %}">Ensembles</a></li>
+                <li><a href="{% url 'musicians' %}">Musicians</a></li>
+                <li><a href="{% url 'listen' %}">Listen</a></li>
+                <li><a href="{% url 'contact' %}">Contact</a></li>
+                <li><a href="{% url 'bookings' %}">Bookings</a></li>
+            </ul>
+        </div>
+        
+      
+        
+<!--		Carousel-->
+        <div id='Top'>{% block top %}{% endblock top %}</div>
+        <div id='Main'>{% block content %}{% endblock content %}</div>
+        
+        <footer>
+            <div id="Logos">
+                <a href="http://www.w3.org/html/logo/"><img src="https://www.w3.org/html/logo/badge/html5-badge-h-css3-semantics.png" width="165" height="64" alt="HTML5 Powered with CSS3 / Styling, and Semantics" title="HTML5 Powered with CSS3 / Styling, and Semantics" ></a>
+            </div>
+            <h6 >This site is standards compliant and built with Django, HTML5, CSS3, Javascript, and Jquery</h6>
+        	<h6>&copy; Copyright 2017 <a title="mailto:killcreekaudio@gmail.com" href="mailto:killcreekaudio@gmail.com">Kill Creek Web Design</a></h6>	
+        </footer>
+        
+<!--Scripts        -->
+		
+        
+
+
+    </body>
+     {% block scripts %}{% endblock scripts %}
+</html>
+

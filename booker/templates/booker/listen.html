@@ -1,0 +1,33 @@
+{% extends 'booker/base.html' %}
+{% block content %}
+
+<h1>Listen</h1>
+<p>The playlists below feature our original recordings of many popular selections. Each playlist features unique ensemble arrangements to help you choose the right sound for your event.
+
+In addition to these selections we are happy to play any standard repertoire.
+
+Do you have a special piece of music? Ask us about custom string arrangements.
+
+</p>
+
+{% regroup songs by ensemble as ensemble_list %}
+{% for ensemble in ensemble_list%}
+
+<h3>{{ ensemble.grouper}}</h3>
+
+
+<ul>    
+    {% for song in ensemble.list %}
+    <li><h6>{{ song.name }}</h6>
+        <audio controls>
+            <source src="{{ song.audio_file.url }}" type="audio/mpeg">
+        </audio>
+    </li>
+    {% endfor %}
+    
+</ul>
+
+{% endfor %}
+
+{% endblock content %}
+

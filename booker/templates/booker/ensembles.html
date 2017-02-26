@@ -1,0 +1,18 @@
+{% extends 'booker/base.html' %}
+{% block content %}
+
+
+<h1>Available Ensembles</h1>
+<p>Below are our most common ensemble arrangements, but we are always happy to create a custom solution for you.</p>
+
+
+{% for ensemble in ensembles %}
+<div class='ensemble'>
+    <h2>{{ ensemble.name }}</h2>
+    <img src='/media/{{ ensemble.photo }}'alt="{{ ensemble.name }}">
+    <p>{{ ensemble.description }}</p>
+</div>
+{% endfor %}
+
+
+{% endblock content %}

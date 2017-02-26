@@ -1,0 +1,78 @@
+{% extends "booker/base.html" %}
+{% load static from staticfiles %}
+{% block head %}
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
+
+<link href="{% static 'booker/jquery-ui-timepicker-addon.min.css' %}" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="{% static 'booker/jquery-ui-sliderAccess.js' %}"></script>
+<script type="text/javascript" src="{% static 'booker/jquery-ui-timepicker-addon.min.js' %}"></script>
+
+{% endblock head %}
+{% block content %}
+
+   <h1>New post</h1>
+    <form action='' method="post" >{% csrf_token %}
+        
+        {{ form.as_p }}
+       
+        <input type="submit" value='Submit Booking Inquiry'>
+        <input type="reset" value='Reset Form'>
+    </form>
+
+
+{% endblock content %}
+
+
+{% block scripts %}
+<script>
+    $(function() {
+//        standard Jquery UI
+        $( ".datepicker" ).datepicker({
+            changeMonth: true,
+            changeYear: true,
+            yearRange: "2017:2050",
+            minDate: 0,
+    });
+  });
+    $(function() {
+//        http://trentrichardson.com/examples/timepicker/
+        $( ".timepicker" ).timepicker({
+            stepMinute: 15,
+            hourMin: 9,
+            timeFormat: 'hh:mm tt',
+            addSliderAccess: true,
+            sliderAccessArgs: { touchonly: false },
+        });
+    });
+   
+    $('#id_start_time').hide()
+    $('#id_start_time').labels().hide()
+    $('#id_start_time_known').change(
+        function(){
+            if ($(this).is(':checked')) {
+                $('#id_start_time').show(),
+                $('#id_start_time').labels().show()
+            }
+            else {
+                $('#id_start_time').hide(),
+                $('#id_start_time').labels().hide()
+            }
+        });
+//    $('#id_performer_duration').hide()
+//    $('#id_performer_duration').labels().hide()
+//    $('#id_performer_duration_known').change(
+//        function(){
+//            if ($(this).is(':checked')) {
+//                $('#id_performer_duration').show(),
+//                $('#id_performer_duration').labels().show()
+//            }
+//            else {
+//                $('#id_performer_duration').hide(),
+//                $('#id_performer_duration').labels().hide()
+//            }
+//        });
+</script>
+
+{% endblock scripts %}
+
