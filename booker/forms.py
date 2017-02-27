@@ -8,7 +8,7 @@ class EventForm(forms.ModelForm):
         model = Event
 #        fields = ['event_date', 'ensemble_type', 'client']
         fields = '__all__'
-        exclude = ['musician_one', 'musician_two', 'musician_three', 'musician_four', 'musician_five']
+        exclude = ['musician_one', 'musician_two', 'musician_three', 'musician_four', 'musician_five', 'status']
     
         widgets = {
             'event_date': forms.DateInput(attrs={'class':'datepicker'}),

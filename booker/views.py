@@ -58,34 +58,8 @@ def bookings(request):
         form=EventForm()    
     context = {'form': form,}
     return render(request, 'booker/event_form.html', context)
-#def success (request):
-#    return render(request, 'booker/success.html')
+
 
 def event_detail(request, pk):
     event = get_object_or_404(Event, pk=pk)
     return render(request, 'booker/success.html', {'event': event})
-#def event_edit(request, pk):
-#    event = get_object_or_404(Post, pk=pk)
-#    if request.method == "POST":
-#        form = EventForm(request.POST, instance=event)
-#        if form.is_valid():
-#            event = form.save(commit=False)
-#            event.author = request.user
-#            event.published_date = timezone.now()
-#            event.save()
-#            return redirect('event_detail', pk=post.pk)
-#    else:
-#        form = EventForm(instance=event)
-#    return render(request, 'booker/event_edit.html', {'form': form})
-
-#def bookings(request):
-#    form = EventForm(request.POST or None)
-#    if form.is_valid():
-#        instance = form.save(commit=False)
-#        print form.cleaned_data.get('client')
-#        instance.save()
-#        
-#    #    if request.method =='POST':
-##        print request.POST.get("ensemble_type")
-#    context = {'form': form,}
-#    return render(request, 'booker/event_form.html', context)
