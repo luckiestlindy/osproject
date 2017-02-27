@@ -1,7 +1,17 @@
 {% extends 'booker/base.html' %}
+{% load static from staticfiles %}
+{% block head %}
+<link rel="stylesheet" type="text/css" href="{% static 'booker/slick.css' %}"/>
+<link rel="stylesheet" type="text/css" href="{% static 'booker/slick-theme.css' %}"/>
+{% endblock head %}
 
 {% block top %}
-<p>this is the top</p>
+  <div class="carousel">
+    <div><img src="/media/slides/slide1.jpg" alt="Cellist" height="800" width="1600"></div>
+    <div><img src="/media/slides/slide2.jpg" alt="Quartet" height="800" width="1600"></div>
+    <div><img src="/media/slides/slide3.jpg" alt="Violinist" height="800" width="1600"></div>
+  </div>
+
 {% endblock top %}
 
 {% block content %}
@@ -16,5 +26,14 @@
     <p>The Oread Strings are commited to a welcoming and inclusive attitude to all people and do not discriminate on the basis of race, color, religion (creed), gender, gender expression, age, national origin (ancestry), disability, marital status, sexual orientation, or military status, in any of its activities or operations. We support the principles of the Human Rights Campaign (HRC), feel free to click their logo below for more information.</p>
 	
     <a title="http://www.hrc.org" href="http://www.hrc.org"><img src="/media/site/HRC.jpg"  alt="HRC Logo" width="50" height="50" ></a>
-           
 {% endblock content %}
+
+
+{% block scripts %}
+<script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+<script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+<script type="text/javascript" src="{% static 'booker/slick.min.js' %}"></script>
+<script type="text/javascript" src ="{% static 'booker/slick-initialize.js' %}"></script>
+{% endblock scripts %}
+
+
