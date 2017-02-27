@@ -5,6 +5,7 @@ from .forms import EventForm
 from .models import Event, Musician, Ensemble, Song
 from django.core.mail import send_mail, EmailMessage
 
+ 
 def notifyadmin(request, pk):
     subject = 'New Booking Inquiry at Oreadstrings.com'
     to = ['oreadstrings@gmail.com']
