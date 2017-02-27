@@ -12,6 +12,7 @@ urlpatterns = [
 #    url(r'^bookings/success/$', views.success, name='success'),
 #    url(r'^events/$', views.event_list, name='event_list'),
     url(r'^event/(?P<pk>\d+)/$', views.event_detail, name='event_detail'),
+    url(r'^msusician/(?P<pk>\d+)/$', views.musician_detail, name='musician_detail'),
     
 #    url(r'^event/(?P<pk>\d+)/edit/$', views.event_edit, name='event-edit'),
 #    url(r'^events/new/$', views.event_new, name='event_new'),

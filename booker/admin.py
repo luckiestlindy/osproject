@@ -2,7 +2,16 @@ from django.contrib import admin
 
 from .models import Event, Musician, Ensemble, Song
 
+class MusicianAdmin(admin.ModelAdmin):
+    list_display = ('name', 'instrument', 'website')
+    list_filter = ('instrument',)
 
+class EnsembleAdmin(admin.ModelAdmin):
+    list_display = ('name', 'description',)
+    
+class SongAdmin(admin.ModelAdmin):
+    list_display = ('name', 'ensemble',)
+    list_filter = ('ensemble',)
     
 class EventAdmin(admin.ModelAdmin):
     list_display = ('client_name', 'event_type', 'event_date', 'status',)
@@ -26,10 +35,10 @@ class EventAdmin(admin.ModelAdmin):
         }),
 
     )
-    pass
 
-admin.site.register(Musician)
+    
+admin.site.register(Musician, MusicianAdmin)
 admin.site.register(Event, EventAdmin)
-admin.site.register(Ensemble)
-admin.site.register(Song)
+admin.site.register(Ensemble, EnsembleAdmin)
+admin.site.register(Song, SongAdmin)
 

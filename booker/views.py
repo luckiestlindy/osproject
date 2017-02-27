@@ -59,7 +59,10 @@ def bookings(request):
     context = {'form': form,}
     return render(request, 'booker/event_form.html', context)
 
-
+def musician_detail(request, pk):
+    musician = get_object_or_404(Musician, pk=pk)
+    return render(request, 'booker/musician_detail.html', {'musician': musician})
+                  
 def event_detail(request, pk):
     event = get_object_or_404(Event, pk=pk)
     return render(request, 'booker/success.html', {'event': event})

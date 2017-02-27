@@ -1,0 +1,21 @@
+{% extends 'booker/base.html' %}
+{% block content %}
+
+<h1>Meet the Musicians</h1>
+
+
+
+<div class='musician_bio'>
+    <h2>{{ musician.name }}</h2>
+    <img src='/media/{{ musician.photo }}'alt="{{ musician.name }}">
+    <p>{{ musician.bio }}</p>
+        {% if musician.website %}
+        <a title = "{{ musician.website }}" href="{{ musician.website }}">{{ musician.website }}</a>
+        {% endif %}
+</div>
+
+
+
+{% endblock content %}
+
+ 

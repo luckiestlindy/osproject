@@ -1,10 +1,3 @@
-YEAR_IN_SCHOOL_CHOICES = (
-    ('FR', 'Freshman'),
-    ('SO', 'Sophomore'),
-    ('JR', 'Junior'),
-    ('SR', 'Senior'),
-)
-
 INSTRUMENT_TYPES = (
     ('piano', 'piano'), 
     ('violin','violin'), 

@@ -14,7 +14,9 @@ class Musician(models.Model):
     website = models.URLField(max_length=200, blank = True)
     def __str__(self):
         return self.name
-
+    def get_absolute_url(self):
+        return reverse('musician_detail', kwargs={'pk': self.pk})
+    
 class Ensemble(models.Model):
     name = models.CharField(max_length = 100) 
     description = models.CharField(max_length = 200, blank = True)
