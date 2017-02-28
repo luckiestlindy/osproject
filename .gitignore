@@ -7,3 +7,4 @@ settings.py
 /static
 .DS_Store
 /oreadstrings/settings.py
+/booker/.env
