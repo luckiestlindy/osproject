@@ -1,7 +1,7 @@
 from __future__ import unicode_literals
 from django.urls import reverse
 from django.db import models
-from choices import *
+from booker.choices import *
 # Create your models here.
 
 
