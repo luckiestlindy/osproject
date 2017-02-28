@@ -1,0 +1,3 @@
+Hey dude, 
+you've got a gig at {{ venue }} on {{ event_date }}
+Way to go!

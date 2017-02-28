@@ -1,14 +1,12 @@
 from django import forms
 from .models import Event
-#from django.contrib.admin import widgets 
 
 
 class EventForm(forms.ModelForm):
     class Meta:
         model = Event
-#        fields = ['event_date', 'ensemble_type', 'client']
         fields = '__all__'
-        exclude = ['musician_one', 'musician_two', 'musician_three', 'musician_four', 'musician_five', 'status']
+        exclude = ['musician_one', 'musician_two', 'musician_three', 'musician_four', 'musician_five', 'status', 'fee', 'deposit', 'deposit_duedate', 'balance_duedate', 'deposit_recieved','balance_recieved', 'quote_message',]
     
         widgets = {
             'event_date': forms.DateInput(attrs={'class':'datepicker'}),
@@ -16,9 +14,6 @@ class EventForm(forms.ModelForm):
             'end_time': forms.TimeInput(attrs={'class': 'timepicker'}),
             'performers_required_time': forms.TimeInput(attrs={'class': 'timepicker'}),
             'client_email': forms.EmailInput(),
-#            'start_time_known': forms.BooleanField(),
-#            'client_name': 
-
         }
         labels = {
             'client_name': 'Your name:',

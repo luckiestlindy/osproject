@@ -1,0 +1,11 @@
+{% extends 'admin/change_form.html' %}
+{% load i18n %}
+{% block submit_buttons_bottom %}
+{{ block.super }}
+<div class='submit-row list-group'>
+    <input type="button" value="View Contract"  name="view_contract" onclick="location.href='/booker/contract/{{ original.pk }}';" />
+    <input type="button" value="Send Contract as PDF"  name="send_pdf" onclick="location.href='/booker/contract/pdf/{{ original.pk }}';" />
+    <input type="button" value="Send Contract as Link"  name="send_link" onclick="location.href='/booker/contract/link/{{ original.pk }}';" />
+    <input type="button" value="Notify Musicians"  name="email_musicians" onclick="location.href='/booker/notify_players/{{ original.pk }}';" />
+</div>
+{% endblock %}

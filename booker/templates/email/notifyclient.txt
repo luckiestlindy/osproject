@@ -1,0 +1,4 @@
+{{ personal_message }}
+Hello {{ client_name }},
+You have received a quote for live music services from the Oread Strings.  Please click <a href="http://www.oreadstrings.com/booker/contract/{{ link }}">here</a> to view your custom quote.
+Thanks and have a lovely day.  

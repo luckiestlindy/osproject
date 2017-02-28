@@ -1,6 +1,6 @@
 from django.contrib import admin
-
 from .models import Event, Musician, Ensemble, Song
+
 
 class MusicianAdmin(admin.ModelAdmin):
     list_display = ('name', 'instrument', 'website')
@@ -14,6 +14,7 @@ class SongAdmin(admin.ModelAdmin):
     list_filter = ('ensemble',)
     
 class EventAdmin(admin.ModelAdmin):
+    
     list_display = ('client_name', 'event_type', 'event_date', 'status',)
     list_editable = ('status',)
     list_filter = ('event_type', 'event_date','ensemble_type',)
@@ -33,12 +34,19 @@ class EventAdmin(admin.ModelAdmin):
         ('Performers', {
             'fields': ('musician_one', 'musician_two', 'musician_three', 'musician_four', 'musician_five')
         }),
-
+        ('Contract', {
+            'fields': ('fee','deposit', 'deposit_duedate', 'balance_duedate','deposit_recieved', 'balance_recieved', )
+        }),
+        ('Message to Client', {
+            'fields': ('quote_message',)
+        }),
     )
+   
 
     
 admin.site.register(Musician, MusicianAdmin)
 admin.site.register(Event, EventAdmin)
 admin.site.register(Ensemble, EnsembleAdmin)
 admin.site.register(Song, SongAdmin)
+
 

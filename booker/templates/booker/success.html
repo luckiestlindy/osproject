@@ -6,18 +6,25 @@
     <p>Your booking inquiry has been recieved.  We will write up a custom quote for you as soon as possible and contact you by {{ event.contact_pref }}. Have a great day!</p>
     <h3>Booking Details</h3>
     <ul>
-        <li>Event Type: {{ event.event_type }}</li>
-        <li>Ensemble Type: {{ event.ensemble_type }}</li>
+        <h6>Event Details:</h6>
+        <li>Event Type: {{ event.event_type }}</li> 
         <li>Event Date: {{ event.event_date }}</li>
         <li>Start TIme: {{ event.start_time }}</li>
         <li>Length of Event: {{ event.event_duration }}</li>
+        <li>Expected Guests: {{ event.expected_guests }}</li>
+        
+        <h6>Performance Details:</h6>
+        <li>Ensemble Type: {{ event.ensemble_type }}</li>
         <li>Performers call time: {{ event.performers_required_time }}</li>
         <li>Performers needed for: {{ event.performers_duration }}</li>
+        
+        <h6>Venue Details:</h6>
         <li>Event Venue: {{ event.venue_name }}</li>
         <li>Address: {{event.address }}</li>
         <li>City: {{ event.city }}</li>
-        <li>Expected Guests: {{ event.expected_guests }}</li>
+        
+        
         <h6>Comments</h6>
-        <textarea disabled rows=6 cols=100>{{ event.comments }}</textarea>
+        <p>{{ event.comments }}</p>
     </ul>
 {% endblock %}

@@ -4,6 +4,8 @@ from django.db import models
 from choices import *
 # Create your models here.
 
+
+
 class Musician(models.Model):
     name = models.CharField(max_length = 200)
     phone = models.CharField(max_length = 10, blank = True)
@@ -58,8 +60,17 @@ class Event(models.Model):
     musician_four = models.ForeignKey(Musician, blank = True, null = True, related_name='musician_four')
     musician_five = models.ForeignKey(Musician, blank = True, null = True, related_name='musician_five')
     status = models.CharField(max_length=100, choices=BOOKING_STATUS, default='inquiry')
+    fee = models.DecimalField(blank=True, null=True, max_digits=6, decimal_places=2)
+    deposit = models.DecimalField(blank=True, null=True, max_digits=6, decimal_places=2)
+    deposit_duedate = models.DateField(auto_now = False, blank=True, null=True)
+    balance_duedate = models.DateField(auto_now = False, blank=True, null=True)
+    deposit_recieved = models.BooleanField(default=False)
+    balance_recieved = models.BooleanField(default=False)
+    quote_message = models.TextField(max_length = 800, blank = True)
     def __str__(self):
-        event_label = (self.client_name, self.event_type)
+#        event_label = (self.client_name, self.event_type)
         return '{}: {}- {}'.format(self.client_name, self.event_type, self.event_date)
     def get_absolute_url(self):
         return reverse('event_detail', kwargs={'pk': self.pk})
+
+    

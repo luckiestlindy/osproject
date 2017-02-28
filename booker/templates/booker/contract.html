@@ -1,0 +1,39 @@
+{% extends 'booker/base.html' %}
+{% block content %}
+
+<h1>Hello {{ event.client_name }}!</h1>
+<h3>Congratulations on booking the Oread Strings for your upcoming {{ event.event_type }}.  </h3>
+<h5>Please review the details of your event, listed below.</h5>
+<ul>
+    <h6>Event Details:</h6>
+    <li>Event Type: {{ event.event_type }}</li> 
+    <li>Event Date: {{ event.event_date }}</li>
+    <li>Start TIme: {{ event.start_time }}</li>
+    <li>Length of Event: {{ event.event_duration }}</li>
+    <li>Expected Guests: {{ event.expected_guests }}</li>
+
+    <h6>Performance Details:</h6>
+    <li>Ensemble Type: {{ event.ensemble_type }}</li>
+    <li>Performers call time: {{ event.performers_required_time }}</li>
+    <li>Performers needed for: {{ event.performers_duration }}</li>
+
+    <h6>Venue Details:</h6>
+    <li>Event Venue: {{ event.venue_name }}</li>
+    <li>Address: {{event.address }}</li>
+    <li>City: {{ event.city }}</li>
+
+
+    <h6>Comments</h6>
+    <p>{{ event.comments }}</p>
+    
+    <h6>Performance Fee:</h6>
+    <li>Total Fee: {{ event.fee }}, due on {{ event.balance_duedate }}</li>
+    <li>Deposit Amount: {{ event.fee }}, due on {{ event.deposit_duedate }}</li>
+    <p>Payment options include a paypal, credit card or personal check.</p>
+    <input type="button" value="Click here for Paypal"  name="paypal" onclick="location.href='https://paypal.com'" />
+
+    <h5>Thank you!</h5>
+</ul>
+
+ <input type="button" value="Download Contract as PDF"  name="download_pdf" onclick="location.href='/booker/contract/pdf/{{ event.pk }}';" />
+{% endblock %}

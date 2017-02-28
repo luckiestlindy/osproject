@@ -2,10 +2,9 @@ body {
     width: 100%;
     margin: auto;
     font-family: sans-serif;
-    list-style: none;
 }
 #Main {
-    border: 1px solid red;
+    border: 1px solid black;
     display: block;
     width: 80%;
     margin: auto;
@@ -14,13 +13,6 @@ body {
 footer {
     text-align: center;
 }
-
-
-
-
-
-
-
 
 
 @import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro);

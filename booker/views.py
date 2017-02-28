@@ -4,8 +4,69 @@ from django.template.loader import render_to_string
 from .forms import EventForm
 from .models import Event, Musician, Ensemble, Song
 from django.core.mail import send_mail, EmailMessage
+from reportlab.pdfgen import canvas
 
- 
+def notify_players(request, pk):
+    event = get_object_or_404(Event, pk=pk)
+    subject = 'Oread Strings - Event Details'
+    musicians =[]
+    def is_musician_assigned(musician_instance):
+        var = musician_instance
+        if var != None:
+            email = var.email
+        else:
+            email = ''
+        return email 
+    musicians = [
+        is_musician_assigned(event.musician_one), 
+        is_musician_assigned(event.musician_two),
+        is_musician_assigned(event.musician_three),
+        is_musician_assigned(event.musician_four),
+        is_musician_assigned(event.musician_five),
+    ]
+    to = musicians
+    from_email = 'test@example.com'
+    var = {
+        'event_date': event.event_date,
+        'venue': event.venue_name,
+    }
+    message = render_to_string('email/notifyplayers.txt', var)
+    EmailMessage(subject, message,to=to, from_email=from_email).send()
+    date = event.event_date
+    html = "You have succesfully notified your musicians of the event booking on %s" % date
+    return render(request, 'booker/confirm.html', {'html': html} )
+    
+def contract_link(request, pk):
+    event = get_object_or_404(Event, pk=pk)
+    subject = 'Your Quote has arrived from the Oread Strings'
+    to = [event.client_email]
+    from_email = 'test@example.com'
+    var = {
+        'personal_message': event.quote_message,
+        'client_name': event.client_name,
+        'link':  event.pk
+    }
+    message = render_to_string('email/notifyclient.txt', var)
+    EmailMessage(subject, message,to=to, from_email=from_email).send()
+    fee = event.fee
+    html = "You have succesfully forwarded your quote of %s to the client" % fee
+    return render(request, 'booker/confirm.html', {'html': html} )
+
+    
+def contract_pdf(request, pk):
+    event = get_object_or_404(Event, pk=pk)
+    response = HttpResponse(content_type='application/pdf')
+    response['Content-Disposition'] = "attachment; filename=filename.pdf"
+    p = canvas.Canvas(response)
+    p.drawString(100,100, 'Hello World')
+    p.showPage()
+    p.save()
+    return response
+
+def contract(request, pk):
+    event = get_object_or_404(Event, pk=pk)
+    return render(request, 'booker/contract.html', {'event': event})
+
 def notifyadmin(request, pk):
     subject = 'New Booking Inquiry at Oreadstrings.com'
     to = ['oreadstrings@gmail.com']

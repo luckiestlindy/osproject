@@ -1,5 +1,5 @@
 from django.conf.urls import url
-#from booker.views import EventCreate, EventUpdate, EventDelete
+from django.views.generic import TemplateView
 from . import views
 
 urlpatterns = [
@@ -9,21 +9,11 @@ urlpatterns = [
     url(r'^listen/$', views.listen, name='listen'),
     url(r'^contact/$', views.contact, name='contact'),
     url(r'^bookings/$', views.bookings, name='bookings'),
-#    url(r'^bookings/success/$', views.success, name='success'),
-#    url(r'^events/$', views.event_list, name='event_list'),
     url(r'^event/(?P<pk>\d+)/$', views.event_detail, name='event_detail'),
-    url(r'^msusician/(?P<pk>\d+)/$', views.musician_detail, name='musician_detail'),
-    
-#    url(r'^event/(?P<pk>\d+)/edit/$', views.event_edit, name='event-edit'),
-#    url(r'^events/new/$', views.event_new, name='event_new'),
-    
-#    url(r'event/add/$', EventCreate.as_view(), name='event-add'),
-#    url(r'event/(?P<pk>[0-9]+)/$', EventUpdate.as_view(), name='event-update'),
-#    url(r'event/(?P<pk>[0-9]+)/delete/$', EventDelete.as_view(), name='event-delete'),
-    # ex: /polls/5/
-#    url(r'^(?P<client_id>[0-9]+)/client/$', views.detail, name='detail'),
-    # ex: /polls/5/results/
-#    url(r'^(?P<client_id>[0-9]+)/results/$', views.results, name='results'),
-    # ex: /polls/5/vote/
-#    url(r'^(?P<client_id>[0-9]+)/vote/$', views.vote, name='vote'),
+    url(r'^contract/(?P<pk>\d+)/$', views.contract, name='contract'),
+    url(r'^notify_players/(?P<pk>\d+)/$', views.notify_players, name='notify_players'),
+    url(r'^contract/pdf/(?P<pk>\d+)/$', views.contract_pdf, name='contract_pdf'),
+    url(r'^contract/link/(?P<pk>\d+)/$', views.contract_link, name='contract_link'),
+    url(r'^musician/(?P<pk>\d+)/$', views.musician_detail, name='musician_detail'),
+
 ]
