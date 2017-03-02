@@ -29,3 +29,13 @@ BOOKING_STATUS = (
     ('booked','booked'),
     ('paid','paid'),
 )
+WEDDING_OPTIONS = (
+    ('1','Ceremony Music only (including 20 minutes prelude music + 5 minutes postlude music)'), 
+    ('2','Ceremony Music + Cocktail Hour Music (up to 60 minutes music directly following ceremony)'),
+    ('3','Full Event Music (Ceremony, Cocktail Hour, Dinner) up to 3 hours of music'),
+)
+OUTDOOR_CHOICES = (
+    ('1', 'Not Sure Yet'),
+    ('2', 'Yes'),
+    ('3', 'No'),
+)

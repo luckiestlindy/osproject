@@ -1,0 +1,3 @@
+Hello Ellen,
+{{ client_name }} has submitted a new list of selections for their event through the Oread Strings form.  Please click here {{ link }} to view the selections.
+Thanks and have a lovely day.  

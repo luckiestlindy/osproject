@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Event, Musician, Ensemble, Song
+from .models import Event, Musician, Ensemble, Song, Selection, SelectionList
 
 
 class MusicianAdmin(admin.ModelAdmin):
@@ -23,10 +23,10 @@ class EventAdmin(admin.ModelAdmin):
             'fields': ('status',)
         }),
         ('Client Details', {
-            'fields': ('client_name','client_email', 'client_phone', 'contact_pref')
+            'fields': ('client_name','client_email', 'client_phone', )
         }),
         ('Event Details', {
-            'fields': ('event_type', 'event_date', 'start_time', 'event_duration','ensemble_type', 'performers_duration', 'performers_required_time', 'expected_guests')
+            'fields': ('event_type', 'event_date', 'start_time', 'event_duration','ensemble_type', 'performers_duration', 'performers_required_time', 'wedding_options',)
         }),
         ('Venue Details', {
             'fields': ('venue_name', 'address', 'city')
@@ -41,6 +41,8 @@ class EventAdmin(admin.ModelAdmin):
             'fields': ('quote_message',)
         }),
     )
+    class Media:
+        js = ('booker/event.js',)
    
 
     
@@ -48,5 +50,7 @@ admin.site.register(Musician, MusicianAdmin)
 admin.site.register(Event, EventAdmin)
 admin.site.register(Ensemble, EnsembleAdmin)
 admin.site.register(Song, SongAdmin)
+admin.site.register(Selection)
+admin.site.register(SelectionList)
 
 

@@ -1,5 +1,5 @@
 from django import forms
-from .models import Event
+from .models import Event, SelectionList
 
 
 class EventForm(forms.ModelForm):
@@ -22,8 +22,7 @@ class EventForm(forms.ModelForm):
             'event_type': 'Select Event Type',
             'ensemble_type': 'Select Ensemble Type',
             'event_date': 'What is the date of your event?',
-            'start_time_known': 'Do you know the start time for your event?',
-            'start_time': 'What is the start time of your event?',
+            'start_time': 'What is the approximate start time of your event?',
             'performers_entire_duration': 'Will the performers be need for the entire event?',
             'performers_duration': 'How long will they be needed?',
             'performers_required_time': 'What time are the perfomers required?',
@@ -31,9 +30,31 @@ class EventForm(forms.ModelForm):
             'address_known': 'Do you know the name/address for your event venue?',
             'venue_name': 'Please enter the name of the venue here (if applicable)',
             'address': 'Please enter the venue address here',
-            'guests': 'How many guests do you expect? (optional)',
-            'contact_pref': 'How would prefer to be contacted?',
+            'event_outdoors': 'Will you event take place outdoors?',
             'comments': 'Please add any or questions or comments here. Thank you!'
             
         }
-       
+class SelectionForm(forms.ModelForm):
+    class Meta:
+        model = SelectionList
+        fields = '__all__'
+        exclude = ['event','bridesmaids',]
+        labels = {
+            'prelude': 'Prelude - (Leave blank and we will provide a mix of light classical music)',
+            'processional': 'Processional Selections:',
+            'grandmothers': 'Seating of the Grandmothers? (check for yes)',
+            'num_grandmothers': "How many Grandmothers?",
+            'mothers': 'Seating of the Mothers? (check for yes)',
+            'num_mothers': "How many Mothers?",
+#            'bridesmaids': 'Seating of the Mothers? (check for yes)',
+            'num_bridesmaids': "How many Bridesmaids?",
+            'flowerrings': 'Will there be ring bearers and/or flower girls? (check for yes)',
+            'num_rings': 'How many ring bearers?',
+            'num_flowers': 'How many  flower girls?',
+            'bridal': 'Bridal Entrance:',
+            'unity': 'Unity/Candle Ceremony:',
+            'communion': 'Communion Ceremony:',
+            'other': 'Any other selections?',
+            'recessional': 'Recessional:',
+            'postlude': 'Postlude:',
+        }

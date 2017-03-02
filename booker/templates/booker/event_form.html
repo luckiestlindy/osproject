@@ -11,7 +11,7 @@
 {% endblock head %}
 {% block content %}
 
-   <h1>Request a Booking</h1>
+   <h1>Request Your Song Selections</h1>
     <form action='' method="post" >{% csrf_token %}
         
         {{ form.as_p }}
@@ -45,33 +45,23 @@
             sliderAccessArgs: { touchonly: false },
         });
     });
-   
-    $('#id_start_time').hide()
-    $('#id_start_time').labels().hide()
-    $('#id_start_time_known').change(
-        function(){
-            if ($(this).is(':checked')) {
-                $('#id_start_time').show(),
-                $('#id_start_time').labels().show()
-            }
-            else {
-                $('#id_start_time').hide(),
-                $('#id_start_time').labels().hide()
+    var event_type = $('#id_event_type').val();
+    if (event_type !== 'wedding') {
+        $('#id_wedding_options').hide();
+        $('#id_wedding_options').labels().hide();
+    }
+    $(function(){
+        $("#id_event_type").change(function(){
+            var status = this.value;
+            if(status=="wedding") {
+                $("#id_wedding_options").show();
+                $("#id_wedding_options").labels().show();
+            } else {
+                $("#id_wedding_options").hide();
+                $("#id_wedding_options").labels().hide();
             }
         });
-//    $('#id_performer_duration').hide()
-//    $('#id_performer_duration').labels().hide()
-//    $('#id_performer_duration_known').change(
-//        function(){
-//            if ($(this).is(':checked')) {
-//                $('#id_performer_duration').show(),
-//                $('#id_performer_duration').labels().show()
-//            }
-//            else {
-//                $('#id_performer_duration').hide(),
-//                $('#id_performer_duration').labels().hide()
-//            }
-//        });
+    });
 </script>
 
 {% endblock scripts %}

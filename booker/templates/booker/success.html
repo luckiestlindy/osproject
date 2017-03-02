@@ -3,7 +3,7 @@
 {% block content %}
     <h1>Thank You {{ event.client_name }}!</h1>
     <p>You have requested a quote for your event on {{ event.event_date }}</p>
-    <p>Your booking inquiry has been recieved.  We will write up a custom quote for you as soon as possible and contact you by {{ event.contact_pref }}. Have a great day!</p>
+    <p>Your booking inquiry has been recieved.  We will write up a custom quote for you as soon as possible and contact you at {{ event.client_email }}. Have a great day!</p>
     <h3>Booking Details</h3>
     <ul>
         <h6>Event Details:</h6>
@@ -11,7 +11,8 @@
         <li>Event Date: {{ event.event_date }}</li>
         <li>Start TIme: {{ event.start_time }}</li>
         <li>Length of Event: {{ event.event_duration }}</li>
-        <li>Expected Guests: {{ event.expected_guests }}</li>
+        <li>Outdoors: {{ event.event_outdoors }}</li>
+<!--        <li>Expected Guests: {{ event.expected_guests }}</li>-->
         
         <h6>Performance Details:</h6>
         <li>Ensemble Type: {{ event.ensemble_type }}</li>

@@ -1,10 +1,44 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponseRedirect, HttpResponse
 from django.template.loader import render_to_string
-from .forms import EventForm
-from .models import Event, Musician, Ensemble, Song
+from .forms import EventForm, SelectionForm
+from .models import Event, Musician, Ensemble, Song, SelectionList
 from django.core.mail import send_mail, EmailMessage
 from reportlab.pdfgen import canvas
+
+def selectionlist_detail(request, pk):
+    event = get_object_or_404(Event, pk=pk)
+    selectionlist = get_object_or_404(SelectionList, pk=pk)
+    return render(request, 'booker/selectionlist_detail.html', {'selectionlist': selectionlist, 'event':event})
+
+def notifyadmin_selections(request, pk):
+    subject = 'Client submitted Selections at Oreadstrings.com'
+    to = ['oreadstrings@gmail.com']
+    from_email = 'test@example.com'
+    event = get_object_or_404(Event, pk=pk)
+    var = {
+        'client_name': event.client_name,
+        'link': event.get_absolute_url(),
+    }
+    message = render_to_string('email/notifyadmin_selections.txt', var)
+    EmailMessage(subject, message,to=to, from_email=from_email).send()
+    return HttpResponse('notifyadmin_selections')
+
+def selections(request,pk):
+    event = get_object_or_404(Event, pk=pk)
+    selectionlist = SelectionList.objects.get(pk=pk)
+    form = SelectionForm(request.POST, instance=selectionlist)
+    if request.method == 'POST':
+        if form.is_valid():
+            selections = form.save(commit=False)
+            selections.author = request.user
+            selections.save()
+            notifyadmin_selections(request, pk=event.pk)
+            return redirect ('selectionlist_detail', pk=event.pk)
+    else:
+        form = SelectionForm(instance=selectionlist)
+    context = {'form':form, 'event':event}
+    return render(request, 'booker/selection_form.html', context)
 
 def notify_players(request, pk):
     event = get_object_or_404(Event, pk=pk)
@@ -15,7 +49,7 @@ def notify_players(request, pk):
         if var != None:
             email = var.email
         else:
-            email = ''
+            email = None
         return email 
     musicians = [
         is_musician_assigned(event.musician_one), 
@@ -24,6 +58,7 @@ def notify_players(request, pk):
         is_musician_assigned(event.musician_four),
         is_musician_assigned(event.musician_five),
     ]
+    print (musicians)
     to = musicians
     from_email = 'test@example.com'
     var = {

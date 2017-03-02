@@ -5,7 +5,7 @@ from booker.choices import *
 # Create your models here.
 
 
-
+    
 class Musician(models.Model):
     name = models.CharField(max_length = 200)
     phone = models.CharField(max_length = 10, blank = True)
@@ -39,9 +39,10 @@ class Event(models.Model):
     client_phone = models.CharField(max_length = 10)
     client_email = models.EmailField()
     event_type = models.CharField(max_length = 100, choices=EVENT_TYPES)
+    wedding_options = models.CharField(max_length = 100, choices=WEDDING_OPTIONS, default = '1')
     ensemble_type = models.ForeignKey(Ensemble, blank=True, null=True)
     event_date = models.DateField(auto_now = False)
-    start_time_known = models.BooleanField(default=False)
+#    start_time_known = models.BooleanField(default=False)
     start_time = models.TimeField(auto_now= False, blank = True, null = True)
     event_duration = models.CharField(max_length = 100, choices=DURATIONS, blank = True)
     performers_entire_duration = models.BooleanField(default=False)
@@ -51,8 +52,9 @@ class Event(models.Model):
     address_known = models.BooleanField(default=False)
     venue_name = models.CharField(max_length = 200, blank = True)
     address = models.CharField(max_length = 200, blank = True)
-    expected_guests = models.IntegerField(blank = True, null = True)
-    contact_pref = models.CharField(max_length = 100, choices =CONTACT_METHODS)
+    event_outdoors = models.CharField(max_length = 20, choices=OUTDOOR_CHOICES, default = '1')
+#    expected_guests = models.IntegerField(blank = True, null = True)
+#    contact_pref = models.CharField(max_length = 100, choices =CONTACT_METHODS)
     comments = models.TextField(max_length = 800, blank = True)
     musician_one = models.ForeignKey(Musician, blank = True, null = True, related_name='musician_one')
     musician_two = models.ForeignKey(Musician, blank = True, null = True, related_name='musician_two')
@@ -73,4 +75,32 @@ class Event(models.Model):
     def get_absolute_url(self):
         return reverse('event_detail', kwargs={'pk': self.pk})
 
+
+class Selection(models.Model):
+    name = models.CharField(max_length = 200)
+    composer = models.CharField(max_length = 200, blank = True)
+    arrangement = models.ForeignKey(Ensemble, blank=True, null=True, related_name = 'arrangement')
+    def __str__(self):
+        return self.name
     
+class SelectionList(models.Model):
+    event = models.OneToOneField(Event, on_delete=models.CASCADE, primary_key=True)
+    prelude = models.ForeignKey(Selection, blank=True, null=True, related_name = 'prelude')
+    processional = models.ForeignKey(Selection, blank=True, null=True, related_name = 'processional')
+    grandmothers = models.BooleanField(default=False)
+    num_grandmothers = models.IntegerField(null=True, blank=True)
+    mothers = models.BooleanField(default=False)
+    num_mothers = models.IntegerField(null=True, blank=True)
+    bridesmaids = models.BooleanField(default=False)
+    num_bridesmaids = models.IntegerField(null=True, blank=True)
+    flowerrings = models.BooleanField(default=False)
+    num_flowers = models.IntegerField(null=True, blank=True)
+    num_rings = models.IntegerField(null=True, blank=True)
+    bridal = models.ForeignKey(Selection, blank=True, null=True, related_name = 'bridal')
+    unity = models.ForeignKey(Selection, blank=True, null=True, related_name = 'unity')
+    communion = models.ForeignKey(Selection, blank=True, null=True, related_name = 'communion')
+    other = models.ForeignKey(Selection, blank=True, null=True, related_name = 'other')
+    recessional = models.ForeignKey(Selection, blank=True, null=True, related_name = 'recessional')
+    postlude = models.ForeignKey(Selection, blank=True, null=True, related_name = 'postlude')
+    def __str__(self):
+        return '{} {} ({}) Selections'.format(self.event.client_name, self.event.event_type, self.event.event_date)

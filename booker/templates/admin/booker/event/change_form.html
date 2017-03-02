@@ -2,10 +2,15 @@
 {% load i18n %}
 {% block submit_buttons_bottom %}
 {{ block.super }}
+<div class ='submit-row list-group'>
+    <input type="button" value="View Selections"  name="view_selections" onclick="location.href='/admin/booker/selectionlist/{{ original.pk }}/change';" />
+    <input type="button" value="Send Selections Form"  name="send_selections" onclick="location.href='/contract/{{ original.pk }}';" />
+
+</div>
 <div class='submit-row list-group'>
-    <input type="button" value="View Contract"  name="view_contract" onclick="location.href='/booker/contract/{{ original.pk }}';" />
-    <input type="button" value="Send Contract as PDF"  name="send_pdf" onclick="location.href='/booker/contract/pdf/{{ original.pk }}';" />
-    <input type="button" value="Send Contract as Link"  name="send_link" onclick="location.href='/booker/contract/link/{{ original.pk }}';" />
-    <input type="button" value="Notify Musicians"  name="email_musicians" onclick="location.href='/booker/notify_players/{{ original.pk }}';" />
+    <input type="button" value="View Contract"  name="view_contract" onclick="location.href='/contract/{{ original.pk }}';" />
+    <input type="button" value="Send Contract as PDF"  name="send_pdf" onclick="location.href='/contract/pdf/{{ original.pk }}';" />
+    <input type="button" value="Send Contract as Link"  name="send_link" onclick="location.href='/contract/link/{{ original.pk }}';" />
+    <input type="button" value="Notify Musicians"  name="email_musicians" onclick="location.href='/notify_players/{{ original.pk }}';" />
 </div>
 {% endblock %}

@@ -20,5 +20,6 @@ from django.conf import settings
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^booker/', include('booker.urls')),
+    url(r'^admin/', admin.site.urls),
+    url(r'^', include('booker.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
