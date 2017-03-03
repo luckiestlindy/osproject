@@ -6,6 +6,25 @@ from .models import Event, Musician, Ensemble, Song, SelectionList
 from django.core.mail import send_mail, EmailMessage
 from reportlab.pdfgen import canvas
 
+def drip(request):
+#    event = get_object_or_404(Event, pk=pk)
+    return render(request, 'booker/emails/drip.html')
+
+
+def send_selections(request, pk):
+    event = get_object_or_404(Event, pk=pk)
+    subject = 'Your Booking with the Oread Strings - Music Selections Form'
+    to = [event.client_email]
+    from_email = 'oreadstrings@gmail.com'
+    var = {
+        'client_name': event.client_name,
+        'link': event.get_absolute_url(),
+    }
+    message = render_to_string('email/send_selections.txt', var)
+    EmailMessage(subject, message,to=to, from_email=from_email).send()
+    html = "You have succesfully sent the selection form to the client" 
+    return render(request, 'booker/confirm.html', {'html': html} )
+
 def selectionlist_detail(request, pk):
     event = get_object_or_404(Event, pk=pk)
     selectionlist = get_object_or_404(SelectionList, pk=pk)

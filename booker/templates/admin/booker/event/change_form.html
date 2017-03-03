@@ -4,7 +4,7 @@
 {{ block.super }}
 <div class ='submit-row list-group'>
     <input type="button" value="View Selections"  name="view_selections" onclick="location.href='/admin/booker/selectionlist/{{ original.pk }}/change';" />
-    <input type="button" value="Send Selections Form"  name="send_selections" onclick="location.href='/contract/{{ original.pk }}';" />
+    <input type="button" value="Send Selections Form"  name="send_selections" onclick="location.href='/send_selections/{{ original.pk }}';" />
 
 </div>
 <div class='submit-row list-group'>

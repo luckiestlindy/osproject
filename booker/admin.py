@@ -26,10 +26,10 @@ class EventAdmin(admin.ModelAdmin):
             'fields': ('client_name','client_email', 'client_phone', )
         }),
         ('Event Details', {
-            'fields': ('event_type', 'event_date', 'start_time', 'event_duration','ensemble_type', 'performers_duration', 'performers_required_time', 'wedding_options',)
+            'fields': ('event_type','ensemble_type', 'event_date', 'start_time', 'performers_required_time', 'wedding_options',)
         }),
         ('Venue Details', {
-            'fields': ('venue_name', 'address', 'city')
+            'fields': ('venue_name', 'address', 'event_outdoors' )
         }),
         ('Performers', {
             'fields': ('musician_one', 'musician_two', 'musician_three', 'musician_four', 'musician_five')

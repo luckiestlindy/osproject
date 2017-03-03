@@ -11,13 +11,13 @@
 {% endblock head %}
 {% block content %}
 
-   <h1>Request Your Song Selections</h1>
+   <h1>Request a Booking</h1>
     <form action='' method="post" >{% csrf_token %}
         
         {{ form.as_p }}
        
-        <input type="submit" value='Submit Booking Inquiry'>
-        <input type="reset" value='Reset Form'>
+        <input type="submit" value='Submit Booking Inquiry' class="btn btn-sm btn-primary">
+        <input type="reset" value='Reset Form' class="btn btn-sm btn-secondary">
     </form>
 
 
@@ -49,6 +49,9 @@
     if (event_type !== 'wedding') {
         $('#id_wedding_options').hide();
         $('#id_wedding_options').labels().hide();
+//        $('#id_performers_required_time').hide();
+//        $('#id_performers_required_time').labels().hide();
+        
     }
     $(function(){
         $("#id_event_type").change(function(){
@@ -56,9 +59,13 @@
             if(status=="wedding") {
                 $("#id_wedding_options").show();
                 $("#id_wedding_options").labels().show();
+                $("#id_performers_required_time").hide();
+                $("#id_performers_required_time").labels().hide();
             } else {
                 $("#id_wedding_options").hide();
                 $("#id_wedding_options").labels().hide();
+                $("#id_performers_required_time").show();
+                $("#id_performers_required_time").labels().show();
             }
         });
     });

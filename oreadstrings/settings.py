@@ -137,7 +137,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, "static")
 
 #MEDIA_ROOT = '/Users/brentlind/Documents/Websites/oreadstrings/booker/media/'
 MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+MEDIA_ROOT = os.path.join(BASE_DIR, "booker/media")
 
 TIME_INPUT_FORMATS = ('%I:%M %p',) #will format your times as "5:30 PM"
 

@@ -1,0 +1,6 @@
+
+Hello {{ client_name }},
+
+The Oread Strings have sent you a link to help plan your upcoming event.  Please click <a href="http://www.oreadstrings.com/selectionlist/{{ link }}/change">here</a> to fill out the musicial selection form.
+
+Thanks and have a lovely day.  

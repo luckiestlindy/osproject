@@ -1,11 +1,28 @@
 {% extends 'booker/base.html' %}
 {% block content %}
+<!--
+<script>
+    $(function () {
+        var event_type = $('#outdoor-event').val();
+        console.log(event_type);
+        if (event_type == 0) {
+            $('#outdoor').show();
+            console.log('show');
+        } else {
+            $('#outdoor').hide();
+            console.log('hide');
+        }
+    });
+
+</script>
+-->
 
 <h1>Hello {{ event.client_name }}!</h1>
-<h3>Congratulations on booking the Oread Strings for your upcoming {{ event.event_type }}.  </h3>
-<h5>Please review the details of your event, listed below.</h5>
+<!--<h3>Congratulations on booking the Oread Strings for your upcoming {{ event.event_type }}.  </h3>-->
+<h3>Please review the details of your event:.</h3>
+<!--<h5>To confirm your booking, a 50% deposit is required. Payment methods include personal check or for paypal, follow the link at the bottom of the form.</h5>-->
 <ul>
-    <h6>Event Details:</h6>
+    <h5>Event Details:</h5>
     <li>Event Type: {{ event.event_type }}</li> 
     <li>Event Date: {{ event.event_date }}</li>
     <li>Start TIme: {{ event.start_time }}</li>
@@ -21,19 +38,34 @@
     <li>Event Venue: {{ event.venue_name }}</li>
     <li>Address: {{event.address }}</li>
     <li>City: {{ event.city }}</li>
-
+    <label for='outdoor-event'>Outdoor</label>
+    <li id='outdoor-event'>{{ event.event_outdoors|yesno:"yes,no,"  }}</li>
 
     <h6>Comments</h6>
     <p>{{ event.comments }}</p>
     
     <h6>Performance Fee:</h6>
-    <li>Total Fee: {{ event.fee }}, due on {{ event.balance_duedate }}</li>
-    <li>Deposit Amount: {{ event.fee }}, due on {{ event.deposit_duedate }}</li>
-    <p>Payment options include a paypal, credit card or personal check.</p>
-    <input type="button" value="Click here for Paypal"  name="paypal" onclick="location.href='https://paypal.com'" />
+    <li>Total Fee: ${{ event.fee }} due on {{ event.balance_duedate }}</li>
+    <li>Deposit Amount: ${{ event.deposit }} due on {{ event.deposit_duedate }}</li>
+<!--    <li>Paypal Fee: $14.50</li>-->
+    
+    
+ </ul>
+<div id='outdoor'>
+    <h5>Terms for Outdoor Events</h5>
+    <p>Due to the sensitive nature of classical instruments, there are some additional terms when dealing with outdoor events. Etc, Etc</p>
+</div>
+<h5>Payment Details:</h5>
+   <p>To reserve your booking, please click the link to pay your deposit.
+<input type="button" value="Click here for Paypal"  name="paypal" onclick="location.href='https://paypal.com'" />
 
     <h5>Thank you!</h5>
-</ul>
 
- <input type="button" value="Download Contract as PDF"  name="download_pdf" onclick="location.href='/contract/pdf/{{ event.pk }}';" />
+<!-- <input type="button" value="Download Contract as PDF"  name="download_pdf" onclick="location.href='/contract/pdf/{{ event.pk }}';" />-->
+{% endblock %}
+
+
+{% block script %}
+
+
 {% endblock %}
