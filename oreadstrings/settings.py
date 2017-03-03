@@ -20,6 +20,7 @@ env = environ.Env(
     DEBUG=(bool, False),
     ALLOWED_HOSTS=(list, ['127.0.0.1:8000']),
     DATABASE_URL=str,
+    EMAIL_HOST=str,
 )
 environ.Env.read_env()
 
@@ -62,6 +63,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'raven.contrib.django.raven_compat',
+    'annoying',
 
 ]
 
@@ -143,6 +145,16 @@ TIME_INPUT_FORMATS = ('%I:%M %p',) #will format your times as "5:30 PM"
 
 EMAIL_HOST = 'localhost'
 EMAIL_PORT = 1025
+#EMAIL_HOST = 'smtp.gmail.com'
+#EMAIL_PORT = 587
+#EMAIL_HOST_USER = 'brentlind@gmail.com'
+#EMAIL_HOST_PASSWORD = '99Problems'
+#EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+#EMAIL_HOST = os.environ['EMAIL_HOST']
+#EMAIL_PORT = os.environ['EMAIL_PORT']
+#EMAIL_HOST_USER = os.environ['EMAIL_HOST_USER']
+#EMAIL_HOST_PASSWORD = os.environ['EMAIL_HOST_PASSWORD']
+#EMAIL_USE_TLS = True
 
 RAVEN_CONFIG = {
     'dsn': 'https://a099768dec614b51986c302de537775a:271ee0530b354c9ca460f6768bf10b46@sentry.io/143067',

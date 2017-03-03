@@ -1,11 +1,10 @@
 {% extends 'booker/base.html' %}
 {% block content %}
-<!--
 <script>
     $(function () {
-        var event_type = $('#outdoor-event').val();
+        var event_type = $('#outdoor-event').html();
         console.log(event_type);
-        if (event_type == 0) {
+        if (event_type == 'Yes') {
             $('#outdoor').show();
             console.log('show');
         } else {
@@ -15,7 +14,6 @@
     });
 
 </script>
--->
 
 <h1>Hello {{ event.client_name }}!</h1>
 <!--<h3>Congratulations on booking the Oread Strings for your upcoming {{ event.event_type }}.  </h3>-->
@@ -26,20 +24,20 @@
     <li>Event Type: {{ event.event_type }}</li> 
     <li>Event Date: {{ event.event_date }}</li>
     <li>Start TIme: {{ event.start_time }}</li>
-    <li>Length of Event: {{ event.event_duration }}</li>
-    <li>Expected Guests: {{ event.expected_guests }}</li>
+<!--    <li>Length of Event: {{ event.event_duration }}</li>-->
+<!--    <li>Expected Guests: {{ event.expected_guests }}</li>-->
 
     <h6>Performance Details:</h6>
     <li>Ensemble Type: {{ event.ensemble_type }}</li>
     <li>Performers call time: {{ event.performers_required_time }}</li>
-    <li>Performers needed for: {{ event.performers_duration }}</li>
+<!--    <li>Performers needed for: {{ event.performers_duration }}</li>-->
 
     <h6>Venue Details:</h6>
     <li>Event Venue: {{ event.venue_name }}</li>
     <li>Address: {{event.address }}</li>
-    <li>City: {{ event.city }}</li>
+<!--    <li>City: {{ event.city }}</li>-->
     <label for='outdoor-event'>Outdoor</label>
-    <li id='outdoor-event'>{{ event.event_outdoors|yesno:"yes,no,"  }}</li>
+    <li id='outdoor-event'>{{ event.event_outdoors }}</li>
 
     <h6>Comments</h6>
     <p>{{ event.comments }}</p>

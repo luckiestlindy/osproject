@@ -35,7 +35,7 @@ WEDDING_OPTIONS = (
     ('3','Full Event Music (Ceremony, Cocktail Hour, Dinner) up to 3 hours of music'),
 )
 OUTDOOR_CHOICES = (
-    ('1', 'Not Sure Yet'),
-    ('2', 'Yes'),
-    ('3', 'No'),
+    ('Not Sure Yet', 'Not Sure Yet'),
+    ('Yes', 'Yes'),
+    ('No', 'No'),
 )

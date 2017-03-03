@@ -36,6 +36,11 @@ class SelectionForm(forms.ModelForm):
         fields = '__all__'
         exclude = ['event','bridesmaids',]
         labels = {
+            'prelude_one': 'Prelude Selection 1',
+            'prelude_two': 'Prelude Selection 2',
+            'prelude_three': 'Prelude Selection 3',
+            'prelude_four': 'Prelude Selection 4',
+            'prelude_five': 'Prelude Selection 5',
             'num_grandmothers': "How many Grandmothers?",
             'num_mothers': "How many Mothers?",
             'num_bridesmaids': "How many Bridesmaids?",

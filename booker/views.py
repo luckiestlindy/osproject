@@ -1,16 +1,30 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponseRedirect, HttpResponse
-from django.template.loader import render_to_string
+from django.template import Context
+from django.template.loader import render_to_string, get_template
 from .forms import EventForm, SelectionForm
 from .models import Event, Musician, Ensemble, Song, SelectionList
 from django.core.mail import send_mail, EmailMessage
 from reportlab.pdfgen import canvas
 
-def drip(request):
+#def drip(request, pk):
 #    event = get_object_or_404(Event, pk=pk)
-    return render(request, 'booker/emails/drip.html')
-
-
+#    return render(request, 'booker/emails/drip.html', {'event':event})
+#
+#def email_one(request):
+#    subject = 'Testing an HTML email'
+#    to = ['brentlind@mac.com',]
+#    from_email = 'brentlind@gmail.com'
+#    ctx = {
+#        'user': 'steve',
+#        'purchase': 'books',
+#    }
+#    message = get_template('booker/emails/drip.html').render(Context(ctx))
+#    msg = EmailMessage(subject, message, to=to, from_email=from_email)
+#    msg.content_subtype = 'html'
+#    msg.send()
+#    return HttpResponse ('it worked')
+    
 def send_selections(request, pk):
     event = get_object_or_404(Event, pk=pk)
     subject = 'Your Booking with the Oread Strings - Music Selections Form'

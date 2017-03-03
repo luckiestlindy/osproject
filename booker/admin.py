@@ -26,7 +26,7 @@ class EventAdmin(admin.ModelAdmin):
             'fields': ('client_name','client_email', 'client_phone', )
         }),
         ('Event Details', {
-            'fields': ('event_type','ensemble_type', 'event_date', 'start_time', 'performers_required_time', 'wedding_options',)
+            'fields': ('event_type','ensemble_type', 'event_date', 'start_time', 'performers_required_time', 'wedding_options','comments',)
         }),
         ('Venue Details', {
             'fields': ('venue_name', 'address', 'event_outdoors' )

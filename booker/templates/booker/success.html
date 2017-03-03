@@ -1,5 +1,4 @@
 {% extends 'booker/base.html' %}
-
 {% block content %}
     <h1>Thank You {{ event.client_name }}!</h1>
     <p>You have requested a quote for your event on {{ event.event_date }}</p>
@@ -10,22 +9,18 @@
         <li>Event Type: {{ event.event_type }}</li> 
         <li>Event Date: {{ event.event_date }}</li>
         <li>Start TIme: {{ event.start_time }}</li>
-        <li>Length of Event: {{ event.event_duration }}</li>
         <li>Outdoors: {{ event.event_outdoors }}</li>
-<!--        <li>Expected Guests: {{ event.expected_guests }}</li>-->
         
         <h6>Performance Details:</h6>
         <li>Ensemble Type: {{ event.ensemble_type }}</li>
         <li>Performers call time: {{ event.performers_required_time }}</li>
-        <li>Performers needed for: {{ event.performers_duration }}</li>
         
         <h6>Venue Details:</h6>
         <li>Event Venue: {{ event.venue_name }}</li>
         <li>Address: {{event.address }}</li>
-        <li>City: {{ event.city }}</li>
         
         
-        <h6>Comments</h6>
+        <h6>Comments:</h6>
         <p>{{ event.comments }}</p>
     </ul>
 {% endblock %}

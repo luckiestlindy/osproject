@@ -34,7 +34,7 @@
               <table class="spacer"><tbody><tr><td height="16px" style="font-size:16px;line-height:16px;">&#xA0;</td></tr></tbody></table> 
             
               <center data-parsed="">
-                <img src="{% static 'booker/slide/slide1.jpg' %}" width="120px" height="120px" alt="" align="center" class="float-center">
+                <img src="{% static 'booker/images/site/fullcolor_FINAL.png' %}" width="120px" height="120px" alt="" align="center" class="float-center">
               </center>
             
               <table class="spacer"><tbody><tr><td height="16px" style="font-size:16px;line-height:16px;">&#xA0;</td></tr></tbody></table> 
@@ -42,7 +42,7 @@
               <table class="row"><tbody><tr>
                 <th class="small-12 large-12 columns first last"><table><tr><th>
                   <h4 class="text-center">Booking Inquiry Recieved</h4>
-                  <p class="text-center">15 sections | 567 Min</p>
+                  <p class="text-center">{{event.client_name}} | {{event.event_type }}  | {{event.event_date}}</p>
                 </th>
 <th class="expander"></th></tr></table></th>
               </tr></tbody></table>
@@ -51,9 +51,9 @@
             
               <table class="row"><tbody><tr>
                 <th class="small-12 large-12 columns first last"><table><tr><th>
-                  <p class="text-center">Oread Strings  this hot new class {{balls}}that will teach you how to NOT be a lame as a duck. Not the metaphorical lame duck, either, but a real duck that was actually lame, maybe from stepping on a land mine or something. Anyways, Foundation for Emails makes coding HTML emails like calling the Navy SEALS to invade a Pre-school, with pre-schoolers, armed with Crayolas.</p>
+                  <p class="text-center">Hello Ellen, You have received a booking inquiry from {{ client_name }} through the Oread Strings.  Please click here {{ link }} to view the inquiry. {{user}} {{purchase}}Thanks and have a lovely day.  </p>
                   <center data-parsed="">
-                    <table class="button success float-center"><tr><td><table><tr><td><a href="#">Get smarter now &rarrtl;</a></td></tr></table></td></tr></table>
+                    <table class="button success float-center"><tr><td><table><tr><td><a href="#">View Inquiry &rarrtl;</a></td></tr></table></td></tr></table>
                   </center>
                 </th>
 <th class="expander"></th></tr></table></th>
@@ -62,9 +62,10 @@
               <table class="row collapsed footer"><tbody><tr>
                 <th class="small-12 large-12 columns first last"><table><tr><th>
                   <table class="spacer"><tbody><tr><td height="16px" style="font-size:16px;line-height:16px;">&#xA0;</td></tr></tbody></table> 
-                  <p class="text-center">@copywrite nobody<br>
-                  <a href="#">info@oreadstrings.com</a> | <a href="#">Manage Email Notifications</a> | <a href="#">Unsubscribe</a></p>
+                  <p class="text-center">@copywrite 2017<br>
+                  <a href="mailto:info@oreadstrings.com">info@oreadstrings.com</a> | <a href="http://oreadstrings.com">Oread Strings</a> | <a href="#">Unsubscribe</a></p>
                   <center data-parsed="">
+<!--
                     <table align="center" class="menu float-center"><tr><td><table><tr>
                       <th class="menu-item float-center"><a href="undefined"><img src="http://placehold.it/25/663399" alt=""></a></th>
                       <th class="menu-item float-center"><a href="undefined"><img src="http://placehold.it/25/663399" alt=""></a></th>
@@ -72,6 +73,7 @@
                       <th class="menu-item float-center"><a href="undefined"><img src="http://placehold.it/25/663399" alt=""></a></th>
                       <th class="menu-item float-center"><a href="undefined"><img src="http://placehold.it/25/663399" alt=""></a></th>
                     </tr></table></td></tr></table>
+-->
                   </center>
                 </th>
 <th class="expander"></th></tr></table></th>
