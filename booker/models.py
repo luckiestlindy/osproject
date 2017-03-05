@@ -2,7 +2,6 @@ from __future__ import unicode_literals
 from django.urls import reverse
 from django.db import models
 from booker.choices import *
-from annoying.fields import AutoOneToOneField
 # Create your models here.
 
 class Musician(models.Model):
@@ -69,12 +68,12 @@ class Event(models.Model):
 class Selection(models.Model):
     name = models.CharField(max_length = 200)
     composer = models.CharField(max_length = 200, blank = True)
-    arrangement = models.ForeignKey(Ensemble, blank=True, null=True, related_name = 'arrangement')
+    arrangement = models.ManyToManyField(Ensemble, blank=True, related_name = 'arrangement')
     def __str__(self):
         return self.name
     
 class SelectionList(models.Model):
-    event = AutoOneToOneField(Event, primary_key=True)
+    event = models.OneToOneField(Event,on_delete=models.CASCADE, null=False, primary_key=True, related_name='event')
     prelude_one = models.ForeignKey(Selection, blank=True, null=True, related_name = 'prelude_one')
     prelude_two = models.ForeignKey(Selection, blank=True, null=True, related_name = 'prelude_two')
     prelude_three = models.ForeignKey(Selection, blank=True, null=True, related_name = 'prelude_three')

@@ -1,5 +1,5 @@
 from django import forms
-from .models import Event, SelectionList
+from .models import Event, SelectionList, Selection
 
 
 class EventForm(forms.ModelForm):
@@ -31,9 +31,16 @@ class EventForm(forms.ModelForm):
             
         }
 class SelectionForm(forms.ModelForm):
+    def __init__(self,arrangement,*args,**kwargs):
+        super (SelectionForm,self ).__init__(*args,**kwargs) # populates the post
+#        print(arrangement.id)
+        
+#        self.fields['website'].queryset = Website.objects.filter(organization__primary_account=request.user)
+        self.fields['prelude_one'].queryset = Selection.objects.get(arrangement=1)
+#        self.fields['client'].queryset = Client.objects.filter(company=company)
     class Meta:
         model = SelectionList
-        fields = '__all__'
+#        fields = '__all__'
         exclude = ['event','bridesmaids',]
         labels = {
             'prelude_one': 'Prelude Selection 1',

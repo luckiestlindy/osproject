@@ -1,0 +1,14 @@
+To Start Email Test Server
+    python -m smtpd -n -c DebuggingServer localhost:1025
+
+    Ctrl-Shift-A brings up Django commands
+
+
+From 'environment' to launch Node.js virtual environment
+    . env/bin/activate
+
+
+Django Commands: (from root directory)
+python manage.py runserver
+python manage.py makemigrations
+python manage.py migrate

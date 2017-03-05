@@ -41,8 +41,11 @@ def send_selections(request, pk):
 
 def selectionlist_detail(request, pk):
     event = get_object_or_404(Event, pk=pk)
+    selectionlist = SelectionList.objects.get_or_create(pk=pk)
     selectionlist = get_object_or_404(SelectionList, pk=pk)
-    return render(request, 'booker/selectionlist_detail.html', {'selectionlist': selectionlist, 'event':event})
+    arrangement = event.ensemble_type
+#    selectionlist = selectionlist(arrangement= 'String Trio')
+    return render(request, 'booker/selectionlist_detail.html', {'selectionlist': selectionlist, 'event':event, 'arrangement':arrangement})
 
 def notifyadmin_selections(request, pk):
     subject = 'Client submitted Selections at Oreadstrings.com'
@@ -57,9 +60,11 @@ def notifyadmin_selections(request, pk):
     EmailMessage(subject, message,to=to, from_email=from_email).send()
     return HttpResponse('notifyadmin_selections')
 
-def selections(request,pk):
+def selectionlist_form(request,pk):
     event = get_object_or_404(Event, pk=pk)
-    selectionlist = SelectionList.objects.get(pk=pk)
+    arrangement = Event.objects.filter(pk=pk)
+    print(arrangement)
+    selectionlist = SelectionList.objects.filter(pk=pk)
     form = SelectionForm(request.POST, instance=selectionlist)
     if request.method == 'POST':
         if form.is_valid():
@@ -69,9 +74,9 @@ def selections(request,pk):
             notifyadmin_selections(request, pk=event.pk)
             return redirect ('selectionlist_detail', pk=event.pk)
     else:
-        form = SelectionForm(instance=selectionlist)
-    context = {'form':form, 'event':event}
-    return render(request, 'booker/selection_form.html', context)
+        form = SelectionForm(arrangement, instance=selectionlist)
+    context = {'form':form, 'event':event, 'arrangement':arrangement}
+    return render(request, 'booker/selectionlist_form.html', context)
 
 def notify_players(request, pk):
     event = get_object_or_404(Event, pk=pk)
@@ -91,7 +96,7 @@ def notify_players(request, pk):
         is_musician_assigned(event.musician_four),
         is_musician_assigned(event.musician_five),
     ]
-    print (musicians)
+#    print (musicians)
     to = musicians
     from_email = 'test@example.com'
     var = {
