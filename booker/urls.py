@@ -21,6 +21,7 @@ urlpatterns = [
     url(r'^contract/pdf/(?P<pk>\d+)/$', views.contract_pdf, name='contract_pdf'),
     url(r'^contract/link/(?P<pk>\d+)/$', views.contract_link, name='contract_link'),
     url(r'^musician/(?P<pk>\d+)/$', views.musician_detail, name='musician_detail'),
+    url(r'^upcoming/$', views.upcoming, name='upcoming'),
 #    url(r'^drip/(?P<pk>\d+)/$', views.drip, name='drip'),
 #    url(r'^email_one$', views.email_one, name='email_one'),
 ]

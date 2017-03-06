@@ -20,7 +20,7 @@ class SongAdmin(admin.ModelAdmin):
 class EventAdmin(admin.ModelAdmin):
     list_display = ('client_name', 'event_type', 'event_date', 'status',)
     list_editable = ('status',)
-    list_filter = ('event_type', 'event_date','ensemble_type',)
+    list_filter = ('event_type', 'status','ensemble_type',)
     fieldsets = (
         ('Status', {
             'fields': ('status',)

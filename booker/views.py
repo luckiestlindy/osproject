@@ -24,7 +24,24 @@ from reportlab.pdfgen import canvas
 #    msg.content_subtype = 'html'
 #    msg.send()
 #    return HttpResponse ('it worked')
-    
+def get_musicians(pk):
+    event = get_object_or_404(Event, pk=pk)
+    musicians = {}
+    m1 = event.musician_one.name
+    m2 = event.musician_two.name
+    m3 = event.musician_three.name
+    musicians = [m1,m2, m3]
+    print(musicians)
+    return musicians
+
+def upcoming(request):
+    events = Event.objects.all()
+    musicians = get_musicians(12)
+    print('test', musicians)
+    # print(events)
+    context = {'events':events, 'musicians':musicians}
+    return render(request, 'booker/upcoming.html', context)
+
 def send_selections(request, pk):
     event = get_object_or_404(Event, pk=pk)
     subject = 'Your Booking with the Oread Strings - Music Selections Form'

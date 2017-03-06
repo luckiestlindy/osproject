@@ -1,0 +1,26 @@
+
+
+{% extends 'booker/base.html' %}
+{% block content %}
+
+
+
+<h1>Upcoming Oread Strings Events</h1>
+{% for event in events %}
+
+<h3>{{ event.client_name }}</h3>
+<a href = "/event/{{event.pk}}">Home</a>
+<ul>
+	<li>{{event.event_date}}</li>
+	<li>{{event.start_time}}</li>
+	<h6>Musicians: </h6>
+	<ul>
+		{% for musician in musicians %}
+			<li>{{musician}}</li>
+		{% endfor %}
+	</ul>	
+</ul>
+{% endfor %}
+ {# <input type="button" value="Return to Admin"  name="return" onclick="location.href='/admin/booker';" /> #}
+
+{% endblock  %}
