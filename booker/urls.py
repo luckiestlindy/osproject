@@ -11,8 +11,8 @@ urlpatterns = [
     url(r'^bookings/$', views.bookings, name='bookings'),
     url(r'^event/(?P<pk>\d+)/$', views.event_detail, name='event_detail'),
     
-    url(r'^selections/(?P<pk>\d+)/$', views.selectionlist_detail, name='selectionlist_detail'),
-    url(r'^selections/(?P<pk>\d+)/form/$', views.selectionlist_form, name='selectionlist_form'),
+    url(r'^selections/(?P<pk>\d+)/$', views.selections_detail, name='selections_detail'),
+    url(r'^selections/(?P<pk>\d+)/form/$', views.selections_form, name='selections_form'),
     
     url(r'^send_selections/(?P<pk>\d+)/$', views.send_selections, name='send_selections'), 
 

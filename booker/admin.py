@@ -1,6 +1,10 @@
 from django.contrib import admin
-from .models import Event, Musician, Ensemble, Song, Selection, SelectionList
+from .models import Event, Musician, Ensemble, Song, Selection
 
+
+class SelectionAdmin(admin.ModelAdmin):
+    list_display = ('name', 'composer', )
+    list_filter = ('arrangement',)
 
 class MusicianAdmin(admin.ModelAdmin):
     list_display = ('name', 'instrument', 'website')
@@ -14,7 +18,6 @@ class SongAdmin(admin.ModelAdmin):
     list_filter = ('ensemble',)
     
 class EventAdmin(admin.ModelAdmin):
-    
     list_display = ('client_name', 'event_type', 'event_date', 'status',)
     list_editable = ('status',)
     list_filter = ('event_type', 'event_date','ensemble_type',)
@@ -26,7 +29,7 @@ class EventAdmin(admin.ModelAdmin):
             'fields': ('client_name','client_email', 'client_phone', )
         }),
         ('Event Details', {
-            'fields': ('event_type','ensemble_type', 'event_date', 'start_time', 'performers_required_time', 'wedding_options','comments',)
+            'fields': ('event_type','ensemble_type', 'event_date', 'start_time', 'performers_required_time', 'wedding_options','comments','prelude_one', 'prelude_two', 'prelude_three', 'prelude_four', 'prelude_five', 'processional', 'num_grandmothers', 'num_mothers', 'num_bridesmaids', 'num_flowers', 'num_rings', 'bridal', 'unity', 'communion', 'recessional',)
         }),
         ('Venue Details', {
             'fields': ('venue_name', 'address', 'event_outdoors' )
@@ -40,17 +43,18 @@ class EventAdmin(admin.ModelAdmin):
         ('Message to Client', {
             'fields': ('quote_message',)
         }),
-    )
+        )
     class Media:
-        js = ('booker/event.js',)
-   
+        js = ('booker/js/event.js',)
+       
+       
+
 
     
 admin.site.register(Musician, MusicianAdmin)
 admin.site.register(Event, EventAdmin)
 admin.site.register(Ensemble, EnsembleAdmin)
 admin.site.register(Song, SongAdmin)
-admin.site.register(Selection)
-admin.site.register(SelectionList)
+admin.site.register(Selection, SelectionAdmin)
 
 

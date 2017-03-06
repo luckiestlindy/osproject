@@ -1,12 +1,12 @@
 from django import forms
-from .models import Event, SelectionList, Selection
+from .models import Event, Selection
 
 
 class EventForm(forms.ModelForm):
     class Meta:
         model = Event
         fields = '__all__'
-        exclude = ['musician_one', 'musician_two', 'musician_three', 'musician_four', 'musician_five', 'status', 'fee', 'deposit', 'deposit_duedate', 'balance_duedate', 'deposit_recieved','balance_recieved', 'quote_message',]
+        exclude = ['musician_one', 'musician_two', 'musician_three', 'musician_four', 'musician_five', 'status', 'fee', 'deposit', 'deposit_duedate', 'balance_duedate', 'deposit_recieved','balance_recieved', 'quote_message','prelude_one','prelude_two', 'prelude_three', 'prelude_four', 'prelude_five', 'processional', 'num_grandmothers', 'num_mothers', 'num_bridesmaids', 'num_flowers', 'num_rings', 'bridal', 'unity', 'communion', 'recessional']
     
         widgets = {
             'event_date': forms.DateInput(attrs={'class':'datepicker'}),
@@ -30,24 +30,32 @@ class EventForm(forms.ModelForm):
             'comments': 'Please add any or questions or comments here. Thank you!'
             
         }
-class SelectionForm(forms.ModelForm):
-    def __init__(self,arrangement,*args,**kwargs):
-        super (SelectionForm,self ).__init__(*args,**kwargs) # populates the post
-#        print(arrangement.id)
-        
-#        self.fields['website'].queryset = Website.objects.filter(organization__primary_account=request.user)
-        self.fields['prelude_one'].queryset = Selection.objects.get(arrangement=1)
-#        self.fields['client'].queryset = Client.objects.filter(company=company)
+class SelectionsForm(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        super(SelectionsForm, self).__init__(*args,**kwargs)
+        arrangement = Event.objects.get(pk = self.instance.id)
+        queryset = Selection.objects.filter(arrangement=arrangement.ensemble_type)
+        self.fields['prelude_one'].queryset = queryset
+        self.fields['prelude_two'].queryset = queryset
+        self.fields['prelude_three'].queryset = queryset
+        self.fields['prelude_four'].queryset = queryset
+        self.fields['prelude_five'].queryset = queryset
+        self.fields['processional'].queryset = queryset
+        self.fields['bridal'].queryset = queryset
+        self.fields['unity'].queryset = queryset
+        self.fields['communion'].queryset = queryset
+        self.fields['recessional'].queryset = queryset
     class Meta:
-        model = SelectionList
-#        fields = '__all__'
-        exclude = ['event','bridesmaids',]
+        model = Event
+        fields = ['prelude_one', 'prelude_two','prelude_three', 'prelude_four', 'prelude_five', 'processional', 'num_grandmothers', 'num_mothers', 'num_bridesmaids', 'num_rings', 'num_flowers', 'bridal', 'unity', 'communion', 'recessional',]
+        # exclude = ['event','bridesmaids',]
         labels = {
             'prelude_one': 'Prelude Selection 1',
             'prelude_two': 'Prelude Selection 2',
             'prelude_three': 'Prelude Selection 3',
             'prelude_four': 'Prelude Selection 4',
             'prelude_five': 'Prelude Selection 5',
+            'processional': 'Processional 1',
             'num_grandmothers': "How many Grandmothers?",
             'num_mothers': "How many Mothers?",
             'num_bridesmaids': "How many Bridesmaids?",
@@ -58,3 +66,5 @@ class SelectionForm(forms.ModelForm):
             'communion': 'Communion Ceremony:',
             'recessional': 'Recessional:',
         }
+
+   

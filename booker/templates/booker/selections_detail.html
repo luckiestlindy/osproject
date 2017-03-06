@@ -1,0 +1,34 @@
+{% extends 'booker/base.html' %}
+
+{% block content %}
+    <h1>Thank You {{ event.client_name }}!</h1>
+    <p>You have successfully submitted your musicial selections  your event on {{ event.event_date }}</p>
+    <h3>Summary of Selections</h3>
+    <ul id ='selections'>
+        <h6>Prelude:</h6>
+        <ul>
+            <li>{{ event.prelude_one|default_if_none:"" }}</li> 
+            <li>{{ event.prelude_two|default_if_none:"" }}</li>
+            <li>{{ event.prelude_three|default_if_none:"" }}</li>
+            <li>{{ event.prelude_four|default_if_none:"" }}</li>
+            <li>{{ event.prelude_five|default_if_none:"" }}</li>
+        </ul>
+        <h6>Processional: {{ event.processional|default_if_none:"" }}</h6>
+        <ul>
+            <li>How Many Grandmothers?  {{ event.num_grandmothers|default_if_none:""}}</li>
+            <li>How Many Mothers? {{event.num_mothers|default_if_none:"" }}</li>
+            <li>How Many Bridesmaids? {{ event.num_bridesmaids|default_if_none:"" }}</li>
+            <li>How Many Flower Girls? {{ event.num_flowers|default_if_none:"" }}</li>
+            <li>How Many Ring Bearers? {{ event.num_rings|default_if_none:"" }}</li>
+        </ul>
+        <h6>Ceremony:</h6>
+        <ul>
+            <li>Bridal Entrance: {{ event.bridal|default_if_none:"" }}</li>
+            <li>Unity Ceremony: {{ event.unity|default_if_none:"" }}</li>
+            <li>Communion Ceremony: {{ event.communion|default_if_none:"" }}</li>
+            <li>Recessional: {{ event.recessional|default_if_none:"" }}</li>
+            <li>Postlude: {{ event.postlude|default_if_none:"" }}</li>
+        </ul>
+    </ul>
+ <input type="button" value="Change Selections"  name="return" onclick="location.href='/selections/{{ event.id }}/form';" />
+{% endblock %}

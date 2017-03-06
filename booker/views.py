@@ -2,8 +2,8 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponseRedirect, HttpResponse
 from django.template import Context
 from django.template.loader import render_to_string, get_template
-from .forms import EventForm, SelectionForm
-from .models import Event, Musician, Ensemble, Song, SelectionList
+from .forms import EventForm, SelectionsForm
+from .models import Event, Musician, Ensemble, Song, Selection
 from django.core.mail import send_mail, EmailMessage
 from reportlab.pdfgen import canvas
 
@@ -36,16 +36,12 @@ def send_selections(request, pk):
     }
     message = render_to_string('email/send_selections.txt', var)
     EmailMessage(subject, message,to=to, from_email=from_email).send()
-    html = "You have succesfully sent the selection form to the client" 
+    html = "You have succesfully sent the selection form to %s" % event.client_name
     return render(request, 'booker/confirm.html', {'html': html} )
 
-def selectionlist_detail(request, pk):
+def selections_detail(request, pk):
     event = get_object_or_404(Event, pk=pk)
-    selectionlist = SelectionList.objects.get_or_create(pk=pk)
-    selectionlist = get_object_or_404(SelectionList, pk=pk)
-    arrangement = event.ensemble_type
-#    selectionlist = selectionlist(arrangement= 'String Trio')
-    return render(request, 'booker/selectionlist_detail.html', {'selectionlist': selectionlist, 'event':event, 'arrangement':arrangement})
+    return render(request, 'booker/selections_detail.html', {'event':event})
 
 def notifyadmin_selections(request, pk):
     subject = 'Client submitted Selections at Oreadstrings.com'
@@ -60,23 +56,23 @@ def notifyadmin_selections(request, pk):
     EmailMessage(subject, message,to=to, from_email=from_email).send()
     return HttpResponse('notifyadmin_selections')
 
-def selectionlist_form(request,pk):
+def selections_form(request,pk):
     event = get_object_or_404(Event, pk=pk)
-    arrangement = Event.objects.filter(pk=pk)
-    print(arrangement)
-    selectionlist = SelectionList.objects.filter(pk=pk)
-    form = SelectionForm(request.POST, instance=selectionlist)
+    ensemble_type = event.ensemble_type
+    selections = Selection.objects.filter(arrangement = ensemble_type)
+    print (selections)
+    form = SelectionsForm(request.POST, instance=event)
     if request.method == 'POST':
         if form.is_valid():
-            selections = form.save(commit=False)
-            selections.author = request.user
-            selections.save()
+            event = form.save(commit=False)
+            event.author = request.user
+            event.save()
             notifyadmin_selections(request, pk=event.pk)
-            return redirect ('selectionlist_detail', pk=event.pk)
+            return redirect ('selections_detail', pk=event.pk)
     else:
-        form = SelectionForm(arrangement, instance=selectionlist)
-    context = {'form':form, 'event':event, 'arrangement':arrangement}
-    return render(request, 'booker/selectionlist_form.html', context)
+        form = SelectionsForm(instance=event)
+    context = {'form':form, 'event':event, 'selections':selections}
+    return render(request, 'booker/selections_form.html', context)
 
 def notify_players(request, pk):
     event = get_object_or_404(Event, pk=pk)

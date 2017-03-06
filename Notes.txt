@@ -9,6 +9,9 @@ From 'environment' to launch Node.js virtual environment
 
 
 Django Commands: (from root directory)
-python manage.py runserver
-python manage.py makemigrations
-python manage.py migrate
+	python manage.py runserver
+	python manage.py makemigrations
+	python manage.py migrate
+
+From 'environment' to lanuch Python venv
+	source myvenv/bin/activate

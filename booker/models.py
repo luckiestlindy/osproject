@@ -31,6 +31,13 @@ class Song(models.Model):
     ensemble = models.ForeignKey(Ensemble)
     def __str__(self):
         return self.name
+
+class Selection(models.Model):
+    name = models.CharField(max_length = 200)
+    composer = models.CharField(max_length = 200, blank = True)
+    arrangement = models.ManyToManyField(Ensemble, blank=True, related_name = 'arrangement')
+    def __str__(self):
+        return self.name
     
 class Event(models.Model):
     client_name = models.CharField(max_length = 200)
@@ -59,21 +66,6 @@ class Event(models.Model):
     deposit_recieved = models.BooleanField(default=False)
     balance_recieved = models.BooleanField(default=False)
     quote_message = models.TextField(max_length = 800, blank = True)
-    def __str__(self):
-        return '{}: {}- {}'.format(self.client_name, self.event_type, self.event_date)
-    def get_absolute_url(self):
-        return reverse('event_detail', kwargs={'pk': self.pk})
-
-
-class Selection(models.Model):
-    name = models.CharField(max_length = 200)
-    composer = models.CharField(max_length = 200, blank = True)
-    arrangement = models.ManyToManyField(Ensemble, blank=True, related_name = 'arrangement')
-    def __str__(self):
-        return self.name
-    
-class SelectionList(models.Model):
-    event = models.OneToOneField(Event,on_delete=models.CASCADE, null=False, primary_key=True, related_name='event')
     prelude_one = models.ForeignKey(Selection, blank=True, null=True, related_name = 'prelude_one')
     prelude_two = models.ForeignKey(Selection, blank=True, null=True, related_name = 'prelude_two')
     prelude_three = models.ForeignKey(Selection, blank=True, null=True, related_name = 'prelude_three')
@@ -90,4 +82,9 @@ class SelectionList(models.Model):
     communion = models.ForeignKey(Selection, blank=True, null=True, related_name = 'communion')
     recessional = models.ForeignKey(Selection, blank=True, null=True, related_name = 'recessional')
     def __str__(self):
-        return '{} {} ({}) Selections'.format(self.event.client_name, self.event.event_type, self.event.event_date)
+        return '{}: {}- {}'.format(self.client_name, self.event_type, self.event_date)
+    def get_absolute_url(self):
+        return reverse('event_detail', kwargs={'pk': self.pk})
+
+
+
