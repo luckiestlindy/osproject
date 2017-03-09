@@ -7,7 +7,4 @@ settings.py
 local_settings.py
 /static
 .DS_Store
-/oread-strings/oreadstrings/settings.py
-/oreadstrings/settings.py
-/booker/.env
 .env
