@@ -1,12 +1,18 @@
 from django.contrib import admin
 from .models import Event, Musician, Ensemble, Song, Selection
+from django.contrib import admin
+from image_cropping import ImageCroppingMixin
 
+# class MyModelAdmin(ImageCroppingMixin, admin.ModelAdmin):
+#     pass
+
+# admin.site.register(MyModel, MyModelAdmin)
 
 class SelectionAdmin(admin.ModelAdmin):
     list_display = ('name', 'composer', )
     list_filter = ('arrangement',)
 
-class MusicianAdmin(admin.ModelAdmin):
+class MusicianAdmin(ImageCroppingMixin,admin.ModelAdmin):
     list_display = ('name', 'instrument', 'website')
     list_filter = ('instrument',)
 

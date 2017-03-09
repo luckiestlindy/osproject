@@ -7,11 +7,16 @@
 
 
 {% for ensemble in ensembles %}
-<div class='ensemble'>
-    <h2>{{ ensemble.name }}</h2>
-    <img src='/media/{{ ensemble.photo }}'alt="{{ ensemble.name }}">
-    <p>{{ ensemble.description }}</p>
+<div class='ensemble card' >
+<p class="card-header"><strong>{{ ensemble.name }}:</strong> {{ ensemble.description }}</p>
+    <img src='/media/{{ ensemble.photo }}'alt="{{ ensemble.name }}" class='card-img-top rounded'>
+    <div class='card-block'>
+    
+    {# <p class='card-text'>{{ ensemble.description }}</p> #}
+   </div>
+   
 </div>
+<br>
 {% endfor %}
 
 

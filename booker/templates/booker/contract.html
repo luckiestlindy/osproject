@@ -4,7 +4,7 @@
     $(function () {
         var event_type = $('#outdoor-event').html();
         console.log(event_type);
-        if (event_type == 'Yes') {
+        if (event_type == 'Outdoors: Yes') {
             $('#outdoor').show();
             console.log('show');
         } else {
@@ -16,48 +16,77 @@
 </script>
 
 <h1>Hello {{ event.client_name }}!</h1>
-<!--<h3>Congratulations on booking the Oread Strings for your upcoming {{ event.event_type }}.  </h3>-->
-<h3>Please review the details of your event:.</h3>
-<!--<h5>To confirm your booking, a 50% deposit is required. Payment methods include personal check or for paypal, follow the link at the bottom of the form.</h5>-->
-<ul>
-    <h5>Event Details:</h5>
-    <li>Event Type: {{ event.event_type }}</li> 
-    <li>Event Date: {{ event.event_date }}</li>
-    <li>Start TIme: {{ event.start_time }}</li>
+<h3>Please review the details of your event:</h3>
+<h5>To confirm your booking, a 50% deposit is required. To pay with Paypal, follow the link at the bottom of the form.</h5>
+<br>
+
+<h4>Event Details:</h4>
+<ul class="list-group">
+    <li class="list-group-item">Event Type: {{ event.event_type }}</li> 
+    <li class="list-group-item">Event Date: {{ event.event_date }}</li>
+    <li class="list-group-item">Start TIme: {{ event.start_time }}</li>
+    <li class='list-group-item' id='outdoor-event'>Outdoors: {{ event.event_outdoors }}</li>
+</ul>
+<br>
 <!--    <li>Length of Event: {{ event.event_duration }}</li>-->
 <!--    <li>Expected Guests: {{ event.expected_guests }}</li>-->
-
-    <h6>Performance Details:</h6>
-    <li>Ensemble Type: {{ event.ensemble_type }}</li>
-    <li>Performers call time: {{ event.performers_required_time }}</li>
+<h4>Performance Details:</h4>
+<ul class="list-group">
+    <li class='list-group-item'>Ensemble Type: {{ event.ensemble_type }}</li>
+    <li class='list-group-item'>Performers call time: {{ event.performers_required_time }}</li>
 <!--    <li>Performers needed for: {{ event.performers_duration }}</li>-->
+</ul>
+<br>
 
-    <h6>Venue Details:</h6>
-    <li>Event Venue: {{ event.venue_name }}</li>
-    <li>Address: {{event.address }}</li>
-<!--    <li>City: {{ event.city }}</li>-->
-    <label for='outdoor-event'>Outdoor</label>
-    <li id='outdoor-event'>{{ event.event_outdoors }}</li>
+<h4>Venue Details:</h4>
+<ul class="list-group">
+    <li class="list-group-item">Event Venue: {{ event.venue_name }}</li>
+    <li class="list-group-item">Address: {{event.address }}</li>
+</ul>   
+<br>
 
-    <h6>Comments</h6>
-    <p>{{ event.comments }}</p>
-    
-    <h6>Performance Fee:</h6>
-    <li>Total Fee: ${{ event.fee }} due on {{ event.balance_duedate }}</li>
-    <li>Deposit Amount: ${{ event.deposit }} due on {{ event.deposit_duedate }}</li>
-<!--    <li>Paypal Fee: $14.50</li>-->
-    
-    
- </ul>
-<div id='outdoor'>
-    <h5>Terms for Outdoor Events</h5>
-    <p>Due to the sensitive nature of classical instruments, there are some additional terms when dealing with outdoor events. Etc, Etc</p>
+<h4>Comments</h4>
+<textarea class='form-control' disabled>{{ event.comments }}</textarea>
+<br>
+
+<h4>Performance Fee:</h4>
+<ul class="list-group">
+    <li class="list-group-item">Total Fee: ${{ event.fee }} due on {{ event.balance_duedate }}</li>
+    <li class="list-group-item">Deposit Amount: ${{ event.deposit }} due on {{ event.deposit_duedate }}</li>    
+</ul>
+<br>
+
+<h5>Terms of Agreement</h5>
+<div id="Terms">
+    <ul>
+        <li>Cancellation of the engagement by the CLIENT for any reason shall forfeit the deposit. Cancellation of the engagement by the CLIENT within 90 days of the date of engagement shall also require payment of the balance to the THE OREAD STRINGS, unless the same ensemble is re-booked by the CLIENT for a mutually agreeable date within 30 days of the canceled date. </li>
+
+        <li>If THE OREAD STRINGS or the CLIENT must cancel the engagement due to an Act of God, "Force Majeure", riot, strike, epidemic, or by the order of any public authority, this contract shall become null and void, all deposit and balance payments shall be refunded, and both parties shall have no further legal recourse against each other.</li>
+
+        <li>The CLIENT will provide straight-backed chairs without arms for each performing musician in THE OREAD STRINGS.</li>
+
+        <li>A completed Music Selections Form is due TWO WEEKS PRIOR to the event date. If no musical selections are provided by the CLIENT, THE OREAD STRINGS reserves the right to choose music selections on behalf of the CLIENT. </li>
+
+        <li>Parking must be provided at the performance location(s) at no charge to THE OREAD STRINGS.</li>
+
+        <li>Due to obligations to other clients, THE OREAD STRINGS may not be able to stay longer than the time period specified on the contract. If the event runs more than 15 minutes behind schedule, THE OREAD STRINGS reserves the right to assess overage fees in the amount of $100 per musician. </li>
+
+        <li>THE OREAD STRINGS attire will be concert black unless otherwise specified. </li>
+
+        <li>THE OREAD STRINGS arrival time will be 20-30 minutes prior to performance time.</li>
+        <li id='outdoor'>For OUTDOOR events, the CLIENT is responsible for providing cover for the musicians, in the form of a canopy tent, or other structure offering protection from direct sunlight. The CLIENT is responsible to provide an alternate indoor location in the event of inclement weather. The client agrees to pay the full amount contracted once THE OREAD STRINGS have arrived at the event location, even if THE OREAD STRINGS cannot perform due to inclement weather. THE OREAD STRINGS reserve the right to refrain from performance if weather or lack of protection from the elements creates a situation potentially damaging to their instruments.</li>
+    </ul>
 </div>
-<h5>Payment Details:</h5>
-   <p>To reserve your booking, please click the link to pay your deposit.
-<input type="button" value="Click here for Paypal"  name="paypal" onclick="location.href='https://paypal.com'" />
 
-    <h5>Thank you!</h5>
+<h4>Pay your deposit now:</h4>
+<p>To reserve your booking, please click the link to pay your deposit.
+<input type="button" value="Click here for Paypal"  name="paypal" onclick="location.href='https://paypal.com'" />
+<br>
+<p>To print this contract as a PDF, please click here.
+<input type="button" value="Click here for PDF"  name="PDF" onclick="location.href='/contract/pdf/{{event.pk}}' " />
+<br>
+
+<h3>Thank you!</h3>
 
 <!-- <input type="button" value="Download Contract as PDF"  name="download_pdf" onclick="location.href='/contract/pdf/{{ event.pk }}';" />-->
 {% endblock %}

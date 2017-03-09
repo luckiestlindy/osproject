@@ -4,28 +4,76 @@
 {% block head %}
 <link rel="stylesheet" type="text/css" href="{% static 'booker/css/vendor/slick.css' %}"/>
 <link rel="stylesheet" type="text/css" href="{% static 'booker/css/vendor/slick-theme.css' %}"/>
+<link rel='stylesheet' type='text/css' href='https://fonts.googleapis.com/css?family=Great+Vibes' >
 {% endblock head %}
 
-{% block top %}
+{% block carousel %}
   <div class="carousel">
     <div><img src="{% static 'booker/images/slides/slide1.jpg' %}" alt="Cellist" height="800" width="1600"></div>
     <div><img src="{% static 'booker/images/slides/slide2.jpg' %}" alt="Quartet" height="800" width="1600"></div>
     <div><img src="{% static 'booker/images/slides/slide3.jpg' %}" alt="Violinist" height="800" width="1600"></div>
   </div>
-{% endblock top %}
+{% endblock carousel %}
 
 {% block content %}
-    <h1 class='text-center'>the Oread Strings</h1>
+    
+    <div id='Logo' class='container'>
+        <img src="{% static 'booker/images/site/fullcolor_FINAL.png' %}" alt='The Oread Strings' width:='2815' height='1077'>
+    </div>
 
-    <h4 class='text-center'>elegant. local.</h4>
+    {# <h1 class='text-center'>the Oread Strings</h1> #}
+    <div id='Description' class='container'>
+        <h2 class='text-center'>elegant. local.</h2>
 
-    <h6 class='text-center'><strong>The Oread Strings</strong> provide beautiful music for weddings and events in Kansas City, Lawrence, Topeka, and the surrounding areas.</h6>  
+        <h6 class='text-center'><strong>The Oread Strings</strong> provide beautiful music for weddings and events in Kansas City, Lawrence, Topeka, and the surrounding areas.</h6>  
 
-    <h6 class='text-center'>Let us help you find the perfect ensemble for your event.</h6>
+        <h6 class='text-center'>Let us help you find the perfect ensemble for your event.</h6>
+    </div>
 
-    <p class='text-center'>The Oread Strings are commited to a welcoming and inclusive attitude to all people and do not discriminate on the basis of race, color, religion (creed), gender, gender expression, age, national origin (ancestry), disability, marital status, sexual orientation, or military status, in any of its activities or operations. We support the principles of the Human Rights Campaign (HRC), feel free to click their logo below for more information.</p>
-	
-    <a class='center' title="http://www.hrc.org" href="http://www.hrc.org"><img src="{% static 'booker/images/site/hrcOurLogo.png' %}"  alt="HRC Logo" width="50" height="50" ></a>
+    <div id='Inclusivity' class="card" style="width: 40rem;">
+    
+         <div class="card-block">
+            <h5 class="card-text text-center">A Word on Inclusivity:</h5>
+            <p class='card-text'>The Oread Strings are commited to a welcoming and inclusive attitude to all people and do not discriminate on the basis of race, color, religion (creed), gender, gender expression, age, national origin (ancestry), disability, marital status, sexual orientation, or military status, in any of its activities or operations. We support the principles of the Human Rights Campaign (HRC), feel free to click their logo below for more information.</p>
+    	</div>
+     <a class='text-center card-img-bottom' title="http://www.hrc.org" href="http://www.hrc.org"><img src="{% static 'booker/images/site/hrcOurLogo.png' %}"  alt="HRC Logo" width="50" height="50"></a>
+    </div>
+
+    <div id='Ensembles'>
+    <h1>Available Ensembles</h1>
+    <p>Below are our most common ensemble arrangements, but we are always happy to create a custom solution for you.</p>
+
+
+    {% for ensemble in ensembles %}
+    <div class='ensemble card' >
+    <p class="card-header"><strong>{{ ensemble.name }}:</strong> {{ ensemble.description }}</p>
+        <img src='/media/{{ ensemble.photo }}'alt="{{ ensemble.name }}" class='card-img-top rounded'>   
+    </div>
+    {% endfor %}
+
+
+    <div id="Musicians">
+        <h1 class='text-center'>Meet the Musicians</h1>
+
+        {% for musician in musicians %}
+
+        <div class='musician_bio'>
+            <div class='media'>
+                <img class='d-flex align-self-start mr-3 img-fluid rounded-circle' src="/media/{{ musician.image}}" alt="{{ musician.name }}">
+                    <div class='media-body'>
+                        <h2 class 'mt-0'>{{ musician.name }}</h2>
+                        <h5>{{musician.instrument}}</h5>
+                            {{ musician.bio }}
+                            {% if musician.website %}
+                            <a title = "{{ musician.website }}" href="{{ musician.website }}">{{ musician.website }}</a>
+                            {% endif %}
+                    </div>
+            </div>
+           
+        </div>
+        {% endfor %}
+    </div>
+
 {% endblock content %}
 
 

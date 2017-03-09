@@ -2,6 +2,7 @@ from __future__ import unicode_literals
 from django.urls import reverse
 from django.db import models
 from booker.choices import *
+from image_cropping import ImageRatioField
 # Create your models here.
 
 class Musician(models.Model):
@@ -10,7 +11,8 @@ class Musician(models.Model):
     email = models.EmailField(blank = True)
     instrument = models.CharField(max_length=100, choices=INSTRUMENT_TYPES)
     bio = models.TextField(blank=True)
-    photo = models.ImageField(upload_to='booker/musicians', blank = True, null = True)
+    image = models.ImageField(upload_to='booker/musicians', blank = True, null = True)
+    cropping = ImageRatioField('image', '10x10')
     website = models.URLField(max_length=200, blank = True)
     def __str__(self):
         return self.name

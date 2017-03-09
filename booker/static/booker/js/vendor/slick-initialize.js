@@ -6,6 +6,7 @@ $(document).ready(function () {
         speed: 500,
         fade: true,
         cssEase: 'linear',
-        pauseOnFocus: false
+        pauseOnFocus: false,
+        mobileFirst: true,
     });
-});
+  });

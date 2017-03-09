@@ -1,21 +1,36 @@
 {% extends 'booker/base.html' %}
 {% block content %}
-
-<h1>Meet the Musicians</h1>
+<div id="Musicians">
+<h1 class='text-center'>Meet the Musicians</h1>
 
 {% for musician in musicians %}
 
 <div class='musician_bio'>
-    <h2>{{ musician.name }}</h2>
-    <img src='/media/{{ musician.photo }}'alt="{{ musician.name }}">
-    <p>{{ musician.bio }}</p>
-        {% if musician.website %}
-        <a title = "{{ musician.website }}" href="{{ musician.website }}">{{ musician.website }}</a>
-        {% endif %}
+	<div class='media'>
+		<img class='d-flex align-self-start mr-3 img-fluid rounded-circle' src="/media/{{ musician.image}}" alt="{{ musician.name }}">
+			<div class='media-body'>
+				<h2 class 'mt-0'>{{ musician.name }}</h2>
+                <h5>{{musician.instrument}}</h5>
+    			    {{ musician.bio }}
+        			{% if musician.website %}
+        			<a title = "{{ musician.website }}" href="{{ musician.website }}">{{ musician.website }}</a>
+        			{% endif %}
+        	</div>
+    </div>
+    <br>
+    <br>
+    <br>
+        {# </div> #}
 </div>
 
 {% endfor %}
-
+</div>
 {% endblock content %}
-
- 
+{# 
+ <div class="media">
+  <img class="d-flex mr-3" src="..." alt="Generic placeholder image">
+  <div class="media-body">
+    <h5 class="mt-0">Media heading</h5>
+    Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+  </div>
+</div> #}

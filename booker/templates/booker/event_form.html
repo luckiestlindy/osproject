@@ -10,16 +10,24 @@
 
 {% endblock head %}
 {% block content %}
+    
+    <div id="Contact" class="text-center">
+        <h1>Contact Us!</h1>
+        <p>For booking inquiries and rate information, please contact:<a title="mailto:oreadstrings@gmail.com" href="mailto:oreadstrings@gmail.com">oreadstrings@gmail.com</a> or call Ellen at<a href="tel:1-785-331-5926"> (785) 331-5926</a> or simply fill out the form below and we will be in touch.</p>
+    </div>
+    <div id="Booking-Form">
+        <h1 class="text-center">Request a Booking</h1>
+        <div class='form-group'>
+            <form action='' method="post" >
 
-   <h1>Request a Booking</h1>
-    <form action='' method="post" >{% csrf_token %}
-        
-        {{ form.as_p }}
-       
-        <input type="submit" value='Submit Booking Inquiry' class="btn btn-sm btn-primary">
-        <input type="reset" value='Reset Form' class="btn btn-sm btn-secondary">
-    </form>
+                {% csrf_token %}
+                {{ form.as_p }}
 
+                <input type="submit" value='Submit Booking Inquiry' class="btn btn-sm btn-primary">
+                <input type="reset" value='Reset Form' class="btn btn-sm btn-secondary">
+            </form>
+        </div>
+    </div>
 
 {% endblock content %}
 

@@ -1,0 +1,38 @@
+{% load static from staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>the Oread Strings</title>  
+        
+        <style>
+            body {
+                background-color: linen;
+                font-family: sans-serif;
+                font-size: small;
+            }
+
+            h1 {
+                color: #81D2BC;
+                margin-left: 40px;
+            } 
+            #Terms {
+                font-size: x-small;
+            }
+        </style>
+</head>
+        {% block head %}{% endblock head %}
+	
+	</head>
+    <body>
+                
+       <div id='Content'>
+            <div id='Main' class ='container'>
+                {% block content %}{% endblock content %}
+            </div>
+        </div>    
+
+
+    </body>
+     
+</html>
+
