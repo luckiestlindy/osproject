@@ -20,7 +20,7 @@ from django.contrib.messages import constants as message_constants
 PROJECT_DIR = os.path.dirname(os.path.abspath(__file__))
 BASE_DIR = os.path.dirname(PROJECT_DIR)
 STATICFILES_STORAGE='whitenoise.django.GzipManifestStaticFilesStorage'
-
+SECRET_KEY = os.environ.get('SECRET_KEY')
 
 THUMBNAIL_PROCESSORS = (
     'image_cropping.thumbnail_processors.crop_corners',
