@@ -1,1 +1,1 @@
-web: gunicorn oread-strings.wsgi
+web: gunicorn {{ project_name }}.wsgi
