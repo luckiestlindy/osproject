@@ -156,7 +156,7 @@ RAVEN_CONFIG = {
     'dsn': 'https://a099768dec614b51986c302de537775a:271ee0530b354c9ca460f6768bf10b46@sentry.io/143067',
     # If you are using git, you can also automatically configure the
     # release based on the git info.
-    'release': os.environ['HEROKU_SLUG_COMMIT']
+    # 'release': os.environ['HEROKU_SLUG_COMMIT']
 }
 LOGGING = {
     'version': 1,
