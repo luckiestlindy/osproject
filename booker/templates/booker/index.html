@@ -46,7 +46,7 @@
     {% for ensemble in ensembles %}
     <div class='ensemble card' >
     <p class="card-header"><strong>{{ ensemble.name }}:</strong> {{ ensemble.description }}</p>
-        <img src='/media/{{ ensemble.photo }}'alt="{{ ensemble.name }}" class='card-img-top rounded'>   
+        <img src='{{ ensemble.photo.url }}'alt="{{ ensemble.name }}" class='card-img-top rounded'>   
     </div>
     {% endfor %}
 
@@ -58,7 +58,7 @@
 
         <div class='musician_bio'>
             <div class='media'>
-                <img class='d-flex align-self-start mr-3 img-fluid rounded-circle' src="/media/{{ musician.image}}" alt="{{ musician.name }}">
+                <img class='d-flex align-self-start mr-3 img-fluid rounded-circle' src="{{ musician.image.url }}" alt="{{ musician.name }}">
                     <div class='media-body'>
                         <h2 class 'mt-0'>{{ musician.name }}</h2>
                         <h5>{{musician.instrument}}</h5>

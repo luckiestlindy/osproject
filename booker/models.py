@@ -4,6 +4,8 @@ from django.db import models
 from booker.choices import *
 from image_cropping import ImageRatioField
 # Create your models here.
+
+
 def upload_media_to(instance, filename):
     import os
     from django.utils.timezone import now
