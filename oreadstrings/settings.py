@@ -118,12 +118,6 @@ ALLOWED_HOSTS = ['*']
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
 
 
-STATIC_ROOT = os.path.join(BASE_DIR, "booker/static")
-STATIC_URL = '/static/'
-
-MEDIA_ROOT = os.path.join(BASE_DIR, "booker/media")
-MEDIA_URL = '/media/'
-
 
 # EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 # EMAIL_HOST = os.environ['EMAIL_HOST']
@@ -206,8 +200,16 @@ LOGGING = {
     },
 }
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATIC_ROOT = os.path.join(BASE_DIR, "booker/static")
 STATIC_URL = '/static/'
+
+MEDIA_ROOT = os.path.join(BASE_DIR, "booker/media")
+MEDIA_URL = '/media/'
+
+
+
+# STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+# STATIC_URL = '/static/'
 
 # Extra places for collectstatic to find static files.
 STATICFILES_DIRS = (
