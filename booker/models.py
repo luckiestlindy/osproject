@@ -4,6 +4,14 @@ from django.db import models
 from booker.choices import *
 from image_cropping import ImageRatioField
 # Create your models here.
+def upload_media_to(instance, filename):
+    import os
+    from django.utils.timezone import now
+    filename_base, filename_ext = os.path.splitext(filename)
+    return 'profiles/%s%s' % (
+        now().strftime("%Y%m%d%H%M%S"),
+        filename_ext.lower(),
+    )
 
 class Musician(models.Model):
     name = models.CharField(max_length = 200)
@@ -11,7 +19,7 @@ class Musician(models.Model):
     email = models.EmailField(blank = True)
     instrument = models.CharField(max_length=100, choices=INSTRUMENT_TYPES)
     bio = models.TextField(blank=True)
-    image = models.ImageField(upload_to='booker/musicians', blank = True, null = True)
+    image = models.ImageField(upload_to=upload_media_to, blank = True, null = True)
     cropping = ImageRatioField('image', '10x10')
     website = models.URLField(max_length=200, blank = True)
     def __str__(self):
@@ -23,13 +31,13 @@ class Ensemble(models.Model):
     name = models.CharField(max_length = 100) 
     description = models.CharField(max_length = 200, blank = True)
     members = models.IntegerField()
-    photo = models.ImageField(upload_to='booker/ensembles', blank = True, null = True)
+    photo = models.ImageField(upload_to=upload_media_to, blank = True, null = True)
     def __str__(self):
         return self.name
 
 class Song(models.Model):
     name = models.CharField(max_length=125)
-    audio_file = models.FileField(upload_to='booker/songs', blank=True, null=True)
+    audio_file = models.FileField(upload_to=upload_media_to, blank=True, null=True)
     ensemble = models.ForeignKey(Ensemble)
     def __str__(self):
         return self.name
