@@ -16,10 +16,13 @@ import raven
 import smtplib
 from easy_thumbnails.conf import Settings as thumbnail_settings
 from django.contrib.messages import constants as message_constants
+import dj_database_url
+
+
 
 PROJECT_DIR = os.path.dirname(os.path.abspath(__file__))
 BASE_DIR = os.path.dirname(PROJECT_DIR)
-STATICFILES_STORAGE='whitenoise.django.GzipManifestStaticFilesStorage'
+
 SECRET_KEY = os.environ.get('SECRET_KEY')
 
 PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
@@ -34,7 +37,7 @@ STATICFILES_DIRS = (
     os.path.join(PROJECT_ROOT, 'static'),
 )
 
-
+STATICFILES_STORAGE='whitenoise.django.GzipManifestStaticFilesStorage'
 
 
 
@@ -219,7 +222,7 @@ LOGGING = {
         },
     },
 }
-import dj_database_url
+
 
 # DATABASES['default'] = dj_database_url.config()
 DATABASES = { 'default': dj_database_url.config() }
