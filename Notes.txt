@@ -15,3 +15,11 @@ Django Commands: (from root directory)
 
 From 'environment' to lanuch Python venv
 	source myvenv/bin/activate
+
+
+git push heroku master
+heroku ps:scale web=1
+heroku run python manage.py migrate
+heroku run python manage.py createsuperuser
+
+git push origin master
