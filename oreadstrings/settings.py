@@ -128,7 +128,7 @@ EMAIL_USE_TLS = os.environ.get('EMAIL_USE_TLS')
 
 
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
-AWS_S3_SECURE_URLS = True     # use http instead of https
+# AWS_S3_SECURE_URLS = True     # use http instead of https
 AWS_QUERYSTRING_AUTH = False   
 AWS_S3_HOST = "s3-us-east-2.amazonaws.com"
 AWS_S3_ACCESS_KEY_ID = os.environ.get('AWS_S3_ACCESS_KEY_ID')
