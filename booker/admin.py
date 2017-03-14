@@ -1,19 +1,17 @@
 from django.contrib import admin
 from .models import Event, Musician, Ensemble, Song, Selection
 from django.contrib import admin
-from image_cropping import ImageCroppingMixin
-
-# class MyModelAdmin(ImageCroppingMixin, admin.ModelAdmin):
-#     pass
-
-# admin.site.register(MyModel, MyModelAdmin)
+from django.utils.html import format_html
 
 class SelectionAdmin(admin.ModelAdmin):
-    list_display = ('name', 'composer', )
+    list_display = ('name', 'composer')
     list_filter = ('arrangement',)
 
-class MusicianAdmin(ImageCroppingMixin,admin.ModelAdmin):
-    list_display = ('name', 'instrument', 'website')
+class MusicianAdmin(admin.ModelAdmin):
+    def image_tag(self, obj):
+        return format_html('<img src="{}" />'.format(obj.image.crop['40x40'].url))
+    image_tag.short_description = 'Image'
+    list_display = ('name',  'image_tag', 'instrument', 'website')
     list_filter = ('instrument',)
 
 class EnsembleAdmin(admin.ModelAdmin):

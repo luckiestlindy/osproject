@@ -1,6 +1,14 @@
 from django import forms
-from .models import Event, Selection
+from .models import Event, Selection, Musician
+from django.forms import ModelForm
+# from versatileimagefield.fields import SizedImageCenterpointClickDjangoAdminField
 
+# class MusiciansForm(VersatileImageTestModelForm):
+# class MusicianForm(VersatileImageTestModelForm):
+#     image = SizedImageCenterpointClickDjangoAdminField(required=False)
+#     class Meta:
+#         model = Musician
+#         fields = ('image')
 
 class EventForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):

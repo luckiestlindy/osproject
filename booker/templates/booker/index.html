@@ -1,7 +1,7 @@
 {% extends 'booker/base.html' %}
 {% load static from staticfiles %}
-{% load cropping %}
-{% cropped_thumbnail Musician cropping %}
+{# {% load cropping %} #}
+{# {% cropped_thumbnail Musician cropping scale=0.5 %} #}
 
 {% block head %}
 <link rel="stylesheet" type="text/css" href="{% static 'booker/css/vendor/slick.css' %}"/>
@@ -51,29 +51,32 @@
         <img src='{{ ensemble.photo.url }}'alt="{{ ensemble.name }}" class='card-img-top rounded'>   
     </div>
     {% endfor %}
-
+    </div>
 
     <div id="Musicians">
         <h1 class='text-center'>Meet the Musicians</h1>
 
         {% for musician in musicians %}
-
+ <img src="{{ musician.image.crop.40x40 }}" />
         <div class='musician_bio'>
             <div class='media'>
                 <img class='d-flex align-self-start mr-3 img-fluid rounded-circle' src="{{ musician.image.url }}" alt="{{ musician.name }}">
                     <div class='media-body'>
                         <h2 class 'mt-0'>{{ musician.name }}</h2>
+                       
+                        {# <img src="{% cropped_thumbnail musician "cropping"  %}"> #}
                         <h5>{{musician.instrument}}</h5>
                             {{ musician.bio }}
                             {% if musician.website %}
                             <a title = "{{ musician.website }}" href="{{ musician.website }}">{{ musician.website }}</a>
+
                             {% endif %}
                     </div>
             </div>
            
         </div>
         {% endfor %}
-    </div>
+    
 
 {% endblock content %}
 

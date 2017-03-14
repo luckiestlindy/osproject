@@ -2,7 +2,9 @@ from __future__ import unicode_literals
 from django.urls import reverse
 from django.db import models
 from booker.choices import *
-from image_cropping import ImageRatioField, ImageCropField
+from versatileimagefield.fields import VersatileImageField, PPOIField
+from django.utils.safestring import mark_safe
+# from image_cropping import ImageRatioField, ImageCropField
 # Create your models here.
 
 
@@ -21,13 +23,19 @@ class Musician(models.Model):
     email = models.EmailField(blank = True)
     instrument = models.CharField(max_length=100, choices=INSTRUMENT_TYPES)
     bio = models.TextField(blank=True)
-    image = ImageCropField(upload_to=upload_media_to, blank = True, null = True)
-    cropping = ImageRatioField('image', '10x10')
+    image = VersatileImageField('Image', upload_to='images/', width_field='width', height_field='height', ppoi_field = 'ppoi')
+    width = models.PositiveIntegerField('Image Width', blank=True, null=True )
+    height = models.PositiveIntegerField('Image Height', blank=True, null=True)
+    ppoi = PPOIField('Image PPOI')
+    # cropping = ImageRatioField('image', '180x300')
     website = models.URLField(max_length=200, blank = True)
     def __str__(self):
         return self.name
     def get_absolute_url(self):
         return reverse('musician_detail', kwargs={'pk': self.pk})
+    # def image_tag(self):
+    #     return mark_safe('<img src="/%s" width="50" height="50" />' % (self.image))
+    # image_tag.short_description = 'Image'
     
 class Ensemble(models.Model):
     name = models.CharField(max_length = 100) 
