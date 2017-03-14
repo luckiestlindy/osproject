@@ -22,7 +22,7 @@ class Musician(models.Model):
     instrument = models.CharField(max_length=100, choices=INSTRUMENT_TYPES)
     bio = models.TextField(blank=True)
     image = ImageCropField(upload_to=upload_media_to, blank = True, null = True)
-    cropping = ImageRatioField('image', '100x100')
+    cropping = ImageRatioField('image', '10x10')
     website = models.URLField(max_length=200, blank = True)
     def __str__(self):
         return self.name
