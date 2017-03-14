@@ -1,7 +1,7 @@
 {% extends 'booker/base.html' %}
 {% load static from staticfiles %}
 {% load cropping %}
-{% cropped_thumbnail musician cropping %}
+{% cropped_thumbnail Musician cropping %}
 
 {% block head %}
 <link rel="stylesheet" type="text/css" href="{% static 'booker/css/vendor/slick.css' %}"/>
