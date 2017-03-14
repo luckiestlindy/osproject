@@ -21,7 +21,7 @@ class Musician(models.Model):
     email = models.EmailField(blank = True)
     instrument = models.CharField(max_length=100, choices=INSTRUMENT_TYPES)
     bio = models.TextField(blank=True)
-    image = models.ImageField(upload_to=upload_media_to, blank = True, null = True)
+    image = models.ImageCropField(upload_to=upload_media_to, blank = True, null = True)
     cropping = ImageRatioField('image', '100x100')
     website = models.URLField(max_length=200, blank = True)
     def __str__(self):
