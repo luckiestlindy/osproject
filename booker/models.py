@@ -2,7 +2,7 @@ from __future__ import unicode_literals
 from django.urls import reverse
 from django.db import models
 from booker.choices import *
-from image_cropping import ImageRatioField
+from image_cropping import ImageRatioField, ImageCropField
 # Create your models here.
 
 
