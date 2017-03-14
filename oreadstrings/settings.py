@@ -137,6 +137,24 @@ AWS_STORAGE_BUCKET_NAME = os.environ['AWS_STORAGE_BUCKET_NAME']
 AWS_S3_CUSTOM_DOMAIN = os.environ['AWS_S3_CUSTOM_DOMAIN']
 
 
+STATIC_ROOT = os.path.join(BASE_DIR, "booker/static")
+# STATIC_URL = '/static/'
+
+MEDIA_ROOT = os.path.join(BASE_DIR, "booker/media")
+MEDIA_URL = '/media/'
+
+# Extra places for collectstatic to find static files.
+# STATICFILES_DIRS = (
+    # os.path.join(BASE_DIR, 'booker/static'),
+# )
+
+# STATICFILES_STORAGE='whitenoise.django.GzipManifestStaticFilesStorage'
+
+STATIC_URL = "https://%s/" % AWS_S3_CUSTOM_DOMAIN
+STATICFILES_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
+
+
+
 MESSAGE_TAGS = {
     message_constants.DEBUG: 'debug',
     message_constants.INFO: 'info',
@@ -194,26 +212,6 @@ LOGGING = {
         },
     },
 }
-
-STATIC_ROOT = os.path.join(BASE_DIR, "booker/static")
-STATIC_URL = '/static/'
-
-MEDIA_ROOT = os.path.join(BASE_DIR, "booker/media")
-MEDIA_URL = '/media/'
-
-
-
-# STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-# STATIC_URL = '/static/'
-
-# Extra places for collectstatic to find static files.
-STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'booker/static'),
-)
-
-STATICFILES_STORAGE='whitenoise.django.GzipManifestStaticFilesStorage'
-
-
 
 
 
