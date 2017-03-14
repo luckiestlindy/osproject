@@ -21,7 +21,7 @@ class Musician(models.Model):
     email = models.EmailField(blank = True)
     instrument = models.CharField(max_length=100, choices=INSTRUMENT_TYPES)
     bio = models.TextField(blank=True)
-    image = VersatileImageField('Image', upload_to='images/', width_field='width', height_field='height', ppoi_field = 'ppoi')
+    image = VersatileImageField('Image', upload_to='images/musicians/', width_field='width', height_field='height', ppoi_field = 'ppoi')
     width = models.PositiveIntegerField('Image Width', blank=True, null=True )
     height = models.PositiveIntegerField('Image Height', blank=True, null=True)
     ppoi = PPOIField('Image PPOI')
@@ -35,7 +35,10 @@ class Ensemble(models.Model):
     name = models.CharField(max_length = 100) 
     description = models.CharField(max_length = 200, blank = True)
     members = models.IntegerField()
-    photo = models.ImageField(upload_to=upload_media_to, blank = True, null = True)
+    photo = VersatileImageField('Image', upload_to='images/ensembles/', width_field='width', height_field='height', ppoi_field='ppoi')
+    width = models.PositiveIntegerField('Image Width', blank=True, null=True )
+    height = models.PositiveIntegerField('Image Height', blank=True, null=True)
+    ppoi = PPOIField('Image PPOI')
     def __str__(self):
         return self.name
 
