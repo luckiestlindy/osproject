@@ -1,4 +1,4 @@
-appdirs==1.4.3
+giappdirs==1.4.3
 boto==2.46.1
 cairocffi==0.8.0
 CairoSVG==2.0.1
