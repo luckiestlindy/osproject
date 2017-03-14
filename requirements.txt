@@ -1,4 +1,5 @@
 appdirs==1.4.3
+boto==2.46.1
 cairocffi==0.8.0
 CairoSVG==2.0.1
 cffi==1.9.1
@@ -11,6 +12,7 @@ django-appconf==1.0.1
 django-environ==0.4.1
 django-image-cropping==1.0.4
 django-pdfkit==0.2.1
+django-storages==1.5.2
 easy-thumbnails==2.3
 gunicorn==19.7.0
 html5lib==0.999999999
