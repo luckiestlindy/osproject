@@ -11,7 +11,6 @@ https://docs.djangoproject.com/en/1.10/ref/settings/
 """
 
 import os
-# import environ
 import raven
 import smtplib
 from easy_thumbnails.conf import Settings as thumbnail_settings
@@ -114,42 +113,29 @@ TIME_INPUT_FORMATS = ('%I:%M %p',) #will format your times as "5:30 PM"
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 ALLOWED_HOSTS = ['*']
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/1.10/howto/static-files/
 
 
 
-# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-# EMAIL_HOST = os.environ['EMAIL_HOST']
-# EMAIL_PORT = os.environ['EMAIL_PORT']
-# EMAIL_HOST_USER = os.environ['EMAIL_HOST_USER']
-# EMAIL_HOST_PASSWORD = os.environ['EMAIL_HOST_PASSWORD']
-# EMAIL_USE_TLS = True
-
-# MESSAGE_LEVEL = message_constants.DEBUG
-
-# MESSAGE_TAGS = {
-#     message_constants.DEBUG: 'debug',
-#     message_constants.INFO: 'info',
-#     message_constants.SUCCESS: 'success',
-#     message_constants.WARNING: 'warning',
-#     message_constants.ERROR: 'danger',
-# }
-# MESSAGE_LEVEL = 10
 
 
-MESSAGE_TAGS = {message_constants.DEBUG: 'debug',
-                message_constants.INFO: 'info',
-                message_constants.SUCCESS: 'success',
-                message_constants.WARNING: 'warning',
-                message_constants.ERROR: 'danger',}
-# MESSAGE_TAGS = {
-#     messages.DEBUG: 'alert-info',
-#     messages.INFO: 'alert-info',
-#     messages.SUCCESS: 'alert-success',
-#     messages.WARNING: 'alert-warning',
-#     messages.ERROR: 'alert-danger',
-# }
+EMAIL_HOST = os.environ['EMAIL_HOST']
+EMAIL_PORT = os.environ['EMAIL_PORT']
+EMAIL_HOST_USER = os.environ['EMAIL_HOST_USER']
+EMAIL_HOST_PASSWORD = os.environ['EMAIL_HOST_PASSWORD']
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_USE_TLS = os.environ('EMAIL_USE_TLS')
+
+
+
+
+MESSAGE_TAGS = {
+    message_constants.DEBUG: 'debug',
+    message_constants.INFO: 'info',
+    message_constants.SUCCESS: 'success',
+    message_constants.WARNING: 'warning',
+    message_constants.ERROR: 'danger',
+    }
+
 RAVEN_CONFIG = {
     'dsn': 'https://a099768dec614b51986c302de537775a:271ee0530b354c9ca460f6768bf10b46@sentry.io/143067',
     # If you are using git, you can also automatically configure the
