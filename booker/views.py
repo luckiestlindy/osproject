@@ -17,10 +17,11 @@ def payment_success(request, item_number):
     messages.success(request, html)
     return render(request, 'booker/success.html')
 
-def payment_cancel(request):
+def payment_cancel(request, item_number):
+    event = get_object_or_404(Event, item_number = pk)
     html = 'You have cancelled your Paypal deposit process.  Click the link below to try again or contact us at {0} with any questions. Your booking is not confirmed until a deposit is received.'.format(os_admin_email)
-    messages.success(request, html)
-    return render(request, 'booker/success.html')
+    messages.danger(request, html)
+    return render(request, 'booker/contract.html', {'event': event})
 
 
 def html_email(to, subject, context):
