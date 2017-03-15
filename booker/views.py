@@ -11,11 +11,16 @@ from django.core.files.storage import FileSystemStorage
 from weasyprint import HTML
 from oreadstrings.constants import *
 
-def payment_success(request):
-    return render(request, 'booker/payment_sucess.html')
+def payment_success(request, item_number):
+    event = get_object_or_404(Event, item_number = pk)
+    html = 'Thank You {0}, your deposit of ${1} has been received. Your booking on {2} is now confirmed'.format(event.client_name, event.event_date, event.deposit)
+    messages.success(request, html)
+    return render(request, 'booker/success.html')
 
 def payment_cancel(request):
-    return render(request, 'booker/payment_cancel.html')
+    html = 'You have cancelled your Paypal deposit process.  Click the link below to try again or contact us at {0} with any questions. Your booking is not confirmed until a deposit is received.'.format(os_admin_email)
+    messages.success(request, html)
+    return render(request, 'booker/success.html')
 
 
 def html_email(to, subject, context):
