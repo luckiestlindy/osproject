@@ -1,1 +1,1 @@
-web: gunicorn oreadstrings.wsgi --preload
+web: gunicorn oreadstrings.wsgi 

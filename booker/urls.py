@@ -23,6 +23,8 @@ urlpatterns = [
     url(r'^contract/link/(?P<pk>\d+)/$', views.contract_link, name='contract_link'),
     url(r'^musician/(?P<pk>\d+)/$', views.musician_detail, name='musician_detail'),
     url(r'^upcoming/$', views.upcoming, name='upcoming'),
+    url(r'^payment_success/$', views.payment_success, name='payment_success'),
+    url(r'^payment_cancel/$', views.payment_cancel, name='payment_cancel'),
     # url(r'^pdf_generation/(?P<pk>\d+)/$', views.pdf_generation, name='pdf_generations'),
     # url(r'^template/$', views.template, name='template'),
     # url(r'^my-pdf/$', PDFView.as_view(template_name='my-pdf.html'), name='my-pdf'),
@@ -30,4 +32,5 @@ urlpatterns = [
 
 #    url(r'^drip/(?P<pk>\d+)/$', views.drip, name='drip'),
 #    url(r'^email_one$', views.email_one, name='email_one'),
+    # url(r'^payment/$', views.email_one, name='payment'),
 ] 

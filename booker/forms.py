@@ -1,26 +1,14 @@
 from django import forms
 from .models import Event, Selection, Musician
 from django.forms import ModelForm
-# from versatileimagefield.fields import SizedImageCenterpointClickDjangoAdminField
-
-# class MusiciansForm(VersatileImageTestModelForm):
-# class MusicianForm(VersatileImageTestModelForm):
-#     image = SizedImageCenterpointClickDjangoAdminField(required=False)
-#     class Meta:
-#         model = Musician
-#         fields = ('image')
 
 class EventForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super(EventForm, self).__init__(*args,**kwargs)
         self.fields['client_name'].widget.attrs['class'] = 'form-control' 
-        # self.fields['client_name'].widget.attrs['placeholder'] = 'required' 
         self.fields['client_email'].widget.attrs['class'] = 'form-control' 
-        # self.fields['client_email'].widget.attrs['placeholder'] = 'required' 
         self.fields['client_phone'].widget.attrs['class'] = 'form-control'
-        # self.fields['client_phone'].widget.attrs['placeholder'] = 'required' 
         self.fields['event_type'].widget.attrs['class'] = 'form-control' 
-        # self.fields['client_name'].widget.attrs['placeholder'] = 'required' 
         self.fields['ensemble_type'].widget.attrs['class'] = 'form-control' 
         self.fields['event_date'].widget.attrs['class'] = 'form-control datepicker' 
         self.fields['start_time'].widget.attrs['class'] = 'form-control timepicker'  

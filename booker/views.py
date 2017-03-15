@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from django.http import HttpResponseRedirect, HttpResponse
+from django.http import HttpResponse
 from django.template import Context
 from django.template.loader import render_to_string, get_template
 from .forms import EventForm, SelectionsForm
@@ -9,11 +9,18 @@ from django.core.mail import send_mail, EmailMessage
 from django.contrib import messages
 from django.core.files.storage import FileSystemStorage
 from weasyprint import HTML
+from oreadstrings.constants import *
+
+def payment_success(request):
+    return render(request, 'booker/payment_sucess.html')
+
+def payment_cancel(request):
+    return render(request, 'booker/payment_cancel.html')
 
 
 def html_email(to, subject, context):
     message = get_template('email/os-email-template.html').render(Context(context))
-    msg = EmailMessage(subject, message, 'oreadstrings@gmail.com', to )
+    msg = EmailMessage(subject, message, os_admin_email, to )
     msg.content_subtype = 'html'
     msg.send()
     
@@ -144,7 +151,7 @@ def notify_players(request, pk):
         m_emails.append(k)
     m_names_str = ('%s' % ', '.join(map(str, m_names)))
     to = m_emails
-    from_email = 'test@example.com'
+    from_email = os_admin_email
     subject = 'Oread Strings - Event Details'
     link = 'http://oreadstrings.com/event/{0}'.format(event.pk) 
     message = 'You have been confirmed for an Oread Strings {0} booking on {1}. Please click the link for the full details.'.format(event.event_type, event.event_date)
@@ -187,7 +194,7 @@ def contract(request, pk):
 def notifyadmin(request, pk):
     event = get_object_or_404(Event, pk=pk)
     subject = 'New Booking Inquiry at Oreadstrings.com'
-    to = [ADMIN_EMAIL]
+    to = [os_admin_email]
     message = 'You have a new booking inquiry from {0} for an event on {1}. Please click the link to see the details'.format(event.client_name, event.event_date)
     context = {
         'name': 'Ellen',

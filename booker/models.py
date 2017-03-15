@@ -5,7 +5,6 @@ from booker.choices import *
 from versatileimagefield.fields import VersatileImageField, PPOIField
 # Create your models here.
 
-
 def upload_media_to(instance, filename):
     import os
     from django.utils.timezone import now

@@ -57,7 +57,7 @@
         <h1 class='text-center'>Meet the Musicians</h1>
 
         {% for musician in musicians %}
- <img src="{{ musician.image.crop.40x40 }}" />
+ {# <img src="{{ musician.image.crop.40x40 }}" /> #}
         <div class='musician_bio'>
             <div class='media'>
                 <img class='d-flex align-self-start mr-3 img-fluid rounded-circle' src="{{ musician.image.url }}" alt="{{ musician.name }}">

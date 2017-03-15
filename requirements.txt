@@ -11,10 +11,8 @@ django-annoying==0.10.3
 django-appconf==1.0.1
 django-environ==0.4.1
 django-image-cropping==1.0.4
-django-pdfkit==0.2.1
 django-storages==1.5.2
 django-versatileimagefield==1.6.3
-easy-thumbnails==2.3
 gunicorn==19.7.0
 html5lib==0.999999999
 lxml==3.7.3
@@ -29,7 +27,6 @@ pyparsing==2.2.0
 PyPDF2==1.26.0
 Pyphen==0.9.4
 raven==6.0.0
-reportlab==3.3.0
 six==1.10.0
 tinycss==0.4
 WeasyPrint==0.36
