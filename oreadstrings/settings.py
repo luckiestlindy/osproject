@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'weasyprint',
     'storages',
     'versatileimagefield',
+    'paypal.standard.ipn',
     
 
 ]
@@ -98,7 +99,8 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
-
+PAYPAL_TEST = True
+PAYPAL_RECIEVER_EMAIL = 'oreadstrings-facilitator@gmail.com'
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.10/topics/i18n/
