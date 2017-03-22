@@ -49,7 +49,7 @@
                 {% block top %}
                 {% for message in messages %}
                 <div class="alert alert-{{ message.tags }}" role="alert">
-                    <h4 class="alert-heading">Success!</h4>
+                    <h4 class="alert-heading">{{ message.tags }}</h4>
                     <p>{{ message }}</p>
                 </div>
                 {% endfor %}

@@ -25,7 +25,7 @@ urlpatterns = [
     url(r'^upcoming/$', views.upcoming, name='upcoming'),
     # url(r'^cashmoney/(?P<pk>\d+)/$', views.view_that_asks_for_money, name='view_that_asks_for_money'),
     
-    # url(r'^payment_success/$', views.payment_success, name='payment_success'),
+    url(r'^payment_success/(?P<pk>\d+)/$', views.payment_success, name='payment_success'),
     url(r'^payment_cancel/(?P<pk>\d+)/$', views.payment_cancel, name='payment_cancel'),
     # url(r'^pdf_generation/(?P<pk>\d+)/$', views.pdf_generation, name='pdf_generations'),
     # url(r'^template/$', views.template, name='template'),

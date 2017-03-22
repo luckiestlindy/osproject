@@ -11,43 +11,47 @@ from django.core.files.storage import FileSystemStorage
 from weasyprint import HTML
 from oreadstrings.constants import *
 
+
 from django.core.urlresolvers import reverse
-# from django.shortcuts import render
+from django.shortcuts import render
 from paypal.standard.forms import PayPalPaymentsForm
+
+
 
 def view_that_asks_for_money(request, pk):
     event = get_object_or_404(Event, pk = pk)
     # What you want the button to do.
     item_name = 'Deposit for {0} on {1}'.format(event.event_type, event.event_date)
     cancel_return = 'https://oreadstrings.herokuapp.com/booker/payment_cancel/{0}'.format(event.pk)
-    # cancel_return = '127.0.0.1:8000/payment_cancel/{0}'.format(event.pk)
+    return_url = 'https://oreadstrings.herokuapp.com/booker/payment_success/{0}'.format(event.pk)
     paypal_dict = {
         "business": "oreadstrings@gmail.com",
         "image_url": "https://s3.us-east-2.amazonaws.com/oreadstrings-assets/images/fullcolor_pp.jpg",
-        "amount": event.fee,
+        "amount": event.deposit,
         "item_name": item_name,
         "invoice": event.pk,
         "button_subtype":"services",
-        "notify_url": "https://www.example.com" + reverse('paypal-ipn'),
-        "return_url": "https://www.example.com/your-return-location/",
+        "notify_url": "https://oreadstrings.herokuapp.com" + reverse('paypal-ipn'),
+        "return_url": return_url,
         "cancel_return": cancel_return,
-        "custom": "Upgrade all users!",  # Custom command to correlate to some function later (optional)
+        # "custom": "Upgrade all users!",  # Custom command to correlate to some function later (optional)
     }
     # Create the instance.
     form = PayPalPaymentsForm(initial=paypal_dict)
     context = {"form": form}
     return render(request, "booker/contract.html", context)
 
-# def payment_success(request, custom):
-#     event = get_object_or_404(Event, custom = pk)
-#     html = 'Thank You {0}, your deposit of ${1} has been received. Your booking on {2} is now confirmed'.format(event.client_name, event.event_date, event.deposit)
-#     messages.success(request, html)
-#     return render(request, 'booker/success.html')
+def payment_success(request, pk):
+    event = get_object_or_404(Event, pk = pk)
+    html = 'Thank You {0}, your deposit of ${1} has been received. Your booking on {2} is now confirmed'.format(event.client_name, event.deposit, event.event_date,)
+    messages.success(request, html)
+    return render(request, 'booker/success.html')
 
 def payment_cancel(request, pk):
     event = get_object_or_404(Event, pk = pk)
     html = 'You have cancelled your Paypal deposit process.  Click the link below to try again or contact us at {0} with any questions. Your booking is not confirmed until a deposit is received.'.format(os_admin_email)
-    messages.danger(request, html)
+    messages.warning(request, html, )
+    # return render(request, 'booker/payment_cancel.html', {'event': event})
     return render(request, 'booker/contract.html', {'event': event})
 
 
