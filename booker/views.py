@@ -16,7 +16,9 @@ from django.core.urlresolvers import reverse
 from django.shortcuts import render
 from paypal.standard.forms import PayPalPaymentsForm
 
-
+# def contract(request, pk):
+#     event = get_object_or_404(Event, pk=pk)
+#     return render(request, 'booker/contract.html', {'event': event})
 
 def view_that_asks_for_money(request, pk):
     event = get_object_or_404(Event, pk = pk)
@@ -38,7 +40,7 @@ def view_that_asks_for_money(request, pk):
     }
     # Create the instance.
     form = PayPalPaymentsForm(initial=paypal_dict)
-    context = {"form": form}
+    context = {"form": form, 'event':event}
     return render(request, "booker/contract.html", context)
 
 def payment_success(request, pk):
