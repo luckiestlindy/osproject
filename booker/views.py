@@ -19,7 +19,7 @@ def view_that_asks_for_money(request, pk):
     event = get_object_or_404(Event, pk = pk)
     # What you want the button to do.
     item_name = 'Deposit for {0} on {1}'.format(event.event_type, event.event_date)
-    cancel_return = 'https://oreadstrings.herokuapp.com/booking/payment_cancel/{0}'.format(event.pk)
+    cancel_return = 'https://oreadstrings.herokuapp.com/booker/payment_cancel/{0}'.format(event.pk)
     # cancel_return = '127.0.0.1:8000/payment_cancel/{0}'.format(event.pk)
     paypal_dict = {
         "business": "oreadstrings@gmail.com",
