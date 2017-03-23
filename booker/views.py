@@ -18,7 +18,7 @@ from paypal.standard.forms import PayPalPaymentsForm
 from paypal.standard.models import ST_PP_COMPLETED
 from paypal.standard.ipn.signals import valid_ipn_received
 import logging
-logging.config.dictConfig(LOGGING)
+logging.config.dictConfig(settings.LOGGING)
 # Get an instance of a logger
 logger = logging.getLogger('testlogger')
 logger.info('This is a simple log message')
