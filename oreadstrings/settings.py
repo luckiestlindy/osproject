@@ -214,8 +214,8 @@ LOGGING = {
             'propagate': False,
         },
         'testlogger': {
-            'handlers': ['console'],
             'level': 'INFO',
+            'handlers': ['console'],
         },
     },
 }
