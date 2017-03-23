@@ -25,7 +25,8 @@ logger.info('This is a simple log message')
 # Create your models here.
 def show_me_the_money(sender, **kwargs):
     ipn_obj = sender
-    logger.info('show me engaged')
+    print('show me - engaged')
+    # logger.info('show me engaged')
     if ipn_obj.payment_status == ST_PP_COMPLETED:
         # WARNING !
         # Check that the receiver email is the same we previously
@@ -34,7 +35,7 @@ def show_me_the_money(sender, **kwargs):
         if ipn_obj.receiver_email != PAYPAL_RECIEVER_EMAIL:
             print('email wrong')
             print(ipn_obj.receiver_email)
-            logger.info('email wrong')
+            # logger.info('email wrong')
             # Not a valid payment
             return
         # ALSO: for the same reason, you need to check the amount
@@ -45,7 +46,9 @@ def show_me_the_money(sender, **kwargs):
             # Users.objects.update(paid=True)
     else:
         print('this happened')
-        logger.info('email right')
+        print('email right')
+        print(ipn_obj.receiver_email)
+        # logger.info('email right')
         # pass
 
 valid_ipn_received.connect(show_me_the_money)
