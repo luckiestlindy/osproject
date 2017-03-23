@@ -51,7 +51,7 @@ def payment_success(request, pk):
     event = get_object_or_404(Event, pk = pk)
     html = 'Thank You {0}, your deposit of ${1} has been received. Your booking on {2} is now confirmed'.format(event.client_name, event.deposit, event.event_date,)
     messages.success(request, html)
-    return render(request, 'booker/success.html')
+    return render(request, 'booker/success.html', {'event': event})
 
 def payment_cancel(request, pk):
     event = get_object_or_404(Event, pk = pk)
