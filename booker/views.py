@@ -31,6 +31,7 @@ def show_me_the_money(sender, **kwargs):
     print(event)
     # logger.info('show me engaged')
     if ipn_obj.payment_status == ST_PP_COMPLETED:
+        print('get here?')
         # WARNING !
         # Check that the receiver email is the same we previously
         # set on the business field request. (The user could tamper
