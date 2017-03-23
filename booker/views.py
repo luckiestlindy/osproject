@@ -15,6 +15,38 @@ from oreadstrings.constants import *
 from django.core.urlresolvers import reverse
 # from django.shortcuts import render
 from paypal.standard.forms import PayPalPaymentsForm
+from paypal.standard.models import ST_PP_COMPLETED
+from paypal.standard.ipn.signals import valid_ipn_received
+import logging
+
+# Get an instance of a logger
+logger = logging.getLogger(__name__)
+
+# Create your models here.
+def show_me_the_money(sender, **kwargs):
+    ipn_obj = sender
+    if ipn_obj.payment_status == ST_PP_COMPLETED:
+        # WARNING !
+        # Check that the receiver email is the same we previously
+        # set on the business field request. (The user could tamper
+        # with those fields on payment form before send it to PayPal)
+        if ipn_obj.receiver_email != PAYPAL_RECIEVER_EMAIL:
+            print('email wrong')
+            logger.error('email wrong')
+            # Not a valid payment
+            return
+        # ALSO: for the same reason, you need to check the amount
+        # received etc. are all what you expect.
+
+        # Undertake some action depending upon `ipn_obj`.
+        # if ipn_obj.custom == "Upgrade all users!":
+            # Users.objects.update(paid=True)
+    else:
+        print('this happened')
+        logger.error('email right')
+        # pass
+
+valid_ipn_received.connect(show_me_the_money)
 
 
 
