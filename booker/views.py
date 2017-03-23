@@ -57,8 +57,9 @@ def payment_cancel(request, pk):
     event = get_object_or_404(Event, pk = pk)
     html = 'You have cancelled your Paypal deposit process.  Click the link below to try again or contact us at {0} with any questions. Your booking is not confirmed until a deposit is received.'.format(os_admin_email)
     messages.warning(request, html, )
+    context = view_that_asks_for_money(request, pk)
     # return render(request, 'booker/payment_cancel.html', {'event': event})
-    return render(request, 'booker/contract.html', {'event': event})
+    return render(request, 'booker/contract.html', context)
 
 
 def html_email(to, subject, context):
