@@ -100,7 +100,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 PAYPAL_TEST = True
-PAYPAL_RECIEVER_EMAIL = 'oreadstrings-facilitator@gmail.com'
+PAYPAL_RECIEVER_EMAIL = 'oreadstrings@gmail.com'
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.10/topics/i18n/
