@@ -29,6 +29,7 @@ def show_me_the_money(sender, **kwargs):
     pk = ipn_obj.invoice
     event = get_object_or_404(Event, pk = pk)
     print(event)
+    print(ipn_obj.payment_status)
     # logger.info('show me engaged')
     if ipn_obj.payment_status == ST_PP_COMPLETED:
         print('get here?')
