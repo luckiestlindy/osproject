@@ -33,6 +33,7 @@ def show_me_the_money(sender, **kwargs):
         # with those fields on payment form before send it to PayPal)
         if ipn_obj.receiver_email != PAYPAL_RECIEVER_EMAIL:
             print('email wrong')
+            print(ipn_obj.receiver_email)
             logger.info('email wrong')
             # Not a valid payment
             return
