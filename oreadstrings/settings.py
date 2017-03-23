@@ -213,6 +213,10 @@ LOGGING = {
             'handlers': ['console'],
             'propagate': False,
         },
+        'testlogger': {
+            'handlers': ['console'],
+            'level': 'INFO',
+        },
     },
 }
 
