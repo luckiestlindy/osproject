@@ -33,7 +33,7 @@ def show_me_the_money(sender, **kwargs):
     print(ipn_obj.payment_status)
     print(ipn_obj.pending_reason)
     # logger.info('show me engaged')
-    if ipn_obj.payment_status == Completed:
+    if ipn_obj.payment_status == 'Completed':
         logger.info('IPN object received')
         if ipn_obj.receiver_email != PAYPAL_RECIEVER_EMAIL:
             logger.danger('PayPal Error: incorrect reciever email!')
