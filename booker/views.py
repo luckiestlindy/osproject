@@ -48,8 +48,11 @@ def show_me_the_money(sender, **kwargs):
         logger.warning('IPN object status is not complete')
         
 valid_ipn_received.connect(show_me_the_money)
+
 def show_me_the_error(sender, **kwargs):
-    print('wtf bro!')
+    logger.danger('Paypal Error: invalid IPN received')
+    logger.danger(sender)
+
 invalid_ipn_received.connect(show_me_the_error)
 
 
