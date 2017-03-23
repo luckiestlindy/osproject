@@ -35,7 +35,7 @@ def show_me_the_money(sender, **kwargs):
     # logger.info('show me engaged')
     if ipn_obj.payment_status == 'Completed':
         logger.info('IPN object received')
-        if ipn_obj.receiver_email != PAYPAL_RECIEVER_EMAIL:
+        if ipn_obj.receiver_email != paypal_reciever_email:
             logger.danger('PayPal Error: incorrect reciever email!')
             return
         if ipn_obj.amount != event.deposit:
@@ -45,6 +45,7 @@ def show_me_the_money(sender, **kwargs):
         if ipn_obj.custom == "Account Deposit Received":
             event.objects.update(deposit_recieved=True)
             logger.success('Paypal deposit payment recieved, status updated')
+            return
     else:
         logger.warning('IPN object status is not complete')
         
