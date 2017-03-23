@@ -21,11 +21,13 @@ import logging
 # logging.config.dictConfig(settings.LOGGING)
 # Get an instance of a logger
 logger = logging.getLogger('testlogger')
-logger.info('This is a simple log message')
+# logger.info('This is a simple log message') 
 # Create your models here.
 def show_me_the_money(sender, **kwargs):
     ipn_obj = sender
     print('show me - engaged')
+    event = get_object_or_404(Event, ipn_obj.invoice = pk)
+    print(event)
     # logger.info('show me engaged')
     if ipn_obj.payment_status == ST_PP_COMPLETED:
         # WARNING !
@@ -33,9 +35,11 @@ def show_me_the_money(sender, **kwargs):
         # set on the business field request. (The user could tamper
         # with those fields on payment form before send it to PayPal)
         if ipn_obj.receiver_email != PAYPAL_RECIEVER_EMAIL:
-            print('email wrong')
-            print(ipn_obj.receiver_email)
-            # logger.info('email wrong')
+            logger.danger('PayPal Error: incorrect reciever email!')
+            # Not a valid payment
+            return
+        if ipn_obj.amount != PAYPAL_RECIEVER_EMAIL:
+            logger.danger('PayPal Error: incorrect reciever email!')
             # Not a valid payment
             return
         # ALSO: for the same reason, you need to check the amount
