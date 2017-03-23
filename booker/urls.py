@@ -17,7 +17,7 @@ urlpatterns = [
     
     url(r'^send_selections/(?P<pk>\d+)/$', views.send_selections, name='send_selections'), 
 
-    url(r'^contract/(?P<pk>\d+)/$', views.view_that_asks_for_money, name='view_that_asks_for_money'),
+    url(r'^contract/(?P<pk>\d+)/$', views.contract, name='contract'),
     url(r'^notify_players/(?P<pk>\d+)/$', views.notify_players, name='notify_players'),
     url(r'^contract/pdf/(?P<pk>\d+)/$', views.contract_pdf, name='contract_pdf'),
     url(r'^contract/link/(?P<pk>\d+)/$', views.contract_link, name='contract_link'),

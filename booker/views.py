@@ -5,7 +5,7 @@ from django.template.loader import render_to_string, get_template
 from .forms import EventForm, SelectionsForm
 from .models import Event, Musician, Ensemble, Song, Selection
 from django.core.mail import send_mail, EmailMessage
-# from reportlab.pdfgen import canvas
+
 from django.contrib import messages
 from django.core.files.storage import FileSystemStorage
 from weasyprint import HTML
@@ -13,19 +13,16 @@ from oreadstrings.constants import *
 
 
 from django.core.urlresolvers import reverse
-from django.shortcuts import render
+# from django.shortcuts import render
 from paypal.standard.forms import PayPalPaymentsForm
 
-# def contract(request, pk):
-#     event = get_object_or_404(Event, pk=pk)
-#     return render(request, 'booker/contract.html', {'event': event})
+
 
 def view_that_asks_for_money(request, pk):
     event = get_object_or_404(Event, pk = pk)
-    # What you want the button to do.
     item_name = 'Deposit for {0} on {1}'.format(event.event_type, event.event_date)
-    cancel_return = 'https://oreadstrings.herokuapp.com/booker/payment_cancel/{0}'.format(event.pk)
-    return_url = 'https://oreadstrings.herokuapp.com/booker/payment_success/{0}'.format(event.pk)
+    cancel_return = 'https://oreadstrings.herokuapp.com/payment_cancel/{0}'.format(event.pk)
+    return_url = 'https://oreadstrings.herokuapp.com/payment_success/{0}'.format(event.pk)
     paypal_dict = {
         "business": "oreadstrings@gmail.com",
         "image_url": "https://s3.us-east-2.amazonaws.com/oreadstrings-assets/images/fullcolor_pp.jpg",
@@ -41,7 +38,14 @@ def view_that_asks_for_money(request, pk):
     # Create the instance.
     form = PayPalPaymentsForm(initial=paypal_dict)
     context = {"form": form, 'event':event}
-    return render(request, "booker/contract.html", context)
+    return context
+    # return render(request, "booker/contract.html", context)
+
+
+def contract(request, pk):
+    context = view_that_asks_for_money(request, pk)
+    # event = get_object_or_404(Event, pk=pk)
+    return render(request, 'booker/contract.html', context)
 
 def payment_success(request, pk):
     event = get_object_or_404(Event, pk = pk)
