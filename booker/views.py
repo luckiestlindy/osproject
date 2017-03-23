@@ -16,7 +16,7 @@ from django.core.urlresolvers import reverse
 # from django.shortcuts import render
 from paypal.standard.forms import PayPalPaymentsForm
 from paypal.standard.models import ST_PP_COMPLETED
-from paypal.standard.ipn.signals import valid_ipn_received
+from paypal.standard.ipn.signals import valid_ipn_received, invalid_ipn_received
 import logging
 # logging.config.dictConfig(settings.LOGGING)
 # Get an instance of a logger
@@ -48,7 +48,9 @@ def show_me_the_money(sender, **kwargs):
         logger.warning('IPN object status is not complete')
         
 valid_ipn_received.connect(show_me_the_money)
-
+def show_me_the_error(sender, **kwargs):
+    print('wtf bro!')
+invalid_ipn_received.connect(show_me_the_error)
 
 
 def view_that_asks_for_money(request, pk):
