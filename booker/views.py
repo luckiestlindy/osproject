@@ -18,7 +18,7 @@ from paypal.standard.forms import PayPalPaymentsForm
 from paypal.standard.models import ST_PP_COMPLETED
 from paypal.standard.ipn.signals import valid_ipn_received
 import logging
-logging.config.dictConfig(settings.LOGGING)
+# logging.config.dictConfig(settings.LOGGING)
 # Get an instance of a logger
 logger = logging.getLogger('testlogger')
 logger.info('This is a simple log message')
@@ -75,6 +75,7 @@ def view_that_asks_for_money(request, pk):
 
 
 def contract(request, pk):
+    logger.info('test!!')
     context = view_that_asks_for_money(request, pk)
     # event = get_object_or_404(Event, pk=pk)
     return render(request, 'booker/contract.html', context)
