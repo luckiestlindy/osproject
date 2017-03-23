@@ -17,7 +17,7 @@ from django.core.urlresolvers import reverse
 from paypal.standard.forms import PayPalPaymentsForm
 from paypal.standard.models import ST_PP_COMPLETED
 from paypal.standard.ipn.signals import valid_ipn_received
-# import logging
+import logging
 
 # Get an instance of a logger
 # logger = logging.getLogger(sentry)
