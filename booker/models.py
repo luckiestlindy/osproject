@@ -4,35 +4,6 @@ from django.db import models
 from booker.choices import *
 from versatileimagefield.fields import VersatileImageField, PPOIField
 
-from paypal.standard.models import ST_PP_COMPLETED
-from paypal.standard.ipn.signals import valid_ipn_received
-
-# Create your models here.
-def show_me_the_money(sender, **kwargs):
-    ipn_obj = sender
-    if ipn_obj.payment_status == ST_PP_COMPLETED:
-        # WARNING !
-        # Check that the receiver email is the same we previously
-        # set on the business field request. (The user could tamper
-        # with those fields on payment form before send it to PayPal)
-        if ipn_obj.receiver_email != PAYPAL_RECIEVER_EMAIL:
-            print('email wrong')
-            # Not a valid payment
-            return
-        # ALSO: for the same reason, you need to check the amount
-        # received etc. are all what you expect.
-
-        # Undertake some action depending upon `ipn_obj`.
-        # if ipn_obj.custom == "Upgrade all users!":
-            # Users.objects.update(paid=True)
-    else:
-        print('this happened')
-        # pass
-
-valid_ipn_received.connect(show_me_the_money)
-
-
-
 def upload_media_to(instance, filename):
     import os
     from django.utils.timezone import now

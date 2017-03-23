@@ -33,32 +33,20 @@ def show_me_the_money(sender, **kwargs):
     print(ipn_obj.pending_reason)
     # logger.info('show me engaged')
     if ipn_obj.payment_status == ST_PP_COMPLETED:
-        print('get here?')
-        # WARNING !
-        # Check that the receiver email is the same we previously
-        # set on the business field request. (The user could tamper
-        # with those fields on payment form before send it to PayPal)
+        logger.info('IPN object received')
         if ipn_obj.receiver_email != PAYPAL_RECIEVER_EMAIL:
             logger.danger('PayPal Error: incorrect reciever email!')
-            # Not a valid payment
             return
-        if ipn_obj.amount != PAYPAL_RECIEVER_EMAIL:
-            logger.danger('PayPal Error: incorrect reciever email!')
-            # Not a valid payment
+        if ipn_obj.amount != event.deposit:
+            logger.danger('PayPal Error: incorrect deposit amount!')
             return
-        # ALSO: for the same reason, you need to check the amount
-        # received etc. are all what you expect.
-
         # Undertake some action depending upon `ipn_obj`.
-        # if ipn_obj.custom == "Upgrade all users!":
-            # Users.objects.update(paid=True)
+        if ipn_obj.custom == "Account Deposit Received":
+            event.objects.update(deposit_recieved=True)
+            logger.success('Paypal deposit payment recieved, status updated')
     else:
-        print('this happened')
-        print('email right')
-        print(ipn_obj.receiver_email)
-        # logger.info('email right')
-        # pass
-
+        logger.warning('IPN object status is not complete')
+        
 valid_ipn_received.connect(show_me_the_money)
 
 
@@ -78,7 +66,7 @@ def view_that_asks_for_money(request, pk):
         "notify_url": "https://oreadstrings.herokuapp.com" + reverse('paypal-ipn'),
         "return_url": return_url,
         "cancel_return": cancel_return,
-        # "custom": "Upgrade all users!",  # Custom command to correlate to some function later (optional)
+        "custom": "Account Deposit Received",  # Custom command to correlate to some function later (optional)
     }
     # Create the instance.
     form = PayPalPaymentsForm(initial=paypal_dict)
