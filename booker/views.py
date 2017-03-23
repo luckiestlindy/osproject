@@ -20,7 +20,7 @@ from paypal.standard.ipn.signals import valid_ipn_received
 import logging
 
 # Get an instance of a logger
-logger = logging.getLogger(sentry)
+logger = logging.getLogger(os.heroku)
 
 # Create your models here.
 def show_me_the_money(sender, **kwargs):
