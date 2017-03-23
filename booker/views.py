@@ -25,6 +25,7 @@ logger = logging.getLogger('testlogger')
 # Create your models here.
 def show_me_the_money(sender, **kwargs):
     ipn_obj = sender
+    print(ipn_obj)
     print('show me - engaged')
     pk = ipn_obj.invoice
     event = get_object_or_404(Event, pk = pk)
