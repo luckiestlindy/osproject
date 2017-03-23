@@ -26,7 +26,8 @@ logger = logging.getLogger('testlogger')
 def show_me_the_money(sender, **kwargs):
     ipn_obj = sender
     print('show me - engaged')
-    event = get_object_or_404(Event, ipn_obj.invoice = pk)
+    pk = ipn_obj.invoice
+    event = get_object_or_404(Event, pk = pk)
     print(event)
     # logger.info('show me engaged')
     if ipn_obj.payment_status == ST_PP_COMPLETED:
