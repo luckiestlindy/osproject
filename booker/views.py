@@ -32,7 +32,7 @@ def show_me_the_money(sender, **kwargs):
     print(event)
     print(ipn_obj.payment_status)
     print(ipn_obj.pending_reason)
-    print(ipn_obj.amount)
+    print(ipn_obj.payment_gross)
     print(event.deposit)
     # logger.info('show me engaged')
     if ipn_obj.payment_status == 'Completed':
@@ -48,6 +48,7 @@ def show_me_the_money(sender, **kwargs):
             event.objects.update(deposit_recieved=True)
             logger.success('Paypal deposit payment recieved, status updated')
             return
+        logger.info('IPN object passed tests')
     else:
         logger.warning('IPN object status is not complete')
         
