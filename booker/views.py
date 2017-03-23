@@ -25,6 +25,7 @@ logger.info('This is a simple log message')
 # Create your models here.
 def show_me_the_money(sender, **kwargs):
     ipn_obj = sender
+    logger.info('show me engaged')
     if ipn_obj.payment_status == ST_PP_COMPLETED:
         # WARNING !
         # Check that the receiver email is the same we previously
