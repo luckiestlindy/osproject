@@ -99,7 +99,7 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
-PAYPAL_TEST = True
+# PAYPAL_TEST = True
 PAYPAL_RECIEVER_EMAIL = 'oreadstrings@gmail.com'
 
 # Internationalization
