@@ -26,38 +26,22 @@ logger = logging.getLogger('testlogger')
 # test
 def show_me_the_money(sender, **kwargs):
     ipn_obj = sender
-    # print(ipn_obj)
-    # print('show me - engaged')
     pk = ipn_obj.invoice
     event = get_object_or_404(Event, pk = pk)
-    # print(event)
-    # print(ipn_obj.payment_status)
-    # print(ipn_obj.pending_reason)
-    # print(ipn_obj.payment_gross)
-    # print(event.deposit)
-    # print(ipn_obj.custom)
-    # logger.info('show me engaged')
     if ipn_obj.payment_status == 'Completed':
-        logger.info('IPN object received')
-        # print(ipn_obj.receiver_email)
-        # print(paypal_reciever_email)
-        # if ipn_obj.receiver_email != 'oreadstrings@gmail.com':
-        if ipn_obj.receiver_email != "oreadstrings@gmail.com":
-            logger.info('PayPal Error: incorrect reciever email!') 
+        logger.info('Paypal IPN object received')
+        if ipn_obj.receiver_email != paypal_reciever_email:
+            logger.error('PayPal Error: incorrect reciever email!') 
             return
-            # logger.info('failed email test')
         if ipn_obj.payment_gross != event.deposit:
-            logger.info('PayPal Error: incorrect deposit amount!')
+            logger.error('PayPal Error: incorrect deposit amount!')
             return
-        # logger.success('passed amount test')
-        # Undertake some action depending upon `ipn_obj`.
-        if ipn_obj.custom == "Account Deposit Received":
+        if ipn_obj.custom == "Deposit Payment":
             event.deposit_recieved = True
             event.save()
-            logger.info('Paypal deposit payment recieved, status updated')
-        logger.info('IPN object passed tests')
+            logger.info('Paypal Success: deposit payment recieved, status updated')
     else:
-        logger.warning('IPN object status is not complete')
+        logger.error('Paypal Failure: IPN object status is not complete')
         
 valid_ipn_received.connect(show_me_the_money)
 
@@ -71,19 +55,19 @@ invalid_ipn_received.connect(show_me_the_error)
 def view_that_asks_for_money(request, pk):
     event = get_object_or_404(Event, pk = pk)
     item_name = 'Deposit for {0} on {1}'.format(event.event_type, event.event_date)
-    cancel_return = 'https://oreadstrings.herokuapp.com/payment_cancel/{0}'.format(event.pk)
-    return_url = 'https://oreadstrings.herokuapp.com/payment_success/{0}'.format(event.pk)
+    cancel_return = '{0}/payment_cancel/{1}'.format(base_url, event.pk)
+    return_url = '{0}/payment_success/{1}'.format(base_url, event.pk)
     paypal_dict = {
-        "business": "oreadstrings@gmail.com",
-        "image_url": "https://s3.us-east-2.amazonaws.com/oreadstrings-assets/images/fullcolor_pp.jpg",
+        "business": paypal_reciever_email,
+        "image_url": paypal_logo_url,
         "amount": event.deposit,
         "item_name": item_name,
         "invoice": event.pk,
         "button_subtype":"services",
-        "notify_url": "https://oreadstrings.herokuapp.com" + reverse('paypal-ipn'),
+        "notify_url": base_url + reverse('paypal-ipn'),
         "return_url": return_url,
         "cancel_return": cancel_return,
-        "custom": "Account Deposit Received",  # Custom command to correlate to some function later (optional)
+        "custom": "Deposit Payment",  # Custom command to correlate to some function later (optional)
     }
     # Create the instance.
     form = PayPalPaymentsForm(initial=paypal_dict)
