@@ -43,12 +43,12 @@ def show_me_the_money(sender, **kwargs):
         # print(paypal_reciever_email)
         # if ipn_obj.receiver_email != 'oreadstrings@gmail.com':
         if ipn_obj.receiver_email != "oreadstrings@gmail.com":
-            # logger.error('PayPal Error: incorrect reciever email!') 
-            # return
-            logger.info('failed email test')
-        # if ipn_obj.payment_gross != event.deposit:
-            # logger.error('PayPal Error: incorrect deposit amount!')
-            # return
+            logger.info('PayPal Error: incorrect reciever email!') 
+            return
+            # logger.info('failed email test')
+        if ipn_obj.payment_gross != event.deposit:
+            logger.info('PayPal Error: incorrect deposit amount!')
+            return
         # logger.success('passed amount test')
         # Undertake some action depending upon `ipn_obj`.
         if ipn_obj.custom == "Account Deposit Received":
