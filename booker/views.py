@@ -23,6 +23,7 @@ import logging
 logger = logging.getLogger('testlogger')
 # logger.info('This is a simple log message') 
 # Create your models here.
+# test
 def show_me_the_money(sender, **kwargs):
     ipn_obj = sender
     print(ipn_obj)
