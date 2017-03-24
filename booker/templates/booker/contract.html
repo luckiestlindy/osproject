@@ -86,35 +86,10 @@
 
 <h4>Pay your deposit now:</h4>
 <p>To reserve your booking, please click the link to pay your deposit.
-{# <input type="button" value="Click here for Paypal"  name="paypal" onclick="location.href='https://paypal.com'" /> #}
 <br>
-{# <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
-    <input type="hidden" name="cmd" value="_xclick">
-    <input type="hidden" name="business" value="U7V2LPE8C2NT4">
-    <input type="hidden" name="lc" value="US">
-    <input type="hidden" name="item_name" value="Deposit for {{ event.event_type }} on {{ event.event_date }}">
-    <input type="hidden" name="custom" value="{{ event.pk }}">
-    <input type="hidden" name="image_url" value="https://s3.us-east-2.amazonaws.com/oreadstrings-assets/images/fullcolor_pp.jpg">
-    <input type="hidden" name="button_subtype" value="services">
-    <input type="hidden" name="no_note" value="0">
-    <input type="hidden" name="cn" value="Add special instructions to the seller:">
-    <input type="hidden" name="no_shipping" value="2">
-    <input type="hidden" name="rm" value="1">
-    <input type="hidden" name="return" value="https://oreadstrings.herokuapp.com/payment_success">
-    <input type="hidden" name="cancel_return" value="https://oreadstrings.herokuapp.com/payment_cancel">
-    <input type="hidden" name="currency_code" value="USD">
-    <input type="hidden" name="bn" value="PP-BuyNowBF:btn_buynowCC_LG.gif:NonHosted">
-    <input type="hidden" name="amount" value="${{event.deposit}}">
-    <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
-    <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
-</form> #}
-
 {{ form.render }}
-
-
 <h3>Thank you!</h3>
 
-<!-- <input type="button" value="Download Contract as PDF"  name="download_pdf" onclick="location.href='/contract/pdf/{{ event.pk }}';" />-->
 {% endblock %}
 
 

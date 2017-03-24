@@ -13,7 +13,6 @@ https://docs.djangoproject.com/en/1.10/ref/settings/
 import os
 import raven
 import smtplib
-# from easy_thumbnails.conf import Settings as thumbnail_settings
 from django.contrib.messages import constants as message_constants
 import dj_database_url
 
@@ -39,14 +38,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'raven.contrib.django.raven_compat',
-    # 'easy_thumbnails',
-    # 'image_cropping',
     'weasyprint',
     'storages',
     'versatileimagefield',
     'paypal.standard.ipn',
-    
-
 ]
 
 MIDDLEWARE = [
@@ -99,6 +94,7 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
+
 PAYPAL_TEST = False
 PAYPAL_RECIEVER_EMAIL = 'oreadstrings@gmail.com'
 
@@ -140,20 +136,14 @@ AWS_STORAGE_BUCKET_NAME = os.environ.get('AWS_STORAGE_BUCKET_NAME')
 AWS_S3_CUSTOM_DOMAIN = os.environ.get('AWS_S3_CUSTOM_DOMAIN')
 
 THUMBNAIL_DEFAULT_STORAGE = DEFAULT_FILE_STORAGE
+
+
 STATIC_ROOT = os.path.join(BASE_DIR, "booker/static")
-# STATIC_URL = '/static/'
-
 MEDIA_ROOT = os.path.join(BASE_DIR, "booker/media")
+
 MEDIA_URL = '/media/'
-
-# Extra places for collectstatic to find static files.
-# STATICFILES_DIRS = (
-    # os.path.join(BASE_DIR, 'booker/static'),
-# )
-
-# STATICFILES_STORAGE='whitenoise.django.GzipManifestStaticFilesStorage'
-
 STATIC_URL = "https://%s/" % AWS_S3_CUSTOM_DOMAIN
+
 STATICFILES_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
 
 
@@ -168,10 +158,8 @@ MESSAGE_TAGS = {
 
 RAVEN_CONFIG = {
     'dsn': 'https://a099768dec614b51986c302de537775a:271ee0530b354c9ca460f6768bf10b46@sentry.io/143067',
-    # If you are using git, you can also automatically configure the
-    # release based on the git info.
-    # 'release': os.environ['HEROKU_SLUG_COMMIT']
 }
+
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': True,
@@ -219,14 +207,6 @@ LOGGING = {
         },
     },
 }
-
-
-
-# THUMBNAIL_PROCESSORS = (
-#     'image_cropping.thumbnail_processors.crop_corners',
-# ) + thumbnail_settings.THUMBNAIL_PROCESSORS
-
-# DATABASES['default'] = dj_database_url.config()
 
 VERSATILEIMAGEFIELD_SETTINGS = {
     'cache_length': 2592000,

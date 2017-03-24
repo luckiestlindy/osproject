@@ -11,19 +11,16 @@ from django.core.files.storage import FileSystemStorage
 from weasyprint import HTML
 from oreadstrings.constants import *
 
-
 from django.core.urlresolvers import reverse
-# from django.shortcuts import render
 from paypal.standard.forms import PayPalPaymentsForm
 from paypal.standard.models import ST_PP_COMPLETED
 from paypal.standard.ipn.signals import valid_ipn_received, invalid_ipn_received
 import logging
-# logging.config.dictConfig(settings.LOGGING)
-# Get an instance of a logger
+
+
 logger = logging.getLogger('testlogger')
-# logger.info('This is a simple log message') 
-# Create your models here.
-# test
+
+
 def show_me_the_money(sender, **kwargs):
     ipn_obj = sender
     pk = ipn_obj.invoice
@@ -64,31 +61,28 @@ def view_that_asks_for_money(request, pk):
         "item_name": item_name,
         "invoice": event.pk,
         "button_subtype":"services",
+        # "buttontype": 'donate',
         "notify_url": base_url + reverse('paypal-ipn'),
         "return_url": return_url,
         "cancel_return": cancel_return,
-        "custom": "Deposit Payment",  # Custom command to correlate to some function later (optional)
+        "custom": "Deposit Payment",  
+        "no_shipping": 1,
+
     }
-    # Create the instance.
     form = PayPalPaymentsForm(initial=paypal_dict)
     context = {"form": form, 'event':event}
     return context
-    # return render(request, "booker/contract.html", context)
 
 
 def contract(request, pk):
     logger.info('test!!')
     context = view_that_asks_for_money(request, pk)
-    # event = get_object_or_404(Event, pk=pk)
     return render(request, 'booker/contract.html', context)
 
 def payment_success(request, pk):
     event = get_object_or_404(Event, pk = pk)
     html = 'Thank You {0}, your deposit of ${1} has been received. Your booking on {2} is now confirmed'.format(event.client_name, event.deposit, event.event_date,)
     messages.success(request, html)
-    # event.deposit_recieved = True
-    # event.save()
-    # event.objects.update(deposit_recieved=False)
     return render(request, 'booker/success.html', {'event': event})
 
 def payment_cancel(request, pk):
