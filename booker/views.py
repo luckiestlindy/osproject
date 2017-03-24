@@ -26,21 +26,21 @@ logger = logging.getLogger('testlogger')
 # test
 def show_me_the_money(sender, **kwargs):
     ipn_obj = sender
-    print(ipn_obj)
-    print('show me - engaged')
+    # print(ipn_obj)
+    # print('show me - engaged')
     pk = ipn_obj.invoice
     event = get_object_or_404(Event, pk = pk)
-    print(event)
-    print(ipn_obj.payment_status)
-    print(ipn_obj.pending_reason)
-    print(ipn_obj.payment_gross)
-    print(event.deposit)
-    print(ipn_obj.custom)
+    # print(event)
+    # print(ipn_obj.payment_status)
+    # print(ipn_obj.pending_reason)
+    # print(ipn_obj.payment_gross)
+    # print(event.deposit)
+    # print(ipn_obj.custom)
     # logger.info('show me engaged')
     if ipn_obj.payment_status == 'Completed':
         logger.info('IPN object received')
-        print(ipn_obj.receiver_email)
-        print(paypal_reciever_email)
+        # print(ipn_obj.receiver_email)
+        # print(paypal_reciever_email)
         # if ipn_obj.receiver_email != 'oreadstrings@gmail.com':      
         #     logger.error('PayPal Error: incorrect reciever email!') 
         # else:
