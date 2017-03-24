@@ -42,23 +42,19 @@ def show_me_the_money(sender, **kwargs):
         # print(ipn_obj.receiver_email)
         # print(paypal_reciever_email)
         # if ipn_obj.receiver_email != 'oreadstrings@gmail.com':
-        if ipn_obj.receiver_email == "oreadstrings%40gmail.com":
+        if ipn_obj.receiver_email != "oreadstrings@gmail.com":
             # logger.error('PayPal Error: incorrect reciever email!') 
             # return
-            logger.success('passed email test')
+            logger.success('failed email test')
         # if ipn_obj.payment_gross != event.deposit:
             # logger.error('PayPal Error: incorrect deposit amount!')
             # return
         # logger.success('passed amount test')
         # Undertake some action depending upon `ipn_obj`.
         if ipn_obj.custom == "Account Deposit Received":
-            logger.info('Paypal Deposit Recieved')
             event.deposit_recieved = True
             event.save()
-          # event.objects.update(deposit_recieved=True)
             logger.info('Paypal deposit payment recieved, status updated')
-            # return
-
         logger.info('IPN object passed tests')
     else:
         logger.warning('IPN object status is not complete')
