@@ -13,6 +13,7 @@ django-environ==0.4.1
 django-image-cropping==1.0.4
 django-paypal==0.3.6
 django-storages==1.5.2
+django-suit==0.2.24
 django-versatileimagefield==1.6.3
 gunicorn==19.7.0
 html5lib==0.999999999
