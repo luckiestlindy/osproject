@@ -96,9 +96,8 @@ AUTH_PASSWORD_VALIDATORS = [
 
 PAYPAL_TEST = False
 PAYPAL_RECIEVER_EMAIL = os.environ.get('PAYPAL_RECIEVER_EMAIL')
+PAYPAL_IMAGE = "https://www.paypalobjects.com/webstatic/en_US/i/buttons/cc-badges-ppmcvdam.png" 
 
-# Internationalization
-# https://docs.djangoproject.com/en/1.10/topics/i18n/
 
 LANGUAGE_CODE = 'en-us'
 TIME_ZONE = 'America/Chicago'
@@ -110,8 +109,7 @@ TIME_INPUT_FORMATS = ('%I:%M %p',) #will format your times as "5:30 PM"
 
 
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
-
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['https://oreadstrings.herokuapp.com']
 
 
 
