@@ -53,9 +53,9 @@ def show_me_the_money(sender, **kwargs):
         # logger.success('passed amount test')
         # Undertake some action depending upon `ipn_obj`.
         if ipn_obj.custom == "Account Deposit Received":
-            logger.success('Paypal Deposit Recieved')
+            logger.info('Paypal Deposit Recieved')
             event.objects.update(deposit_recieved=True)
-            logger.success('Paypal deposit payment recieved, status updated')
+            logger.info('Paypal deposit payment recieved, status updated')
             # return
 
         logger.info('IPN object passed tests')
