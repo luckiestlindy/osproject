@@ -54,7 +54,9 @@ def show_me_the_money(sender, **kwargs):
         # Undertake some action depending upon `ipn_obj`.
         if ipn_obj.custom == "Account Deposit Received":
             logger.info('Paypal Deposit Recieved')
-            event.objects.update(deposit_recieved=True)
+            event.deposit_recieved = True
+            event.save()
+          # event.objects.update(deposit_recieved=True)
             logger.info('Paypal deposit payment recieved, status updated')
             # return
 
@@ -105,6 +107,9 @@ def payment_success(request, pk):
     event = get_object_or_404(Event, pk = pk)
     html = 'Thank You {0}, your deposit of ${1} has been received. Your booking on {2} is now confirmed'.format(event.client_name, event.deposit, event.event_date,)
     messages.success(request, html)
+    # event.deposit_recieved = True
+    # event.save()
+    # event.objects.update(deposit_recieved=False)
     return render(request, 'booker/success.html', {'event': event})
 
 def payment_cancel(request, pk):
