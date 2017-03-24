@@ -42,7 +42,7 @@ def show_me_the_money(sender, **kwargs):
         # print(ipn_obj.receiver_email)
         # print(paypal_reciever_email)
         # if ipn_obj.receiver_email != 'oreadstrings@gmail.com':
-        if ipn_obj.receiver_email == "oreadstrings@gmail.com":
+        if ipn_obj.receiver_email == "oreadstrings%40gmail.com":
             # logger.error('PayPal Error: incorrect reciever email!') 
             # return
             logger.success('passed email test')
