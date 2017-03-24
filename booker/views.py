@@ -61,13 +61,11 @@ def view_that_asks_for_money(request, pk):
         "item_name": item_name,
         "invoice": event.pk,
         "button_subtype":"services",
-        # "buttontype": 'donate',
         "notify_url": base_url + reverse('paypal-ipn'),
         "return_url": return_url,
         "cancel_return": cancel_return,
         "custom": "Deposit Payment",  
         "no_shipping": 1,
-
     }
     form = PayPalPaymentsForm(initial=paypal_dict)
     context = {"form": form, 'event':event}
@@ -75,7 +73,6 @@ def view_that_asks_for_money(request, pk):
 
 
 def contract(request, pk):
-    logger.info('test!!')
     context = view_that_asks_for_money(request, pk)
     return render(request, 'booker/contract.html', context)
 

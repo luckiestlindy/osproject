@@ -23,8 +23,7 @@ PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 BASE_DIR = os.path.dirname(PROJECT_DIR)
 
 SECRET_KEY = os.environ.get('SECRET_KEY')
-
-DEBUG = False
+DEBUG = os.environ.get('DEBUG')
 
 
 # Application definition
@@ -96,7 +95,7 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 PAYPAL_TEST = False
-PAYPAL_RECIEVER_EMAIL = 'oreadstrings@gmail.com'
+PAYPAL_RECIEVER_EMAIL = os.environ.get('PAYPAL_RECIEVER_EMAIL')
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.10/topics/i18n/
