@@ -1,0 +1,38 @@
+{% extends 'booker/base.html' %}
+
+{% block content %}
+
+	{% block summary_script %} {% endblock %}
+
+	{% block top_sum %} {% endblock %}
+
+		<h4>Event Details:</h4>
+		<ul class="list-group">
+		    <li class="list-group-item">Event Type: {{ event.event_type }}</li> 
+		    <li class="list-group-item">Event Date: {{ event.event_date }}</li>
+		    <li class="list-group-item">Start TIme: {{ event.start_time }}</li>
+		    <li class='list-group-item' id='outdoor-event'>Outdoors: {{ event.event_outdoors }}</li>
+		</ul>
+		<br>
+
+		<h4>Performance Details:</h4>
+		<ul class="list-group">
+		    <li class='list-group-item'>Ensemble Type: {{ event.ensemble_type }}</li>
+		    <li class='list-group-item'>Performers call time: {{ event.performers_required_time }}</li>
+		</ul>
+		<br>
+
+		<h4>Venue Details:</h4>
+		<ul class="list-group">
+		    <li class="list-group-item">Event Venue: {{ event.venue_name }}</li>
+		    <li class="list-group-item">Address: {{event.address }}</li>
+		</ul>   
+		<br>
+
+		<h4>Comments</h4>
+		<textarea class='form-control' disabled>{{ event.comments }}</textarea>
+		<br>
+
+	{% block bottom_sum %} {% endblock %}
+
+{% endblock %}

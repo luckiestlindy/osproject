@@ -49,7 +49,8 @@ def show_me_the_error(sender, **kwargs):
 invalid_ipn_received.connect(show_me_the_error)
 
 
-def view_that_asks_for_money(request, pk):
+def view_that_asks_for_money(request, pk, custom):
+    custom=custom
     event = get_object_or_404(Event, pk = pk)
     item_name = 'Deposit for {0} on {1}'.format(event.event_type, event.event_date)
     cancel_return = '{0}/payment_cancel/{1}'.format(base_url, event.pk)
@@ -64,29 +65,37 @@ def view_that_asks_for_money(request, pk):
         "notify_url": base_url + reverse('paypal-ipn'),
         "return_url": return_url,
         "cancel_return": cancel_return,
-        "custom": "Deposit Payment",  
+        "custom": custom,  
         "no_shipping": 1,
     }
     form = PayPalPaymentsForm(initial=paypal_dict)
     context = {"form": form, 'event':event}
     return context
 
+# def fee(request, pk):
+#     custom = 'Balance Payment'
+#     context = view_that_asks_for_money(request, pk, custom)
+#     html = 'Please pay the balance of your event fee.'
+#     return render(request, 'booker/base.html')
 
 def contract(request, pk):
-    context = view_that_asks_for_money(request, pk)
+    custom = 'Deposit Payment'
+    context = view_that_asks_for_money(request, pk, custom)
     return render(request, 'booker/contract.html', context)
 
 def payment_success(request, pk):
     event = get_object_or_404(Event, pk = pk)
-    html = 'Thank You {0}, your deposit of ${1} has been received. Your booking on {2} is now confirmed'.format(event.client_name, event.deposit, event.event_date,)
+    balance = event.fee - event.deposit
+    html = 'Thank You {0}, your deposit of ${1} has been received. Your booking on {2} is now confirmed.  The balance of your fee, ${3} will be due at the time of the event.'.format(event.client_name, event.deposit, event.event_date, balance )
     messages.success(request, html)
-    return render(request, 'booker/success.html', {'event': event})
+    return render(request, 'booker/summary.html', {'event': event})
 
 def payment_cancel(request, pk):
     event = get_object_or_404(Event, pk = pk)
+    custom = 'Deposit Payment'
     html = 'You have cancelled your Paypal deposit process.  Click the link below to try again or contact us at {0} with any questions. Your booking is not confirmed until a deposit is received.'.format(os_admin_email)
     messages.warning(request, html, )
-    context = view_that_asks_for_money(request, pk)
+    context = view_that_asks_for_money(request, pk, custom)
     # return render(request, 'booker/payment_cancel.html', {'event': event})
     return render(request, 'booker/contract.html', context)
 
@@ -99,7 +108,7 @@ def html_email(to, subject, context):
     
 def contract_pdf(request, pk):
     event = get_object_or_404(Event, pk=pk)
-    html_string = render_to_string('booker/pdftest.html', {'event':event})
+    html_string = render_to_string('booker/contract_pdf.html', {'event':event})
     html = HTML(string=html_string)
     html.write_pdf(target='/tmp/mypdf.pdf');
     fs = FileSystemStorage('/tmp')
@@ -135,13 +144,14 @@ def send_selections(request, pk):
     event = get_object_or_404(Event, pk=pk)
     subject = 'Your Booking with the Oread Strings - Music Selections Form'
     to = [event.client_email]
-    from_email = 'oreadstrings@gmail.com'
+    message = 'The Oread Strings have sent you a link to help plan your upcoming event.  Please click below to fill out the musicial selection form. Thanks and have a lovely day.'
+    link = '{0}/selections/{1}/form'.format(base_url,event.pk)
     context = {
-        'client_name': event.client_name,
-        'link': event.get_absolute_url(),
+        'name': event.client_name,
+        'message': message,
+        'link': link,
     }
-    message = render_to_string('email/send_selections.txt', context)
-    EmailMessage(subject, message,to=to, from_email=from_email).send()
+    html_email(to, subject, context)
     html = "You have succesfully forwarded the selection form to %s" % event.client_name
     messages.success(request, html)
     return render(request, 'booker/base.html')
@@ -152,26 +162,19 @@ def selections_detail(request, pk):
     messages.success(request, html)
     return render(request, 'booker/selections_detail.html', {'event':event})
 
-# Need to test email
+
 def notifyadmin_selections(request, pk):
     subject = 'Client submitted Selections at Oreadstrings.com'
-    to = ['oreadstrings@gmail.com']
-    # from_email = 'test@example.com'
+    to = [os_admin_email]
     event = get_object_or_404(Event, pk=pk)
-    # var = {
-    #     'client_name': event.client_name,
-    #     'link': event.get_absolute_url(),
-    # }
     message = '{0} has submitted a new list of selections for their event through the Oread Strings form.  Please click here the link to view the selections.  Thanks and have a lovely day.'.format(event.client_name)
-    link = 'http://oreadstrings.com/selections/{0}'.format(event.pk)
+    link = '{0}/selections/{1}'.format(base_url, event.pk)
     context = {
         'name': 'Ellen',
         'message': message, 
         'link': link,
     }
     html_email(to, subject, context)
-    # message = render_to_string('email/notifyadmin_selections.txt', var)
-    # EmailMessage(subject, message,to=to, from_email=from_email).send()
     return HttpResponse('notifyadmin_selections')
 
 def selections_form(request,pk):
@@ -226,7 +229,7 @@ def notify_players(request, pk):
     to = m_emails
     from_email = os_admin_email
     subject = 'Oread Strings - Event Details'
-    link = 'http://oreadstrings.com/event/{0}'.format(event.pk) 
+    link = '{0}/event/{1}'.format(base_url, event.pk) 
     message = 'You have been confirmed for an Oread Strings {0} booking on {1}. Please click the link for the full details.'.format(event.event_type, event.event_date)
     context = {
         'name': m_names_str,
@@ -245,7 +248,7 @@ def contract_link(request, pk):
     event = get_object_or_404(Event, pk=pk)
     subject = 'Your Quote has arrived from the Oread Strings'
     to = [event.client_email]
-    link = 'http://www.oreadstrings.com/contract/{0}'.format(event.pk)
+    link = '{0}/contract/{1}'.format(base_url, event.pk)
     message = '{0}  Please click the link below to view your custom quote.'.format(event.quote_message)
     context = {
         'name': event.client_name, 
@@ -258,11 +261,6 @@ def contract_link(request, pk):
     messages.success(request, html)
     return render(request, 'booker/base.html')
 
-    
-
-# def contract(request, pk):
-#     event = get_object_or_404(Event, pk=pk)
-#     return render(request, 'booker/contract.html', {'event': event})
 
 def notifyadmin(request, pk):
     event = get_object_or_404(Event, pk=pk)
@@ -302,7 +300,7 @@ def bookings(request):
 #            send_mail('test subject', 'hhereis the message', 'brentlind@gmail.com', ['brentlind@mac.com'], fail_silently=False,)
             notifyadmin(request, pk=event.pk)
             # messages.success(request, 'Your booking was updated successfully!')  # <-
-            return redirect ('event_detail', pk=event.pk)
+            return redirect ('event_inquiry_confirm', pk=event.pk)
         else:
             print('error')
             # messages.warning(request, 'Please correct the error below.', extra_tags='alert')  # <-
@@ -314,9 +312,13 @@ def bookings(request):
 def musician_detail(request, pk):
     musician = get_object_or_404(Musician, pk=pk)
     return render(request, 'booker/musician_detail.html', {'musician': musician})
-                  
+
 def event_detail(request, pk):
+    event = get_object_or_404(Event, pk=pk)
+    return render(request, 'booker/summary.html', {'event':event})                  
+
+def event_inquiry_confirm(request, pk):
     event = get_object_or_404(Event, pk=pk)
     html = "Thank you {0}! Your booking inquiry has been recieved. Your custom quote will be emailed to you at {1} within 3 business days.  Have a great day!".format(event.client_name, event.client_email)
     messages.success(request, html)
-    return render(request, 'booker/success.html', {'event': event})
+    return render(request, 'booker/summary.html', {'event': event})

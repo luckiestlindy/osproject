@@ -1,3 +1,0 @@
-Hello Ellen,
-You have received a booking inquiry from {{ client_name }} through the Oread Strings.  Please click here {{ link }} to view the inquiry.
-Thanks and have a lovely day.  

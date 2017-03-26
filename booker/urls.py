@@ -11,6 +11,7 @@ urlpatterns = [
     # url(r'^contact/$', views.contact, name='contact'),
     url(r'^bookings/$', views.bookings, name='bookings'),
     url(r'^event/(?P<pk>\d+)/$', views.event_detail, name='event_detail'),
+    url(r'^event/(?P<pk>\d+)/success/$', views.event_inquiry_confirm, name='event_inquiry_confirm'),
     
     url(r'^selections/(?P<pk>\d+)/$', views.selections_detail, name='selections_detail'),
     url(r'^selections/(?P<pk>\d+)/form/$', views.selections_form, name='selections_form'),

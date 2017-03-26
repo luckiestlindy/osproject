@@ -2,15 +2,27 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-		<title>the Oread Strings</title>  
-        
+		{# <title>the Oread Strings - Event Contract {{event.event_date}}</title>   #}
+        {% block pdf_title %} {% endblock pdf_title%}
         <style>
+        
             body {
-                background-color: linen;
-                font-family: sans-serif;
+                /*background-color: light-gray;*/
+                font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
                 font-size: small;
             }
-
+            img {
+                width: 300px;
+                display: block;
+                margin: auto;
+            }
+            #pdf-addr {
+                font-size: xx-small;
+                display: block;
+                margin:auto;
+                text-align: center;
+            }
+           
             h1 {
                 color: #81D2BC;
                 margin-left: 40px;
@@ -20,7 +32,12 @@
             }
         </style>
 </head>
-        {% block head %}{% endblock head %}
+        {% block head %}
+
+            <img src="{% static 'booker/images/site/fullcolor_FINAL.png' %}" width="30" height="30" alt='oread strings'>
+            <p id='pdf-addr' class='text-center'>101 E. 23rd St, Lawrence KS 66046 | (785)331-5926 | oreadstrings@gmail.com</p>
+  
+        {% endblock head %}
 	
 	</head>
     <body>

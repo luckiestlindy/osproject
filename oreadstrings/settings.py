@@ -98,7 +98,6 @@ PAYPAL_TEST = False
 PAYPAL_RECIEVER_EMAIL = os.environ.get('PAYPAL_RECIEVER_EMAIL')
 PAYPAL_IMAGE = "https://www.paypalobjects.com/webstatic/en_US/i/buttons/cc-badges-ppmcvdam.png" 
 
-
 LANGUAGE_CODE = 'en-us'
 TIME_ZONE = 'America/Chicago'
 USE_I18N = True
@@ -106,14 +105,8 @@ USE_L10N = True
 USE_TZ = True
 TIME_INPUT_FORMATS = ('%I:%M %p',) #will format your times as "5:30 PM"
 
-
-
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 ALLOWED_HOSTS = ['oreadstrings.herokuapp.com']
-
-
-
-
 
 EMAIL_HOST = os.environ.get('EMAIL_HOST')
 EMAIL_PORT = os.environ.get('EMAIL_PORT')
@@ -124,7 +117,6 @@ EMAIL_USE_TLS = os.environ.get('EMAIL_USE_TLS')
 
 
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
-# AWS_S3_SECURE_URLS = True     # use http instead of https
 AWS_QUERYSTRING_AUTH = False   
 AWS_S3_HOST = "s3-us-east-2.amazonaws.com"
 AWS_S3_ACCESS_KEY_ID = os.environ.get('AWS_S3_ACCESS_KEY_ID')
@@ -134,7 +126,6 @@ AWS_S3_CUSTOM_DOMAIN = os.environ.get('AWS_S3_CUSTOM_DOMAIN')
 
 THUMBNAIL_DEFAULT_STORAGE = DEFAULT_FILE_STORAGE
 
-
 STATIC_ROOT = os.path.join(BASE_DIR, "booker/static")
 MEDIA_ROOT = os.path.join(BASE_DIR, "booker/media")
 
@@ -142,8 +133,6 @@ MEDIA_URL = '/media/'
 STATIC_URL = "https://%s/" % AWS_S3_CUSTOM_DOMAIN
 
 STATICFILES_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
-
-
 
 MESSAGE_TAGS = {
     message_constants.DEBUG: 'debug',

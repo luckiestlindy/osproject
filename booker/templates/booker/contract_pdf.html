@@ -2,6 +2,10 @@
 {% load static from staticfiles %}
 
 
+{% block pdf_title %}
+    <title>Oread Strings - Event Contract {{ event.event_date }}</title>   
+{% endblock %}
+
 {% block content %}
 
 <h1>Hello {{ event.client_name }}!</h1>

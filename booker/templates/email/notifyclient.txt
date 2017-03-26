@@ -1,6 +1,0 @@
-
-Hello {{ client_name }},
-{{ personal_message }}
-
-You have received a quote for live music services from the Oread Strings.  Please click <a href="http://www.oreadstrings.com/contract/{{ link }}">here</a> to view your custom quote.
-Thanks and have a lovely day.  
