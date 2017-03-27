@@ -4,6 +4,9 @@ from django.template import Context
 from django.template.loader import render_to_string, get_template
 from .forms import EventForm, SelectionsForm
 from .models import Event, Musician, Ensemble, Song, Selection
+# from schedule import *
+from schedule.models import EventRelation, Calendar 
+from schedule.models import Event as S_Event
 from django.core.mail import send_mail, EmailMessage
 
 from django.contrib import messages
@@ -16,7 +19,9 @@ from paypal.standard.forms import PayPalPaymentsForm
 from paypal.standard.models import ST_PP_COMPLETED
 from paypal.standard.ipn.signals import valid_ipn_received, invalid_ipn_received
 import logging
-
+from datetime import timedelta, time
+from datetime import datetime as dt
+from django.utils import timezone
 
 logger = logging.getLogger('testlogger')
 
@@ -77,8 +82,31 @@ def view_that_asks_for_money(request, pk, custom):
 #     context = view_that_asks_for_money(request, pk, custom)
 #     html = 'Please pay the balance of your event fee.'
 #     return render(request, 'booker/base.html')
+def add_to_calendar(pk):
+    event = get_object_or_404(Event, pk=pk)
+    title = '{0} - {1}'.format(event.client_name, event.event_type)  
+    description = '<a href="{0}/event/{1}"</a>'.format( base_url, event.pk)
+    start_time = time(19, 0, 0)
+    current_tz = timezone.get_current_timezone()
+    def get_start_time():
+        if event.start_time == None:
+            start_time = time(19, 0, 0)
+        else: 
+            start_time = event.start_time
+        return start_time
+    start_time = get_start_time()
+    start = dt.combine(event.event_date, start_time)
+    start = timezone.make_aware(start, timezone.get_current_timezone())
+    end = start + timedelta(hours=4)
+    occurrence = S_Event(start=start, end=end, title=title, description=description)
+    occurrence.save()
+    cal = Calendar.objects.get(pk=1)
+    cal.events.add(occurrence)
+    
 
+    
 def contract(request, pk):
+    add_to_calendar(pk)
     custom = 'Deposit Payment'
     context = view_that_asks_for_money(request, pk, custom)
     return render(request, 'booker/contract.html', context)
@@ -287,6 +315,8 @@ def listen(request):
     songs = Song.objects.all()
     extra_context['songs'] = songs
     return render(request, 'booker/listen.html', extra_context)
+
+
 
 def bookings(request):
     if request.method == 'POST':

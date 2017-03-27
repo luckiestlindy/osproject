@@ -41,6 +41,8 @@ INSTALLED_APPS = [
     'storages',
     'versatileimagefield',
     'paypal.standard.ipn',
+    'schedule',
+    'djangobower',
 ]
 
 MIDDLEWARE = [

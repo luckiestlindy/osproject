@@ -18,12 +18,15 @@ from django.contrib import admin
 from django.conf.urls.static import  static
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.conf import settings
+from django.views.generic import TemplateView
 
 admin.autodiscover()
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     # url(r'^admin/', admin.site.urls),
     url(r'^', include('booker.urls')),
+    url(r'^fullcalendar/', TemplateView.as_view(template_name="fullcalendar.html"), name='fullcalendar'),
+    url(r'^schedule/', include('schedule.urls')),
     url(r'^paypal/', include('paypal.standard.ipn.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
