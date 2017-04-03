@@ -11,8 +11,8 @@ https://docs.djangoproject.com/en/1.10/ref/settings/
 """
 
 import os
-# import raven
-# import smtplib
+import raven
+import smtplib
 from django.contrib.messages import constants as message_constants
 import dj_database_url
 
