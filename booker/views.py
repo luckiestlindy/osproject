@@ -12,7 +12,7 @@ from django.core.mail import EmailMessage, send_mail
 from django.contrib import messages
 from django.core.files.storage import FileSystemStorage
 from weasyprint import HTML
-from oreadstrings.constants import paypal_reciever_email, base_url, paypal_logo_url, os_admin_email
+from oreadstrings.constants import paypal_reciever_email, base_url, paypal_logo_url, os_admin_email, image_url_base
 
 from django.core.urlresolvers import reverse
 from paypal.standard.forms import PayPalPaymentsForm
@@ -22,7 +22,6 @@ import logging
 from datetime import timedelta, time
 from datetime import datetime as dt
 from django.utils import timezone
-
 logger = logging.getLogger('testlogger')
 
 
@@ -151,6 +150,7 @@ def payment_cancel(request, pk):
 
 
 def html_email(to, subject, context):
+    context['url_link'] = image_url_base
     message = get_template('email/os-email-template.html').render(Context(context))
     msg = EmailMessage(subject, message, os_admin_email, to)
     msg.content_subtype = 'html'
