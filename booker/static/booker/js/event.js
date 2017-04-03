@@ -41,18 +41,18 @@ $(function () {
             $('.field-musician_five').hide();
         }
         if (type == '3') {
-            console.log('string duo')
+            console.log('string duo');
             $('.field-musician_three').hide();
             $('.field-musician_four').hide();
             $('.field-musician_five').hide();
         }
         if (type == '4') {
-            console.log('paino trio')
+            console.log('paino trio');
             $('.field-musician_four').hide();
             $('.field-musician_five').hide();
         }
         if (type == '5') {
-            console.log('string trio')
+            console.log('string trio');
             $('.field-musician_four').hide();
             $('.field-musician_five').hide();
         }
@@ -116,5 +116,3 @@ $(function () {
         }
     });
 });
-
-

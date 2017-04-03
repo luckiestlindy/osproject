@@ -11,11 +11,10 @@ https://docs.djangoproject.com/en/1.10/ref/settings/
 """
 
 import os
-import raven
-import smtplib
+# import raven
+# import smtplib
 from django.contrib.messages import constants as message_constants
 import dj_database_url
-
 
 
 PROJECT_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -76,7 +75,7 @@ TEMPLATES = [
 WSGI_APPLICATION = 'oreadstrings.wsgi.application'
 
 
-DATABASES = { 'default': dj_database_url.config() }
+DATABASES = {'default': dj_database_url.config()}
 
 # Password validation
 # https://docs.djangoproject.com/en/1.10/ref/settings/#auth-password-validators
@@ -96,20 +95,24 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+# Paypal Vars
 PAYPAL_TEST = False
 PAYPAL_RECIEVER_EMAIL = os.environ.get('PAYPAL_RECIEVER_EMAIL')
-PAYPAL_IMAGE = "https://www.paypalobjects.com/webstatic/en_US/i/buttons/cc-badges-ppmcvdam.png" 
+PAYPAL_IMAGE = "https://www.paypalobjects.com/webstatic/en_US/i/buttons/cc-badges-ppmcvdam.png"
 
+# Date/Time Settings
 LANGUAGE_CODE = 'en-us'
 TIME_ZONE = 'America/Chicago'
 USE_I18N = True
 USE_L10N = True
 USE_TZ = True
-TIME_INPUT_FORMATS = ('%I:%M %p',) #will format your times as "5:30 PM"
+TIME_INPUT_FORMATS = ('%I:%M %p',)  # will format your times as "5:30 PM"
 
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 ALLOWED_HOSTS = ['oreadstrings.herokuapp.com']
 
+
+# Email Settings
 EMAIL_HOST = os.environ.get('EMAIL_HOST')
 EMAIL_PORT = os.environ.get('EMAIL_PORT')
 EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
@@ -117,25 +120,24 @@ EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_USE_TLS = os.environ.get('EMAIL_USE_TLS')
 
-
+# AWS S3 Static Settings
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
-AWS_QUERYSTRING_AUTH = False   
+AWS_QUERYSTRING_AUTH = False
 AWS_S3_HOST = "s3-us-east-2.amazonaws.com"
 AWS_S3_ACCESS_KEY_ID = os.environ.get('AWS_S3_ACCESS_KEY_ID')
 AWS_S3_SECRET_ACCESS_KEY = os.environ.get('AWS_S3_SECRET_ACCESS_KEY')
 AWS_STORAGE_BUCKET_NAME = os.environ.get('AWS_STORAGE_BUCKET_NAME')
 AWS_S3_CUSTOM_DOMAIN = os.environ.get('AWS_S3_CUSTOM_DOMAIN')
 
+# Static/Media Settings
 THUMBNAIL_DEFAULT_STORAGE = DEFAULT_FILE_STORAGE
-
 STATIC_ROOT = os.path.join(BASE_DIR, "booker/static")
 MEDIA_ROOT = os.path.join(BASE_DIR, "booker/media")
-
 MEDIA_URL = '/media/'
 STATIC_URL = "https://%s/" % AWS_S3_CUSTOM_DOMAIN
-
 STATICFILES_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
 
+# Message Settings
 MESSAGE_TAGS = {
     message_constants.DEBUG: 'debug',
     message_constants.INFO: 'info',
@@ -144,6 +146,7 @@ MESSAGE_TAGS = {
     message_constants.ERROR: 'danger',
     }
 
+# Raven/Sentry Settings
 RAVEN_CONFIG = {
     'dsn': 'https://a099768dec614b51986c302de537775a:271ee0530b354c9ca460f6768bf10b46@sentry.io/143067',
 }
@@ -163,7 +166,7 @@ LOGGING = {
     },
     'handlers': {
         'sentry': {
-            'level': 'ERROR', # To capture more than ERROR, change to WARNING, INFO, etc.
+            'level': 'ERROR',  # To capture more than ERROR, change to WARNING, INFO, etc.
             'class': 'raven.contrib.django.raven_compat.handlers.SentryHandler',
             'tags': {'custom-tag': 'x'},
         },
