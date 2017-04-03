@@ -7,7 +7,7 @@ from .models import Event, Musician, Ensemble, Song, Selection
 # from schedule import *
 from schedule.models import Calendar
 from schedule.models import Event as S_Event
-from django.core.mail import EmailMessage
+from django.core.mail import EmailMessage, send_mail
 
 from django.contrib import messages
 from django.core.files.storage import FileSystemStorage
