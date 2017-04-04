@@ -1,4 +1,4 @@
-os_admin_email = 'postmaster@mg.oreadstrings.com'
+os_admin_email = 'Oread Strings <postmaster@mg.oreadstrings.com>'
 paypal_reciever_email = 'oreadstrings@gmail.com'
 paypal_logo_url = "https://s3.us-east-2.amazonaws.com/oreadstrings-assets/images/fullcolor_pp.jpg"
 base_url = 'https://oreadstrings.herokuapp.com'
