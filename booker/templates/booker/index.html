@@ -2,7 +2,7 @@
 {% load static from staticfiles %}
 {# {% load cropping %} #}
 {# {% cropped_thumbnail Musician cropping scale=0.5 %} #}
-
+{% load compress %}
 {% block head %}
 {% compress css %}
 <link rel="stylesheet" type="text/css" href="{% static 'booker/css/vendor/slick.css' %}"/>
