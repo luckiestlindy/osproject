@@ -1,5 +1,6 @@
 appdirs==1.4.3
 astroid==1.4.9
+beautifulsoup4==4.5.3
 boto==2.46.1
 cairocffi==0.8.0
 CairoSVG==2.0.1
@@ -11,8 +12,10 @@ Django==1.10.5
 django-annoying==0.10.3
 django-appconf==1.0.1
 django-bower==5.2.0
+django-compressor==2.1.1
 django-debug-toolbar==1.7
 django-environ==0.4.1
+django-htmlmin==0.10.0
 django-image-cropping==1.0.4
 django-paypal==0.3.6
 django-scheduler==0.8.3
@@ -42,7 +45,9 @@ Pyphen==0.9.4
 python-dateutil==2.6.0
 pytz==2016.10
 raven==6.0.0
+rcssmin==1.0.6
 requests==2.13.0
+rjsmin==1.0.12
 six==1.10.0
 sqlparse==0.2.3
 tinycss==0.4
