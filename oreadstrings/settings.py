@@ -122,7 +122,7 @@ KEEP_COMMENTS_ON_MINIFYING = True
 #     'bootstrap'
 # )
 
-USE_FULLCALENDAR = True
+# USE_FULLCALENDAR = True
 # Paypal Vars
 PAYPAL_TEST = False
 PAYPAL_RECIEVER_EMAIL = os.environ.get('PAYPAL_RECIEVER_EMAIL')
