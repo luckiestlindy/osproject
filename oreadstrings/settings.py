@@ -114,13 +114,13 @@ COMPRESS_CSS_FILTERS = [
 HTML_MINIFY = True
 KEEP_COMMENTS_ON_MINIFYING = True
 
-BOWER_COMPONENTS_ROOT = os.path.join(PROJECT_ROOT, 'components')
-
-BOWER_INSTALLED_APPS = (
-    'jquery',
-    'jquery-ui',
-    'bootstrap'
-)
+# BOWER_COMPONENTS_ROOT = os.path.join(PROJECT_ROOT, 'components')
+#
+# BOWER_INSTALLED_APPS = (
+#     'jquery',
+#     'jquery-ui',
+#     'bootstrap'
+# )
 
 USE_FULLCALENDAR = True
 # Paypal Vars
