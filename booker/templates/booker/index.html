@@ -4,9 +4,11 @@
 {# {% cropped_thumbnail Musician cropping scale=0.5 %} #}
 
 {% block head %}
+{% compress css %}
 <link rel="stylesheet" type="text/css" href="{% static 'booker/css/vendor/slick.css' %}"/>
 <link rel="stylesheet" type="text/css" href="{% static 'booker/css/vendor/slick-theme.css' %}"/>
 <link rel='stylesheet' type='text/css' href='https://fonts.googleapis.com/css?family=Great+Vibes' >
+{% endcompress %}
 {% endblock head %}
 
 {% block carousel %}
@@ -18,7 +20,7 @@
 {% endblock carousel %}
 
 {% block content %}
-    
+
     <div id='Logo' class='container'>
         <img src="{% static 'booker/images/site/fullcolor_FINAL.png' %}" alt='The Oread Strings' width:='2815' height='1077'>
     </div>
@@ -27,13 +29,13 @@
     <div id='Description' class='container'>
         <h2 class='text-center'>elegant. local.</h2>
 
-        <h6 class='text-center'><strong>The Oread Strings</strong> provide beautiful music for weddings and events in Kansas City, Lawrence, Topeka, and the surrounding areas.</h6>  
+        <h6 class='text-center'><strong>The Oread Strings</strong> provide beautiful music for weddings and events in Kansas City, Lawrence, Topeka, and the surrounding areas.</h6>
 
         <h6 class='text-center'>Let us help you find the perfect ensemble for your event.</h6>
     </div>
 
     <div id='Inclusivity' class="card" style="width: 40rem;">
-    
+
          <div class="card-block">
             <h5 class="card-text text-center">A Word on Inclusivity:</h5>
             <p class='card-text'>The Oread Strings are commited to a welcoming and inclusive attitude to all people and do not discriminate on the basis of race, color, religion (creed), gender, gender expression, age, national origin (ancestry), disability, marital status, sexual orientation, or military status, in any of its activities or operations. We support the principles of the Human Rights Campaign (HRC), feel free to click their logo below for more information.</p>
@@ -48,7 +50,7 @@
     {% for ensemble in ensembles %}
     <div class='ensemble card' >
     <p class="card-header"><strong>{{ ensemble.name }}:</strong> {{ ensemble.description }}</p>
-        <img src='{{ ensemble.photo.url }}'alt="{{ ensemble.name }}" class='card-img-top rounded'>   
+        <img src='{{ ensemble.photo.url }}'alt="{{ ensemble.name }}" class='card-img-top rounded'>
     </div>
     {% endfor %}
     </div>
@@ -63,7 +65,7 @@
                 <img class='d-flex align-self-start mr-3 img-fluid rounded-circle' src="{{ musician.image.url }}" alt="{{ musician.name }}">
                     <div class='media-body'>
                         <h2 class 'mt-0'>{{ musician.name }}</h2>
-                       
+
                         {# <img src="{% cropped_thumbnail musician "cropping"  %}"> #}
                         <h5>{{musician.instrument}}</h5>
                             {{ musician.bio }}
@@ -73,10 +75,10 @@
                             {% endif %}
                     </div>
             </div>
-           
+
         </div>
         {% endfor %}
-    
+
 
 {% endblock content %}
 
@@ -85,7 +87,7 @@
 <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 <script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
 <script type="text/javascript" src="{% static 'booker/js/vendor/slick.min.js' %}"></script>
+{% compress js %}
 <script type="text/javascript" src ="{% static 'booker/js/vendor/slick-initialize.js' %}"></script>
+{% endcompress %}
 {% endblock scripts %}
-
-

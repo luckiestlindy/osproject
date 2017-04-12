@@ -5,12 +5,15 @@
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
 
 <link href="{% static 'booker/css/vendor/jquery-ui-timepicker-addon.min.css' %}" rel="stylesheet" type="text/css">
+
+{% compress js %}
 <script type="text/javascript" src="{% static 'booker/js/vendor/jquery-ui-sliderAccess.js' %}"></script>
 <script type="text/javascript" src="{% static 'booker/js/vendor/jquery-ui-timepicker-addon.min.js' %}"></script>
+{% endcompress %}
 
 {% endblock head %}
 {% block content %}
-    
+
     <div id="Contact" class="text-center">
         <h1>Contact Us!</h1>
         <p>For booking inquiries and rate information, please contact: <a title="mailto:oreadstrings@gmail.com" href="mailto:oreadstrings@gmail.com">oreadstrings@gmail.com</a> or call Ellen at<a href="tel:1-785-331-5926"> (785) 331-5926</a> or simply fill out the form below and we will be in touch.</p>
@@ -33,6 +36,8 @@
 
 
 {% block scripts %}
+
+{% compress js %}
 <script>
     $(function() {
 //        standard Jquery UI
@@ -59,7 +64,7 @@
         $('#id_wedding_options').labels().hide();
 //        $('#id_performers_required_time').hide();
 //        $('#id_performers_required_time').labels().hide();
-        
+
     }
     $(function(){
         $("#id_event_type").change(function(){
@@ -78,6 +83,6 @@
         });
     });
 </script>
+{% endcompress %}
 
 {% endblock scripts %}
-

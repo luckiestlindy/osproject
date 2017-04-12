@@ -1,25 +1,27 @@
-{# {% load static from staticfiles %} #}
-{% load static %}
+{% load static from staticfiles %}
+{% load compress %}
+<!-- {% load static %} -->
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-		<title>the Oread Strings</title>  
-    	<meta charset="utf-8">
+		<title>the Oread Strings</title>
+    <meta charset="utf-8">
 		<meta name="description" content="Oread Strings - String Ensembles for Special Events">
 		<meta name="keywords" content="Oread Strings, weddings, private events, corporate events, meetings, string quartet, soloist, classical, music">
 		<meta name="author" content="Kill Creek Web Design">
-    	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        {# <link rel="stylesheet" href="{% static 'booker/css/style.css' %}"> #}
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
 
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-        
-        <link rel="stylesheet" href="{% static 'booker/css/app.css' %}">
-        {% block head %}{% endblock head %}
-	
+		{% compress css %}
+    <link rel="stylesheet" href="{% static 'booker/css/app.css' %}">
+		{% endcompress %}
+		
+    {% block head %}{% endblock head %}
+
 	</head>
     <body>
-      
+
         <div id="Navbar">
             <nav class="navbar navbar-toggleable-md fixed-top navbar-inverse" style="background-color:#81D2BC">
                 <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
@@ -37,14 +39,14 @@
         </div>
 
 
-        
+
 
         <div id='Content'>
-        
+
             <div id="carousel-wrapper">
                 {% block carousel %}{% endblock carousel %}
             </div>
-            
+
             <div id='Message' class='container'>
                 {% block top %}
                 {% for message in messages %}
@@ -55,9 +57,9 @@
                 {% endfor %}
                 {% endblock top %}
             </div>
-                  
+
             <div id='Main' class ='container'>{% block content %}{% endblock content %}</div>
-        </div>    
+        </div>
 
 
         <footer class='text-center'>
@@ -66,19 +68,18 @@
                     <a title="test" href="https://www.djangoproject.com/"><img src="{% static 'booker/images/site/django-logo-negative.svg' %}"  alt="Django Logo" width="60" height="20.9" ></a> |
                     <a title="test" href="https://v4-alpha.getbootstrap.com/"><img src="{% static 'booker/images/site/bootstrap-solid.svg' %}"  alt="Bootstrap Logo" width="30" height="30" ></a>
                     {# <p>This site is standards compliant and built with Django, HTML5, CSS3, Javascript/Jquery, and Bootstrap</p> #}
-        	       <p>&copy; Copyright 2017 <a title="mailto:killcreekaudio@gmail.com" href="mailto:killcreekaudio@gmail.com">Kill Creek Web Design</a></p>	
+        	       <p>&copy; Copyright 2017 <a title="mailto:killcreekaudio@gmail.com" href="mailto:killcreekaudio@gmail.com">Kill Creek Web Design</a></p>
             </div>
         </footer>
-           
+
 <!--Scripts        -->
 <!--		<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>-->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
-        
+
 
     {% block scripts %}{% endblock scripts %}
-    
+    {% endcompress %}
     </body>
-     
-</html>
 
+</html>

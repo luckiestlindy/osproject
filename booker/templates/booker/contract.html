@@ -1,6 +1,7 @@
 {% extends 'booker/summary.html' %}
 
 {% block summary_script %}
+{% compress js %}
     <script>
         $(function () {
             var event_type = $('#outdoor-event').html();
@@ -12,9 +13,10 @@
         });
 
     </script>
+{% endcompress %}
 {% endblock %}
 
-{% block top_sum %} 
+{% block top_sum %}
     <h1>Hello {{ event.client_name }}!</h1>
     <h3>Please review the details of your event:</h3>
     <h5>To confirm your booking, a 50% deposit is required. To pay with Paypal, follow the link at the bottom of the form.</h5>
@@ -26,7 +28,7 @@
     <h4>Performance Fee:</h4>
     <ul class="list-group">
         <li class="list-group-item">Total Fee: ${{ event.fee }} due on {{ event.balance_duedate }}</li>
-        <li class="list-group-item">Deposit Amount: ${{ event.deposit }} due on {{ event.deposit_duedate }}</li>    
+        <li class="list-group-item">Deposit Amount: ${{ event.deposit }} due on {{ event.deposit_duedate }}</li>
     </ul>
     <br>
 
