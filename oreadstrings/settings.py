@@ -154,7 +154,10 @@ AWS_QUERYSTRING_AUTH = False
 AWS_S3_HOST = "s3-us-east-2.amazonaws.com"
 AWS_S3_ACCESS_KEY_ID = os.environ.get('AWS_S3_ACCESS_KEY_ID')
 AWS_S3_SECRET_ACCESS_KEY = os.environ.get('AWS_S3_SECRET_ACCESS_KEY')
+AWS_S3_SECURE_URLS = True
 AWS_STORAGE_BUCKET_NAME = os.environ.get('AWS_STORAGE_BUCKET_NAME')
+COMPRESS_STORAGE = 'custom_storages.CachedS3BotoStorage'
+AWS_IS_GZIPPED = True
 AWS_S3_CUSTOM_DOMAIN = os.environ.get('AWS_S3_CUSTOM_DOMAIN')
 AWS_HEADERS = {  # see http://developer.yahoo.com/performance/rules.html#expires
         'Expires': 'Thu, 31 Dec 2099 20:00:00 GMT',
@@ -171,11 +174,11 @@ MEDIA_ROOT = os.path.join(BASE_DIR, "booker/media")
 STATICFILES_LOCATION = 'static'
 STATICFILES_STORAGE = 'custom_storages.StaticStorage'
 STATIC_URL = 'https://%s/%s/' % (AWS_S3_CUSTOM_DOMAIN, STATICFILES_LOCATION)
-
+COMPRESS_LOCATION = 'compress'
 MEDIAFILES_LOCATION = 'media'
 MEDIA_URL = 'https://%s/%s/' % (AWS_S3_CUSTOM_DOMAIN, MEDIAFILES_LOCATION)
 DEFAULT_FILE_STORAGE = 'custom_storages.MediaStorage'
-
+COMPRESS_URL = STATIC_URL
 THUMBNAIL_DEFAULT_STORAGE = DEFAULT_FILE_STORAGE
 
 
