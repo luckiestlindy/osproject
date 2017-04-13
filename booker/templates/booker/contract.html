@@ -1,7 +1,6 @@
 {% extends 'booker/summary.html' %}
 
 {% block summary_script %}
-{% compress js %}
     <script>
         $(function () {
             var event_type = $('#outdoor-event').html();
@@ -13,7 +12,7 @@
         });
 
     </script>
-{% endcompress %}
+
 {% endblock %}
 
 {% block top_sum %}
