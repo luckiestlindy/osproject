@@ -212,8 +212,7 @@ def send_selections(request, pk):
 
 def selections_detail(request, pk):
     event = get_object_or_404(Event, pk=pk)
-    html = 'Thank You {0}, you have successfully submitted your'
-    ' musical selections for your event on {1}'.format(event.client_name, event.event_date)
+    html = 'Thank You {0}, you have successfully submitted your musical selections for your event on {1}'.format(event.client_name, event.event_date)
     messages.success(request, html)
     return render(request, 'booker/selections_detail.html', {'event': event})
 
@@ -222,8 +221,7 @@ def notifyadmin_selections(request, pk):
     subject = 'Client submitted Selections at Oreadstrings.com'
     to = [os_admin_email]
     event = get_object_or_404(Event, pk=pk)
-    message = '{0} has submitted a new list of selections for their event through the Oread Strings form.'
-    'Please click here the link to view the selections.  Thanks and have a lovely day.'.format(event.client_name)
+    message = '{0} has submitted a new list of selections for their event through the Oread Strings form. Please click here the link to view the selections.  Thanks and have a lovely day.'.format(event.client_name)
     link = '{0}/selections/{1}'.format(base_url, event.pk)
     context = {
         'name': 'Ellen',
@@ -384,8 +382,6 @@ def event_detail(request, pk):
 
 def event_inquiry_confirm(request, pk):
     event = get_object_or_404(Event, pk=pk)
-    html = "Thank you {0}! Your booking inquiry has been recieved. Your custom"
-    " quote will be emailed to you at {1} within 3 business days.  "
-    "Have a great day!".format(event.client_name, event.client_email)
+    html = "Thank you {0}! Your booking inquiry has been recieved. Your custom quote will be emailed to you at {1} within 3 business days. Have a great day!".format(event.client_name, event.client_email)
     messages.success(request, html)
     return render(request, 'booker/summary.html', {'event': event})
