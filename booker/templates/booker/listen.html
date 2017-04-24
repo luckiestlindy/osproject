@@ -16,7 +16,7 @@ Do you have a special piece of music? Ask us about custom string arrangements.</
     <ul>
 
         {% for song in ensemble.list %}
-        <!-- {%%} -->
+
         <li><h6>{{ song.name }}</h6>
             <audio controls>
                 <source src="{{ song.audio_file.url }}" type="audio/mpeg">
