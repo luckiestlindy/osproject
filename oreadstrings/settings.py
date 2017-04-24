@@ -256,9 +256,3 @@ VERSATILEIMAGEFIELD_SETTINGS = {
     'image_key_post_processor': None,
     'progressive_jpeg': False
 }
-
-# 
-# try:
-#     from .local_settings import *
-# except ImportError:
-#     pass

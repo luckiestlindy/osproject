@@ -14,7 +14,7 @@ Do you have a special piece of music? Ask us about custom string arrangements.</
     <h3>{{ ensemble.grouper}}</h3>
 
 
-    <ul>    
+    <ul>
         {% for song in ensemble.list %}
         <li><h6>{{ song.name }}</h6>
             <audio controls>
@@ -27,4 +27,3 @@ Do you have a special piece of music? Ask us about custom string arrangements.</
 
     {% endfor %}
 {% endblock content %}
-
