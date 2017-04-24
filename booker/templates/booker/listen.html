@@ -11,23 +11,17 @@ Do you have a special piece of music? Ask us about custom string arrangements.</
     {% regroup songs by ensemble as ensemble_list %}
     <ul>
     {% for ensemble in ensemble_list%}
-
-    <li><h3>{{ ensemble.grouper}}</h3>
+    <li>{{ ensemble.grouper}}
     <ul>
-
         {% for song in ensemble.list %}
-
         <li><h6>{{ song.name }}</h6>
             <audio controls>
                 <source src="{{ song.audio_file.url }}" type="audio/mpeg">
             </audio>
         </li>
         {% endfor %}
-
       </ul>
-        </li>
-
-
+      </li>
     {% endfor %}
-      </ul>
+    </ul>
 {% endblock content %}
