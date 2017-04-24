@@ -2,7 +2,7 @@
 {% load static from staticfiles %}
 {% load compress %}
 {% block head %}
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
 
 <link href="{% static 'booker/css/vendor/jquery-ui-timepicker-addon.min.css' %}" rel="stylesheet" type="text/css">
@@ -63,9 +63,6 @@
     if (event_type !== 'wedding') {
         $('#id_wedding_options').hide();
         $('#id_wedding_options').labels().hide();
-//        $('#id_performers_required_time').hide();
-//        $('#id_performers_required_time').labels().hide();
-
     }
     $(function(){
         $("#id_event_type").change(function(){
