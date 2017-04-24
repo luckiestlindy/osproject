@@ -47,7 +47,7 @@
 #Description h2 {
 	font-family: Great Vibes, cursive;
 	color: #81D2BC;
-	text-shadow: 1px 1px 4px black;
+	/*text-shadow: 1px 1px 4px black;*/
 }
 #Inclusivity {
 	padding-bottom: 40px;
@@ -109,4 +109,3 @@ footer {
 footer img {
     align-content: center;
 }
-

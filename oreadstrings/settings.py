@@ -257,8 +257,8 @@ VERSATILEIMAGEFIELD_SETTINGS = {
     'progressive_jpeg': False
 }
 
-
-try:
-    from .local_settings import *
-except ImportError:
-    pass
+# 
+# try:
+#     from .local_settings import *
+# except ImportError:
+#     pass

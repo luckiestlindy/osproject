@@ -323,8 +323,7 @@ def notifyadmin(request, pk):
     event = get_object_or_404(Event, pk=pk)
     subject = 'New Booking Inquiry at Oreadstrings.com'
     to = [os_admin_email]
-    message = 'You have a new booking inquiry from {0} for an event on {1}.'
-    ' Please click the link to see the details'.format(event.client_name, event.event_date)
+    message = 'You have a new booking inquiry from {0} for an event on {1}. Please click the link to see the details'.format(event.client_name, event.event_date)
     link = '{0}/admin/booker/event/{1}/change/'.format(base_url, event.pk)
     context = {
         'name': 'Ellen',
