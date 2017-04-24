@@ -30,8 +30,15 @@ $(function () {
 
     $("#id_ensemble_type").change(function () {
         var type = this.value;
+        $('.field-musician_one').show();
+        $('.field-musician_two').show();
+        $('.field-musician_three').show();
+        $('.field-musician_four').show();
+        $('.field-musician_five').show();
+        var ensemble_type = $('#id_ensemble_type').val();
+        console.log('its', ensemble_type);
         if (type == '1') {
-            console.log('string quartet');
+            console.log('String Quartet', ensemble_type);
             $('.field-musician_five').hide();
         }
         if (type == '5') {
