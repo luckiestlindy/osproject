@@ -33,25 +33,25 @@ $(function () {
             console.log('string quartet');
             $('.field-musician_five').hide();
         }
-        if (type == '2') {
+        if (type == '5') {
             console.log('soloist');
             $('.field-musician_two').hide();
             $('.field-musician_three').hide();
             $('.field-musician_four').hide();
             $('.field-musician_five').hide();
         }
-        if (type == '3') {
+        if (type == '4') {
             console.log('string duo');
             $('.field-musician_three').hide();
             $('.field-musician_four').hide();
             $('.field-musician_five').hide();
         }
-        if (type == '4') {
+        if (type == '3') {
             console.log('paino trio');
             $('.field-musician_four').hide();
             $('.field-musician_five').hide();
         }
-        if (type == '5') {
+        if (type == '2') {
             console.log('string trio');
             $('.field-musician_four').hide();
             $('.field-musician_five').hide();
