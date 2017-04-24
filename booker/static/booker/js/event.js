@@ -38,7 +38,7 @@ $(function () {
         var ensemble_type = $('#id_ensemble_type').val();
         console.log('its', ensemble_type);
         if (type == '1') {
-            console.log('String Quartet', ensemble_type);
+            console.log('String Quartet');
             $('.field-musician_five').hide();
         }
         if (type == '5') {
