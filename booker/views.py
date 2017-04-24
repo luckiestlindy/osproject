@@ -342,10 +342,9 @@ def index(request):
 
 
 def listen(request):
-    extra_context = {}
-    songs = Song.objects.all()
-    extra_context['songs'] = songs
-    return render(request, 'booker/listen.html', extra_context)
+    songs = Song.objects.all().order_by('ensemble')
+    context = {'songs': songs, }
+    return render(request, 'booker/listen.html', context)
 
 
 def bookings(request):
