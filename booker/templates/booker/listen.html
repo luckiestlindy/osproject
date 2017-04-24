@@ -9,13 +9,14 @@ In addition to these selections we are happy to play any standard repertoire.
 Do you have a special piece of music? Ask us about custom string arrangements.</p>
 
     {% regroup songs by ensemble as ensemble_list %}
+    <ul>
     {% for ensemble in ensemble_list%}
 
-    <h3>{{ ensemble.grouper}}</h3>
-
-
+    <li><h3>{{ ensemble.grouper}}</h3>
     <ul>
+
         {% for song in ensemble.list %}
+        <!-- {%%} -->
         <li><h6>{{ song.name }}</h6>
             <audio controls>
                 <source src="{{ song.audio_file.url }}" type="audio/mpeg">
@@ -23,7 +24,10 @@ Do you have a special piece of music? Ask us about custom string arrangements.</
         </li>
         {% endfor %}
 
-    </ul>
+      </ul>
+        </li>
+
 
     {% endfor %}
+      </ul>
 {% endblock content %}
