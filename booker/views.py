@@ -196,8 +196,7 @@ def send_selections(request, pk):
     event = get_object_or_404(Event, pk=pk)
     subject = 'Your Booking with the Oread Strings - Music Selections Form'
     to = [event.client_email]
-    message = 'The Oread Strings have sent you a link to help plan your upcoming event.  '
-    'Please click below to fill out the musicial selection form. Thanks and have a lovely day.'
+    message = 'The Oread Strings have sent you a link to help plan your upcoming event. Please click below to fill out the musicial selection form. Thanks and have a lovely day.'
     link = '{0}/selections/{1}/form'.format(base_url, event.pk)
     context = {
         'name': event.client_name,
