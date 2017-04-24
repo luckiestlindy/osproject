@@ -5,24 +5,24 @@ $(function () {
     if (ensemble_type == '1') {
         $('.field-musician_five').hide();
     }
-    if (ensemble_type == '2') {
+    if (ensemble_type == '5') {
         $('.field-musician_five').hide();
         $('.field-musician_two').hide();
         $('.field-musician_three').hide();
         $('.field-musician_four').hide();
         $('.field-musician_five').hide();
     }
-    if (ensemble_type == '3') {
+    if (ensemble_type == '4') {
         $('.field-musician_five').hide();
         $('.field-musician_three').hide();
         $('.field-musician_four').hide();
         $('.field-musician_five').hide();
     }
-    if (ensemble_type == '4') {
+    if (ensemble_type == '3') {
         $('.field-musician_four').hide();
         $('.field-musician_five').hide();
     }
-    if (ensemble_type == '5') {
+    if (ensemble_type == '2') {
         $('.field-musician_four').hide();
         $('.field-musician_five').hide();
     }
@@ -47,7 +47,7 @@ $(function () {
             $('.field-musician_five').hide();
         }
         if (type == '3') {
-            console.log('paino trio');
+            console.log('piano trio');
             $('.field-musician_four').hide();
             $('.field-musician_five').hide();
         }
