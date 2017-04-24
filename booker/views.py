@@ -12,7 +12,7 @@ from django.core.mail import EmailMessage, send_mail
 from django.contrib import messages
 from django.core.files.storage import FileSystemStorage
 from weasyprint import HTML
-from oreadstrings.constants import paypal_reciever_email, base_url, paypal_logo_url, os_admin_email, image_url_base
+from oreadstrings.constants import paypal_reciever_email, base_url, paypal_logo_url, os_admin_email, image_url_base, os_admin_email_to
 
 from django.core.urlresolvers import reverse
 from paypal.standard.forms import PayPalPaymentsForm
@@ -25,7 +25,7 @@ from django.utils import timezone
 logger = logging.getLogger('testlogger')
 
 
-def show_me_the_money(sender, **kwargs):
+def show_me_the_money(sender, **kwargs
     ipn_obj = sender
     pk = ipn_obj.invoice
     event = get_object_or_404(Event, pk=pk)
@@ -48,7 +48,7 @@ def show_me_the_money(sender, **kwargs):
 valid_ipn_received.connect(show_me_the_money)
 
 
-def show_me_the_error(sender, **kwargs):
+def show_me_the_error(sender, **kwargs
     logger.error('Paypal Error: invalid IPN received')
     logger.error(sender)
 
@@ -218,7 +218,7 @@ def selections_detail(request, pk):
 
 def notifyadmin_selections(request, pk):
     subject = 'Client submitted Selections at Oreadstrings.com'
-    to = [os_admin_email]
+    to = [os_admin_email_to]
     event = get_object_or_404(Event, pk=pk)
     message = '{0} has submitted a new list of selections for their event through the Oread Strings form. Please click here the link to view the selections.  Thanks and have a lovely day.'.format(event.client_name)
     link = '{0}/selections/{1}'.format(base_url, event.pk)
