@@ -25,7 +25,7 @@ from django.utils import timezone
 logger = logging.getLogger('testlogger')
 
 
-def show_me_the_money(sender, **kwargs
+def show_me_the_money(sender, **kwargs):
     ipn_obj = sender
     pk = ipn_obj.invoice
     event = get_object_or_404(Event, pk=pk)
