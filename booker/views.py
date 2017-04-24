@@ -48,7 +48,7 @@ def show_me_the_money(sender, **kwargs):
 valid_ipn_received.connect(show_me_the_money)
 
 
-def show_me_the_error(sender, **kwargs
+def show_me_the_error(sender, **kwargs):
     logger.error('Paypal Error: invalid IPN received')
     logger.error(sender)
 
