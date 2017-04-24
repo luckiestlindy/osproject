@@ -2,30 +2,31 @@ var $ = django.jQuery;
 $(function () {
     var event_type = $('#id_event_type').val();
     var ensemble_type = $('#id_ensemble_type').val();
-    if (ensemble_type == '1') {
+    console.log(ensemble_type);
+    if (ensemble_type == 'String Quartet') {
         $('.field-musician_five').hide();
     }
-    if (ensemble_type == '5') {
+    if (ensemble_type == 'Soloist') {
         $('.field-musician_five').hide();
         $('.field-musician_two').hide();
         $('.field-musician_three').hide();
         $('.field-musician_four').hide();
         $('.field-musician_five').hide();
     }
-    if (ensemble_type == '4') {
+    if (ensemble_type == 'String Duo') {
         $('.field-musician_five').hide();
         $('.field-musician_three').hide();
         $('.field-musician_four').hide();
-        $('.field-musician_five').hide();
+        // $('.field-musician_five').hide();
     }
-    if (ensemble_type == '3') {
+    if (ensemble_type == 'String Trio' || 'Piano Trio') {
         $('.field-musician_four').hide();
         $('.field-musician_five').hide();
     }
-    if (ensemble_type == '2') {
-        $('.field-musician_four').hide();
-        $('.field-musician_five').hide();
-    }
+    // if (ensemble_type == '2') {
+    //     $('.field-musician_four').hide();
+    //     $('.field-musician_five').hide();
+    // }
 
     $("#id_ensemble_type").change(function () {
         var type = this.value;
