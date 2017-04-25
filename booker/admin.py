@@ -58,7 +58,7 @@ class EventAdmin(admin.ModelAdmin):
         )
 
     class Media:
-        js = ('booker/js/event.js',)
+        js = ('booker/js/event1.js',)
 
 
 admin.site.register(Musician, MusicianAdmin)
