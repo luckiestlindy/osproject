@@ -286,8 +286,7 @@ def notify_players(request, pk):
     # from_email = os_admin_email
     subject = 'Oread Strings - Event Details'
     link = '{0}/event/{1}'.format(base_url, event.pk)
-    message = 'You have been confirmed for an Oread Strings {0} booking on {1}.'
-    ' Please click the link for the full details.'.format(event.event_type, event.event_date)
+    message = 'You have been confirmed for an Oread Strings {0} booking on {1}. Please click the link for the full details.'.format(event.event_type, event.event_date)
     context = {
         'name': m_names_str,
         'message': message,
