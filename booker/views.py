@@ -221,7 +221,7 @@ def notifyadmin_selections(request, pk):
     to = [os_admin_email_to]
     event = get_object_or_404(Event, pk=pk)
     message = '{0} has submitted a new list of selections for their event through the Oread Strings form. Please click here the link to view the selections.  Thanks and have a lovely day.'.format(event.client_name)
-    link = '{0}/selections/{1}'.format(base_url, event.pk)
+    link = '{0}/admin/booker/event/{1}/change'.format(base_url, event.pk)
     context = {
         'name': 'Ellen',
         'message': message,
