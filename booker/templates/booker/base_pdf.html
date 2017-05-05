@@ -2,33 +2,49 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
+		  <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
 		{# <title>the Oread Strings - Event Contract {{event.event_date}}</title>   #}
         {% block pdf_title %} {% endblock pdf_title%}
         <style>
-        
+
             body {
                 /*background-color: light-gray;*/
-                font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+                font-family: 'Open Sans', Helvetica, Arial, sans-serif;
                 font-size: small;
             }
             img {
                 width: 300px;
                 display: block;
                 margin: auto;
+								margin-bottom: 5px;
+								margin-top: -75px;
             }
             #pdf-addr {
                 font-size: xx-small;
                 display: block;
                 margin:auto;
+								margin-bottom: -20px;
                 text-align: center;
             }
-           
+						h1, h4, ul {
+							/*margin: 5px;*/
+						}
             h1 {
                 color: #81D2BC;
-                margin-left: 40px;
-            } 
+								margin-bottom: -15px;
+            }
+						h2 {
+							font-size: small;
+							margin-bottom: -5px;
+						}
+						h4 {
+							margin-bottom: 5px;
+						}
+						.list-group {
+							list-style: none;
+						}
             #Terms {
-                font-size: x-small;
+                font-size: xx-small;
             }
         </style>
 </head>
@@ -36,20 +52,19 @@
 
             <img src="{% static 'booker/images/site/fullcolor_FINAL.png' %}" width="30" height="30" alt='oread strings'>
             <p id='pdf-addr' class='text-center'>101 E. 23rd St, Lawrence KS 66046 | (785)331-5926 | oreadstrings@gmail.com</p>
-  
+
         {% endblock head %}
-	
+
 	</head>
     <body>
-                
+
        <div id='Content'>
             <div id='Main' class ='container'>
                 {% block content %}{% endblock content %}
             </div>
-        </div>    
+        </div>
 
 
     </body>
-     
-</html>
 
+</html>

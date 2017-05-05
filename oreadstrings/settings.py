@@ -137,7 +137,7 @@ USE_TZ = True
 TIME_INPUT_FORMATS = ('%I:%M %p',)  # will format your times as "5:30 PM"
 
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
-ALLOWED_HOSTS = ['oreadstrings.herokuapp.com']
+ALLOWED_HOSTS = ['oreadstrings.herokuapp.com', 'www.oreadstrings.com', 'oreadstrings.com']
 
 
 # Email Settings
