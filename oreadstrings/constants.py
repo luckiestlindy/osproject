@@ -1,5 +1,5 @@
 os_admin_email = 'Oread Strings <postmaster@mg.oreadstrings.com>'
-os_admin_email_to = 'Oread Strings <brentlind@mac.com>'
+os_admin_email_to = 'Oread Strings <oreadstrings@gmail.com>'
 paypal_reciever_email = 'oreadstrings@gmail.com'
 # paypal_logo_url = "https://s3.us-east-2.amazonaws.com/oreadstrings-assets/booker/images/site/fullcolor_pp.png"
 paypal_logo_url = "{% static 'booker/images/site/fullcolor_pp.png' %}"
