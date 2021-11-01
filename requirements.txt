@@ -3,7 +3,7 @@ astroid==1.4.9
 beautifulsoup4==4.5.3
 boto==2.46.1
 cairocffi==0.8.0
-CairoSVG==2.0.1
+CairoSVG>=2.5.1
 cffi==1.9.1
 contextlib2==0.5.4
 cssselect==1.0.1
