@@ -20,7 +20,7 @@ django-image-cropping==1.0.4
 django-paypal==0.3.6
 django-scheduler==0.8.3
 django-storages==1.5.2
-django-versatileimagefield==2.1
+django-versatileimagefield==2.0
 flake8==3.3.0
 gunicorn==19.7.0
 html5lib==0.999999999
