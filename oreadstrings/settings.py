@@ -142,11 +142,13 @@ ALLOWED_HOSTS = ['oreadstrings.herokuapp.com', 'www.oreadstrings.com', 'oreadstr
 
 # Email Settings
 EMAIL_HOST = os.environ.get('EMAIL_HOST')
-EMAIL_PORT = os.environ.get('EMAIL_PORT')
+#EMAIL_PORT = os.environ.get('EMAIL_PORT')
 EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_USE_TLS = os.environ.get('EMAIL_USE_TLS')
+#EMAIL_USE_TLS = os.environ.get('EMAIL_USE_TLS')
+EMAIL_PORT = 465
+EMAIL_USE_SSL = True
 
 # AWS S3 Static Settings
 # DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
