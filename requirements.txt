@@ -19,7 +19,7 @@ django-htmlmin==0.10.0
 django-image-cropping==1.5.0
 django-paypal==0.3.6
 django-scheduler==0.9.5
-django-storages==1.12.2
+django-storages==1.6.5
 django-versatileimagefield==2.0
 flake8==3.3.0
 gunicorn==19.7.0
