@@ -33,7 +33,7 @@ nodeenv==1.1.2
 olefile==0.44
 packaging==16.8
 pdfkit==0.6.0
-Pillow==4.0.0
+pillow>=8.3.2
 psycopg2==2.7
 pycodestyle==2.3.1
 pycparser==2.17
