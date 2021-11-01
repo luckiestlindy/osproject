@@ -1,7 +1,7 @@
 appdirs==1.4.3
 astroid==1.4.9
 beautifulsoup4==4.5.3
-boto==2.46.1
+boto==2.49.0
 cairocffi==0.8.0
 CairoSVG>=2.5.1
 cffi==1.9.1
