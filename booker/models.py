@@ -54,7 +54,7 @@ class Ensemble(models.Model):
 class Song(models.Model):
     name = models.CharField(max_length=125)
     audio_file = models.FileField(upload_to=upload_media_to, blank=True, null=True)
-    ensemble = models.ForeignKey(Ensemble)
+    ensemble = models.ForeignKey(Ensemble,on_delete=models.CASCADE)
 
     def __str__(self):
         return self.name
