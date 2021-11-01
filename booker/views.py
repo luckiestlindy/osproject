@@ -151,7 +151,7 @@ def payment_cancel(request, pk):
 
 def html_email(to, subject, context):
     context['url_link'] = image_url_base
-    message = get_template('email/os-email-template.html').render(Context(context))
+    message = get_template('email/os-email-template.html').render(context)
     msg = EmailMessage(subject, message, os_admin_email, to)
     msg.content_subtype = 'html'
     msg.send()
@@ -323,12 +323,12 @@ def notifyadmin(request, pk):
     to = [os_admin_email_to]
     message = 'You have a new booking inquiry from {0} for an event on {1}. Please click the link to see the details'.format(event.client_name, event.event_date)
     link = '{0}/admin/booker/event/{1}/change/'.format(base_url, event.pk)
-    context = {
+    ctx = {
         'name': 'Ellen',
         'message': message,
         'link': link,
     }
-    html_email(to, subject, context)
+    html_email(to, subject, ctx)
     return HttpResponse('notifyadmin')
 
 
