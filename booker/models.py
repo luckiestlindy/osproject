@@ -107,10 +107,10 @@ class Event(models.Model):
     num_bridesmaids = models.IntegerField(null=True, blank=True)
     num_flowers = models.IntegerField(null=True, blank=True)
     num_rings = models.IntegerField(null=True, blank=True)
-    bridal = models.ForeignKey(Selection, blank=True, null=True, related_name='bridal')
-    unity = models.ForeignKey(Selection, blank=True, null=True, related_name='unity')
-    communion = models.ForeignKey(Selection, blank=True, null=True, related_name='communion')
-    recessional = models.ForeignKey(Selection, blank=True, null=True, related_name='recessional')
+    bridal = models.ForeignKey(Selection, blank=True, null=True, related_name='bridal',on_delete=models.DO_NOTHING)
+    unity = models.ForeignKey(Selection, blank=True, null=True, related_name='unity',on_delete=models.DO_NOTHING)
+    communion = models.ForeignKey(Selection, blank=True, null=True, related_name='communion',on_delete=models.DO_NOTHING)
+    recessional = models.ForeignKey(Selection, blank=True, null=True, related_name='recessional',on_delete=models.DO_NOTHING)
 
     def __str__(self):
         return '{}: {}- {}'.format(self.client_name, self.event_type, self.event_date)
