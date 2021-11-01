@@ -75,7 +75,7 @@ class Event(models.Model):
     client_email = models.EmailField()
     event_type = models.CharField(max_length=100, choices=EVENT_TYPES)
     wedding_options = models.CharField(max_length=100, choices=WEDDING_OPTIONS, default='1')
-    ensemble_type = models.ForeignKey(Ensemble, blank=True, null=True)
+    ensemble_type = models.ForeignKey(Ensemble, blank=True, null=True,on_delete=models.CASCADE)
     event_date = models.DateField(auto_now=False)
     start_time = models.TimeField(auto_now=False, blank=True, null=True)
     performers_required_time = models.TimeField(auto_now=False, blank=True, null=True)
