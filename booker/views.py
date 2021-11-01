@@ -14,7 +14,7 @@ from django.core.files.storage import FileSystemStorage
 from weasyprint import HTML
 from oreadstrings.constants import paypal_reciever_email, base_url, paypal_logo_url, os_admin_email, image_url_base, os_admin_email_to
 
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 from paypal.standard.forms import PayPalPaymentsForm
 # from paypal.standard.models import ST_PP_COMPLETED
 from paypal.standard.ipn.signals import valid_ipn_received, invalid_ipn_received
