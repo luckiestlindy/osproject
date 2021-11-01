@@ -16,7 +16,7 @@ django-compressor==2.4.1
 django-debug-toolbar>=1.11.1
 django-environ==0.4.1
 django-htmlmin==0.10.0
-django-image-cropping==1.0.4
+django-image-cropping==1.5.0
 django-paypal==0.3.6
 django-scheduler==0.9.5
 django-storages==1.5.2
